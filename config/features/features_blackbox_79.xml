@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<features>
+    <feature class="shef.mt.features.impl.bb.Feature1001" description="Number of tokens in source" index="1001"/>
+    <feature class="shef.mt.features.impl.bb.Feature1002" description="Number of tokens in target" index="1002"/>
+    <feature class="shef.mt.features.impl.bb.Feature1003" description="ratio of number of tokens in source and target" index="1003"/>
+    <feature class="shef.mt.features.impl.bb.Feature1004" description="no tokens in the target / no tokens in the source" index="1004"/>
+    <feature class="shef.mt.features.impl.bb.Feature1005" description="absolute difference between no tokens and source and target normalised by source length" index="1005"/>
+    <feature class="shef.mt.features.impl.bb.Feature1006" description="average source token length" index="1006"/>
+    <feature class="shef.mt.features.impl.bb.Feature1007" description="number of mismatched brackets" index="1007"/>
+    <feature class="shef.mt.features.impl.bb.Feature1008" description="number of mismatched quotation marks" index="1008"/>
+    <feature class="shef.mt.features.impl.bb.Feature1009" description="source sentence log probability" index="1009"/>
+    <feature class="shef.mt.features.impl.bb.Feature1010" description="source sentence perplexity" index="1010"/>
+    <feature class="shef.mt.features.impl.bb.Feature1011" description="source sentence perplexity without end of sentence marker" index="1011"/>
+    <feature class="shef.mt.features.impl.bb.Feature1012" description="log probability of the target" index="1012"/>
+    <feature class="shef.mt.features.impl.bb.Feature1013" description="perplexity of the target" index="1013"/>
+    <feature class="shef.mt.features.impl.bb.Feature1014" description="perplexity of the target sentence without end of sentence marker" index="1014"/>
+    <feature class="shef.mt.features.impl.bb.Feature1015" description="number of occurrences of the target word within the target hypothesis (averaged for all words in the hypothesis - type/token ratio)" index="1015"/>
+    <feature class="shef.mt.features.impl.bb.Feature1016" description="average number of translations per source word in the sentence (threshold in giza1: prob &gt; 0.01)" index="1016"/>
+    <feature class="shef.mt.features.impl.bb.Feature1018" description="average number of translations per source word in the sentence (threshold in giza1: prob &gt; 0.05)" index="1018"/>
+    <feature class="shef.mt.features.impl.bb.Feature1020" description="average number of translations per source word in the sentence (threshold in giza1: prob &gt; 0.1)" index="1020"/>
+    <feature class="shef.mt.features.impl.bb.Feature1022" description="average number of translations per source word in the sentence (threshold in giza1: prob &gt; 0.2)" index="1022"/>
+    <feature class="shef.mt.features.impl.bb.Feature1024" description="average number of translations per source word in the sentence (threshold in giza1: prob &gt; 0.5)" index="1024"/>
+    <feature class="shef.mt.features.impl.bb.Feature1026" description="average number of translations per source word in the sentence (threshold in giza1: prob &gt; 0.01) weighted by the frequency of each word in the source corpus" index="1026"/>
+    <feature class="shef.mt.features.impl.bb.Feature1028" description="average number of translations per source word in the sentence (threshold in giza1: prob &gt; 0.5) weighted by the frequency of each word in the source corpus" index="1028"/>
+    <feature class="shef.mt.features.impl.bb.Feature1030" description="average number of translations per source word in the sentence (threshold in giza1: prob &gt; 0.1) weighted by the frequency of each word in the source corpus" index="1030"/>
+    <feature class="shef.mt.features.impl.bb.Feature1032" description="average number of translations per source word in the sentence (threshold in giza1: prob &gt; 0.2) weighted by the frequency of each word in the source corpus" index="1032"/>
+    <feature class="shef.mt.features.impl.bb.Feature1034" description="average number of translations per source word in the sentence (threshold in giza1: prob &gt; 0.5) weighted by the frequency of each word in the source corpus" index="1034"/>
+    <feature class="shef.mt.features.impl.bb.Feature1036" description="average number of translations per source word in the sentence (threshold in giza: prob &gt; 0.01) weighted by the inverse frequency of each word in the source corpus" index="1036"/>
+    <feature class="shef.mt.features.impl.bb.Feature1038" description="average number of translations per source word in the sentence (threshold in giza: prob &gt; 0.05) weighted by the inverse frequency of each word in the source corpus" index="1038"/>
+    <feature class="shef.mt.features.impl.bb.Feature1040" description="average number of translations per source word in the sentence (threshold in giza: prob &gt; 0.1) weighted by the inverse frequency of each word in the source corpus" index="1040"/>
+    <feature class="shef.mt.features.impl.bb.Feature1042" description="average number of translations per source word in the sentence (threshold in giza: prob &gt; 0.2) weighted by the inverse frequency of each word in the source corpus" index="1042"/>
+    <feature class="shef.mt.features.impl.bb.Feature1044" description="average number of translations per source word in the sentence (threshold in giza: prob &gt; 0.5) weighted by the inverse frequency of each word in the source corpus" index="1044"/>
+    <feature class="shef.mt.features.impl.bb.Feature1046" description="average unigram frequency in quartile_1 of frequency (lower frequency words) in the corpus of the source sentence" index="1046"/>
+    <feature class="shef.mt.features.impl.bb.Feature1047" description=" average unigram frequency in quartile_2 of frequency (lower frequency words) in the corpus of the source sentence" index="1047"/>
+    <feature class="shef.mt.features.impl.bb.Feature1048" description="average unigram frequency in quartile 3 of frequency (lower frequency words) in the corpus of the source sentence" index="1048"/>
+    <feature class="shef.mt.features.impl.bb.Feature1049" description=" average unigram frequency in quartile 4 of frequency (lower frequency words) in the corpus of the source sentence" index="1049"/>
+    <feature class="shef.mt.features.impl.bb.Feature1050" description="average bigram frequency in quartile 1 of frequency (lower frequency words) in the corpus of the source sentence" index="1050"/>
+    <feature class="shef.mt.features.impl.bb.Feature1051" description="average bigram frequency in quartile 2 of frequency (lower frequency words) in the corpus of the source sentence" index="1051"/>
+    <feature class="shef.mt.features.impl.bb.Feature1052" description="average bigram frequency in quartile 3 of frequency (lower frequency words) in the corpus of the source sentence" index="1052"/>
+    <feature class="shef.mt.features.impl.bb.Feature1053" description=" average bigram frequency in quartile 4 of frequency (lower frequency words) in the corpus of the source sentence" index="1053"/>
+    <feature class="shef.mt.features.impl.bb.Feature1054" description="average trigram frequency in quartile 1 of frequency (lower frequency words) in the corpus of the source sentence" index="1054"/>
+    <feature class="shef.mt.features.impl.bb.Feature1055" description="average trigram frequency in quartile 2 of frequency (lower frequency words) in the corpus of the source sentence" index="1055"/>
+    <feature class="shef.mt.features.impl.bb.Feature1056" description="average trigram frequency in quartile 3 of frequency (lower frequency words) in the corpus of the source sentence" index="1056"/>
+    <feature class="shef.mt.features.impl.bb.Feature1057" description="average trigram frequency in quartile 4 of frequency (lower frequency words) in the corpus of the source sentence" index="1057"/>
+    <feature class="shef.mt.features.impl.bb.Feature1058" description="percentage of distinct unigrams seen in the corpus (in all quartiles)" index="1058"/>
+    <feature class="shef.mt.features.impl.bb.Feature1059" description=" percentage of distinct bigrams seen in the corpus (in all quartiles)" index="1059"/>
+    <feature class="shef.mt.features.impl.bb.Feature1060" description="percentage of distinct trigrams seen in the corpus (in all quartiles)" index="1060"/>
+    <feature class="shef.mt.features.impl.bb.Feature1061" description="average word frequency: on average, each type (unigram) in the source sentence appears x times in the corpus (in all quartiles)" index="1061"/>
+    <feature class="shef.mt.features.impl.bb.Feature1062" description="absolute difference between number of periods in source and target" index="1062"/>
+    <feature class="shef.mt.features.impl.bb.Feature1063" description="absolute difference between number of periods in source and target normalised by target length" index="1063"/>
+    <feature class="shef.mt.features.impl.bb.Feature1064" description="absolute difference between number of commas in source and target" index="1064"/>
+    <feature class="shef.mt.features.impl.bb.Feature1065" description="absolute difference between number of commas in source and target normalised by target length" index="1065"/>
+    <feature class="shef.mt.features.impl.bb.Feature1066" description="absolute difference between number of : in source and target" index="1066"/>
+    <feature class="shef.mt.features.impl.bb.Feature1067" description="absolute difference between number of : in source and target normalised by target length" index="1067"/>
+    <feature class="shef.mt.features.impl.bb.Feature1068" description="absolute difference between number of ; in source and target " index="1068"/>
+    <feature class="shef.mt.features.impl.bb.Feature1069" description="absolute difference between number of ; in source and target normalized by target length" index="1069"/>
+    <feature class="shef.mt.features.impl.bb.Feature1070" description="absolute difference between number of ? in source and target " index="1070"/>
+    <feature class="shef.mt.features.impl.bb.Feature1071" description="absolute difference between number of ? in source and target normalized by target length" index="1071"/>
+    <feature class="shef.mt.features.impl.bb.Feature1072" description="absolute difference between number of ! in source and target " index="1072"/>
+    <feature class="shef.mt.features.impl.bb.Feature1073" description="absolute difference between number of ! in source and target normalized by target length" index="1073"/>
+    <feature class="shef.mt.features.impl.bb.Feature1074" description="percentage of punctuation marks in source" index="1074"/>
+    <feature class="shef.mt.features.impl.bb.Feature1075" description="percentage of punctuation marks in target" index="1075"/>
+    <feature class="shef.mt.features.impl.bb.Feature1076" description="absolute difference between number of punctuation marks between source and target normalised by target length" index="1076"/>
+    <feature class="shef.mt.features.impl.bb.Feature1077" description="percentage of numbers in the source" index="1077"/>
+    <feature class="shef.mt.features.impl.bb.Feature1078" description="percentage of numbers in the target sentence" index="1078"/>
+    <feature class="shef.mt.features.impl.bb.Feature1079" description="absolute difference between number of numbers in the source and target sentence normalised by source sentence length" index="1079"/>
+    <feature class="shef.mt.features.impl.bb.Feature1080" description="number source tokens that do not contain only a-z" index="1080"/>
+    <feature class="shef.mt.features.impl.bb.Feature1081" description="percentage of tokens in the target which do not contain only a-z" index="1081"/>
+    <feature class="shef.mt.features.impl.bb.Feature1082" description="ratio of percentage of tokens a-z in the source and tokens a-z in the target" index="1082"/>
+    <feature class="shef.mt.features.impl.bb.Feature1083" description="percentage of content words in the source" index="1083"/>
+    <feature class="shef.mt.features.impl.bb.Feature1084" description="percentage of content words in the target" index="1084"/>
+    <feature class="shef.mt.features.impl.bb.Feature1085" description="ratio of percentage of content words in the source and target" index="1085"/>
+    <feature class="shef.mt.features.impl.bb.Feature1086" description="LM log probability of POS of the target" index="1086"/>
+    <feature class="shef.mt.features.impl.bb.Feature1087" description="LM log perplexity of POS of the target" index="1087"/>
+    <feature class="shef.mt.features.impl.bb.Feature1088" description="percentage of nouns in the source" index="1088"/>
+    <feature class="shef.mt.features.impl.bb.Feature1089" description="percentage of verbs in the source" index="1089"/>
+    <feature class="shef.mt.features.impl.bb.Feature1090" description="percentage of nouns in the target" index="1090"/>
+    <feature class="shef.mt.features.impl.bb.Feature1091" description="percentage of verbs in the target" index="1091"/>
+    <feature class="shef.mt.features.impl.bb.Feature1092" description="ratio of percentage of nouns in the source and target" index="1092"/>
+    <feature class="shef.mt.features.impl.bb.Feature1093" description="ratio of percentage of verbs in the source and target" index="1093"/>
+    <feature class="shef.mt.features.impl.bb.Feature1094" description="ratio of percentage of pronouns in the source and target" index="1094"/>
+    <!--feature class="shef.mt.features.impl.bb.Feature1097" description="coherence of target" index="1097"/>
+    <feature class="shef.mt.features.impl.bb.Feature1098" description="number of dependencies with aligned constituents normalized by the total number of dependencies (max between source and target)" index="1098"/>
+    <feature class="shef.mt.features.impl.bb.Feature1099" description="number of dependencies with aligned constituents normalized by the total number of dependencies (max between source and target), with the order of the constituents ignored" index="1099"/>
+    <feature class="shef.mt.features.impl.bb.Feature1100" description="number of dependencies with well aligned constituents (Giza threshold 0.1) normalized by the total number of dependencies (max between source and target)" index="1100"/>
+    <feature class="shef.mt.features.impl.bb.Feature1101" description="absolute difference between the depth of the syntactic tree for the source and the depth of the syntactic tree for the target" index="1101"/>
+    <feature class="shef.mt.features.impl.bb.Feature1102" description="number of prepositional phrases in the source" index="1102"/>
+    <feature class="shef.mt.features.impl.bb.Feature1103" description="number of prepositional phrases in the target" index="1103"/>
+    <feature class="shef.mt.features.impl.bb.Feature1104" description="absolute difference between the number of PP phrases in the source and target" index="1104"/>
+    <feature class="shef.mt.features.impl.bb.Feature1105" description="absolute difference between the number of PP phrases in the source and target normalised by the total number of phrasal tags in the sentence" index="1105"/>
+    <feature class="shef.mt.features.impl.bb.Feature1106" description="absolute difference between the number of NPs in the source and target" index="1106"/>
+    <feature class="shef.mt.features.impl.bb.Feature1107" description="absolute difference between the number of NP phrases in the source and target normalised by the total number of phrasal tags in the sentence" index="1107"/>
+    <feature class="shef.mt.features.impl.bb.Feature1108" description="absolute difference between the number of VPs in the source and target" index="1108"/>
+    <feature class="shef.mt.features.impl.bb.Feature1109" description="absolute difference between the number of VP phrases in the source and target normalised by the total number of phrasal tags in the sentence" index="1109"/>
+    <feature class="shef.mt.features.impl.bb.Feature1110" description="absolute difference between the number of ADJPs in the source and target" index="1110"/>
+    <feature class="shef.mt.features.impl.bb.Feature1111" description="absolute difference between the number of ADJP phrases in the source and target normalised by the total number of phrasal tags in the sentence" index="1111"/>
+    <feature class="shef.mt.features.impl.bb.Feature1112" description="absolute difference between the number of ADVPs in the source and target" index="1112"/>
+    <feature class="shef.mt.features.impl.bb.Feature1113" description="absolute difference between the number of ADVP phrases in the source and target normalised by the total number of phrasal tags in the sentence" index="1113"/>
+    <feature class="shef.mt.features.impl.bb.Feature1114" description="absolute difference between the number of CONJPs in the source and target" index="1114"/>
+    <feature class="shef.mt.features.impl.bb.Feature1115" description="absolute difference between the number of CONJP phrases in the source and target normalised by the total number of phrasal tags in the sentence" index="1115"/>
+    <feature class="shef.mt.features.impl.bb.Feature1116" description="Named Entity feature: difference in number of PERSON entities in source and target normalised by total number of person entities (max between english and arabic)" index="1116"/>
+    <feature class="shef.mt.features.impl.bb.Feature1117" description="Named Entity feature: difference in number of LOCATION entities in source and target normalised by total number of person entities (max between english and arabic)" index="1117"/>
+    <feature class="shef.mt.features.impl.bb.Feature1118" description="Named Entity feature: difference in number of ORGANIZATION entities in source and target normalised by total number of person entities (max between english and arabic)" index="1118"/>
+    <feature class="shef.mt.features.impl.bb.Feature1119" description="number of PERSON entities in source that are aligned to PERSON entities in target" index="1119"/>
+    <feature class="shef.mt.features.impl.bb.Feature1120" description="number of LOCATION entities in source that are aligned to LOCATION entities in target" index="1120"/>
+    <feature class="shef.mt.features.impl.bb.Feature1121" description="number of ORGANIZATION entities in source that are aligned to ORGANIZATION entities in target" index="1121"/>
+    <feature class="shef.mt.features.impl.bb.Feature1122" description="Named Entity feature: difference in number of PERSON entities in source and target normalised by total number of person entities (max between english and arabic)" index="1122"/>
+    <feature class="shef.mt.features.impl.bb.Feature1123" description="Named Entity feature: difference in number of ORGANIZATION entities in source and target normalised by total number of person entities (max between english and arabic)" index="1123"/>
+    <feature class="shef.mt.features.impl.bb.Feature1124" description="Named Entity feature: difference in number of LOCATION entities in source and target normalised by total number of person entities (max between english and arabic)" index="1124"/-->
+</features>

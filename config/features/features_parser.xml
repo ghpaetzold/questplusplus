@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<features>
+    <feature class="shef.mt.features.impl.bb.Feature9300"  index="9300"/>
+    <feature class="shef.mt.features.impl.bb.Feature9301"  index="9301"/>
+    <feature class="shef.mt.features.impl.bb.Feature9302"  index="9302"/>
+    <feature class="shef.mt.features.impl.bb.Feature9303"  index="9303"/>
+    <feature class="shef.mt.features.impl.bb.Feature9304"  index="9304"/>
+    <feature class="shef.mt.features.impl.bb.Feature9305"  index="9305"/>
+    <feature class="shef.mt.features.impl.bb.Feature9306"  index="9306"/>
+    <feature class="shef.mt.features.impl.bb.Feature9307"  index="9307"/>
+
+</features>

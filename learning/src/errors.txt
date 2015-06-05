@@ -1,0 +1,6 @@
+INFO:root:Opening input files ...
+forrtl: error (200): program aborting due to control-C event
+Image              PC                Routine            Line        Source             
+KERNELBASE.dll     00007FFAA6DA6F93  Unknown               Unknown  Unknown
+KERNEL32.DLL       00007FFAA70416AD  Unknown               Unknown  Unknown
+ntdll.dll          00007FFAA9804409  Unknown               Unknown  Unknown

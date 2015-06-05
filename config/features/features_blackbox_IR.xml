@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Ergun Bicici's new features using IR and similarity metrics.
+-->
+<features>
+    <feature class="shef.mt.features.impl.bb.Feature1700" description="Information retrieval score and BLEU similarity" index="1700"/>
+    <feature class="shef.mt.features.impl.bb.Feature1701" description="LIX readability score" index="1701"/>
+    <feature class="shef.mt.features.impl.bb.Feature1702" description="Word length ratios" index="1702"/>
+</features>

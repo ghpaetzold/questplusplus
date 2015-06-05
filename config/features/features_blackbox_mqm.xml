@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<features>
+    <feature class="shef.mt.features.impl.bb.Feature1001" description="number of tokens in the source sentence" index="1001"/>
+    <feature class="shef.mt.features.impl.bb.Feature1002" description="number of tokens in the target sentence" index="1002"/>
+    <feature class="shef.mt.features.impl.bb.Feature1006" description="average source token length" index="1006"/>
+    <disabledfeature class="shef.mt.features.impl.bb.Feature1009" description="LM probability of source sentence" index="1009"/>
+    <disabledfeature class="shef.mt.features.impl.bb.Feature1012" description="LM probability of target sentence" index="1012"/>
+    <feature class="shef.mt.features.impl.bb.Feature1015" description="number of occurrences of the target word within the target hypothesis (averaged for all words in the hypothesis - type/token ratio)" index="1015"/>
+    <feature class="shef.mt.features.impl.bb.Feature1022" description="average number of translations per source word in the sentence (as given by IBM 1 table thresholded so that prob(t|s) > 0.2)" index="1022"/>
+    <feature class="shef.mt.features.impl.bb.Feature1036" description="average number of translations per source word in the sentence (as given by IBM 1 table thresholded so that prob(t|s) > 0.01) weighted by the inverse frequency of each word in the source corpus" index="1036"/>
+    <disabledfeature class="shef.mt.features.impl.bb.Feature1046" description="percentage of unigrams in quartile 1 of frequency (lower frequency words) in a corpus of the source language (SMT training corpus)" index="1046"/>
+    <disabledfeature class="shef.mt.features.impl.bb.Feature1049" description="percentage of unigrams in quartile 4 of frequency (higher frequency words) in a corpus of the source sentence" index="1049"/>
+    <disabledfeature class="shef.mt.features.impl.bb.Feature1050" description="percentage of bigrams in quartile 1 of frequency of source words in a corpus of the source language" index="1050"/>
+    <disabledfeature class="shef.mt.features.impl.bb.Feature1053" description="percentage of bigrams in quartile 4 of frequency of source words in a corpus of the source language" index="1053"/>
+    <disabledfeature class="shef.mt.features.impl.bb.Feature1054" description="percentage of trigrams in quartile 1 of frequency of source words in a corpus of the source language" index="1054"/>
+    <disabledfeature class="shef.mt.features.impl.bb.Feature1057" description="percentage of trigrams in quartile 4 of frequency of source words in a corpus of the source language" index="1057"/>
+    <disabledfeature class="shef.mt.features.impl.bb.Feature1058" description="percentage of unigrams in the source sentence seen in a corpus (SMT training corpus)" index="1058"/>
+    <feature class="shef.mt.features.impl.bb.Feature1074" description="number of punctuation marks in the source sentence" index="1074"/>
+    <feature class="shef.mt.features.impl.bb.Feature1075" description="number of punctuation marks in the target sentence" index="1075"/>
+    <feature class="shef.mt.features.impl.bb.Feature3001" description="number of slang words in target sentence" index="3001"/>
+    <feature class="shef.mt.features.impl.bb.Feature3002" description="number of slang words in target sentence divided by num of words" index="3002"/>
+    <feature class="shef.mt.features.impl.bb.Feature3003" description="number of abbreviation conflicts" index="3003"/>
+    <feature class="shef.mt.features.impl.bb.Feature3004" description="number of abbreviation conflicts divided by total number of abbrev in the doc" index="3004"/>
+</features>

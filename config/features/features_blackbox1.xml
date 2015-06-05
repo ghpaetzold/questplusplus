@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<features>
+    <feature class="shef.mt.features.impl.bb.Feature1001" description="Number of tokens in source" index="1001"/>
+    <feature class="shef.mt.features.impl.bb.Feature1002" description="Number of tokens in target" index="1002"/>
+    <feature class="shef.mt.features.impl.bb.Feature1003" description="ratio of number of tokens in source and target" index="1003"/>
+    <feature class="shef.mt.features.impl.bb.Feature1004" description="no tokens in the target / no tokens in the source" index="1004"/>
+    <feature class="shef.mt.features.impl.bb.Feature1005" description="absolute difference between no tokens and source and target normalised by source length" index="1005"/>
+    <feature class="shef.mt.features.impl.bb.Feature1006" description="average source token length" index="1006"/>
+    <feature class="shef.mt.features.impl.bb.Feature1007" description="number of mismatched brackets" index="1007"/>
+    <feature class="shef.mt.features.impl.bb.Feature1008" description="number of mismatched quotation marks" index="1008"/>
+    <feature class="shef.mt.features.impl.bb.Feature5000" description="Number of stopwords in the target sentence" index="5000"/>
+    <feature class="shef.mt.features.impl.bb.Feature5001" description="Number of stopwords in the source sentence" index="5001"/>
+    <feature class="shef.mt.features.impl.bb.Feature5002" description="Ratio of number of stopwords in target and source sentence" index="5002"/>
+    <feature class="shef.mt.features.impl.bb.Feature5003" description="Number of numericals in the target sentence" index="5003"/>
+    <feature class="shef.mt.features.impl.bb.Feature5004" description="Number of numericals in the source sentence" index="5004"/>
+    <feature class="shef.mt.features.impl.bb.Feature5005" description="Ratio of number of numericals in target and source sentence" index="5005"/>
+    <feature class="shef.mt.features.impl.bb.Feature5006" description="Average number of occurrences of all words in the target sentence" index="5006"/>
+    <feature class="shef.mt.features.impl.bb.Feature5007" description="Average number of occurrences of all words in the source sentence" index="5007"/>
+    <feature class="shef.mt.features.impl.bb.Feature5009" description="List of all POS in the target sentence" index="5009"/>
+    <feature class="shef.mt.features.impl.bb.Feature5010" description="List of all WPP (for each word) in the target sentence" index="5010"/>
+    <feature class="shef.mt.features.impl.bb.Feature5011" description="List of all number of nodes (for each word) in the target sentence" index="5011"/>
+    <feature class="shef.mt.features.impl.bb.Feature5012" description="List of all minimum distribution of posterior probability (for each word) in the target sentence" index="5012"/>
+    <feature class="shef.mt.features.impl.bb.Feature5013" description="List of all maximum distribution of posterior probability (for each word) in the target sentence" index="5013"/>
+    <feature class="shef.mt.features.impl.bb.Feature5014" description="List of all ngram value (for each word) in the target sentence" index="5014"/>
+   
+</features>

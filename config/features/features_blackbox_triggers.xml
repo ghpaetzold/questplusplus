@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<features>
+    <feature class="wlv.mt.features.impl.bb.Feature1302" description="source sentence intra lingual triggers" index="1302"/>	
+    <feature class="wlv.mt.features.impl.bb.Feature1303" description="target sentence intra lingual triggers" index="1303"/>	
+    <feature class="wlv.mt.features.impl.bb.Feature1304" description="source-target sentence inter lingual mutual information" index="1304"/>	
+</features>

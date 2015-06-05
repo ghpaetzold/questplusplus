@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+<feature index="01" description="" class="shef.mt.features.impl.bb.Feature1"></feature>
+<feature index="02" description="size of target sentences in words" class="shef.mt.features.impl.bb.Feature2"></feature>
+<feature index="03" description="ratio of source by target length in words" class="shef.mt.features.impl.bb.Feature3"></feature>
+<feature index="04" description="ratio of target by source length in words" class="shef.mt.features.impl.bb.Feature4"></feature>
+<feature index="04a" description="ratio of target by source length in words" class="shef.mt.features.impl.bb.Feature4a"></feature>
+<feature index="05" description="average word length in source" class="shef.mt.features.impl.bb.Feature5"></feature>
+<feature index="06" description="number of mismatched parantheses in target" class="shef.mt.features.impl.bb.Feature6"></feature>
+<feature index="07" description="1/0 whether hypothesis has mismatched quotation marks" class="shef.mt.features.impl.bb.Feature7"></feature>
+<feature index="08" description="log probability LM for source" class="shef.mt.features.impl.bb.Feature8"></feature>
+<feature index="09" description="perplexity LM for source" class="shef.mt.features.impl.bb.Feature9"></feature>
+<feature index="10" description="perplexity LM for source without end of sentence markers" class="shef.mt.features.impl.bb.Feature10"></feature>
+<feature index="11" description="log probability LM for target " class="shef.mt.features.impl.bb.Feature11"></feature>
+<feature index="12" description="perplexity LM for target" class="shef.mt.features.impl.bb.Feature12"></feature>
+<feature index="13" description="perplexity LM for target without end of sentence markers" class="shef.mt.features.impl.bb.Feature13"></feature>
+<feature index="14" description="" class="shef.mt.features.impl.bb.Feature14"></feature>
+<feature index="15" description="" class="shef.mt.features.impl.bb.Feature15"></feature>
+<feature index="15a" description="" class="shef.mt.features.impl.bb.Feature15a"></feature>
+<feature index="16" description="" class="shef.mt.features.impl.bb.Feature16"></feature>
+<feature index="16a" description="" class="shef.mt.features.impl.bb.Feature16a"></feature>
+<feature index="17" description="" class="shef.mt.features.impl.bb.Feature17"></feature>
+<feature index="17a" description="" class="shef.mt.features.impl.bb.Feature17a"></feature>
+<feature index="18" description="" class="shef.mt.features.impl.bb.Feature18"></feature>
+<feature index="18a" description="" class="shef.mt.features.impl.bb.Feature18a"></feature>
+<feature index="19" description="" class="shef.mt.features.impl.bb.Feature19"></feature>
+<feature index="19a" description="" class="shef.mt.features.impl.bb.Feature19a"></feature>
+<feature index="20" description="" class="shef.mt.features.impl.bb.Feature20"></feature>
+<feature index="20a" description="" class="shef.mt.features.impl.bb.Feature20a"></feature>
+<feature index="21" description="" class="shef.mt.features.impl.bb.Feature21"></feature>
+<feature index="21a" description="" class="shef.mt.features.impl.bb.Feature21a"></feature>
+<feature index="22" description="" class="shef.mt.features.impl.bb.Feature22"></feature>
+<feature index="22a" description="" class="shef.mt.features.impl.bb.Feature22a"></feature>
+<feature index="23" description="" class="shef.mt.features.impl.bb.Feature23"></feature>
+<feature index="23a" description="" class="shef.mt.features.impl.bb.Feature23a"></feature>
+<feature index="24" description="" class="shef.mt.features.impl.bb.Feature24"></feature>
+<feature index="24a" description="" class="shef.mt.features.impl.bb.Feature24a"></feature>
+<feature index="25" description="" class="shef.mt.features.impl.bb.Feature25"></feature>
+<feature index="25a" description="" class="shef.mt.features.impl.bb.Feature25a"></feature>
+<feature index="26" description="" class="shef.mt.features.impl.bb.Feature26"></feature>
+<feature index="26a" description="" class="shef.mt.features.impl.bb.Feature26a"></feature>
+<feature index="27" description="" class="shef.mt.features.impl.bb.Feature27"></feature>
+<feature index="27a" description="" class="shef.mt.features.impl.bb.Feature27a"></feature>
+<feature index="28" description="" class="shef.mt.features.impl.bb.Feature28"></feature>
+<feature index="28a" description="" class="shef.mt.features.impl.bb.Feature28a"></feature>
+<feature index="29" description="" class="shef.mt.features.impl.bb.Feature29"></feature>
+<feature index="29a" description="" class="shef.mt.features.impl.bb.Feature29a"></feature>
+<feature index="30" description="" class="shef.mt.features.impl.bb.Feature30"></feature>
+<feature index="31" description="" class="shef.mt.features.impl.bb.Feature31"></feature>
+<feature index="32" description="" class="shef.mt.features.impl.bb.Feature32"></feature>
+<feature index="33" description="" class="shef.mt.features.impl.bb.Feature33"></feature>
+<feature index="34" description="" class="shef.mt.features.impl.bb.Feature34"></feature>
+<feature index="35" description="" class="shef.mt.features.impl.bb.Feature35"></feature>
+<feature index="36" description="" class="shef.mt.features.impl.bb.Feature36"></feature>
+<feature index="37" description="" class="shef.mt.features.impl.bb.Feature37"></feature>
+<feature index="38" description="" class="shef.mt.features.impl.bb.Feature38"></feature>
+<feature index="39" description="" class="shef.mt.features.impl.bb.Feature39"></feature>
+<feature index="40" description="" class="shef.mt.features.impl.bb.Feature40"></feature>
+<feature index="41" description="" class="shef.mt.features.impl.bb.Feature41"></feature>
+<feature index="42" description="" class="shef.mt.features.impl.bb.Feature42"></feature>
+<feature index="43" description="" class="shef.mt.features.impl.bb.Feature43"></feature>
+<feature index="44" description="" class="shef.mt.features.impl.bb.Feature44"></feature>
+<feature index="45" description="" class="shef.mt.features.impl.bb.Feature45"></feature>
+<feature index="46" description="absolute difference between number of periods" class="shef.mt.features.impl.bb.Feature46"></feature>
+<feature index="47" description="difference between number of periods in source and target normalised by sentence length" class="shef.mt.features.impl.bb.Feature47"></feature>
+<feature index="48" description="absolute difference between number of commas" class="shef.mt.features.impl.bb.Feature48"></feature>
+<feature index="49" description="difference between number of commas in source and target normalised by sentence length" class="shef.mt.features.impl.bb.Feature49"></feature>
+<feature index="50" description="absolute difference between number of colon" class="shef.mt.features.impl.bb.Feature50"></feature>
+<feature index="51" description="difference between number of colons in source and target normalised by sentence length" class="shef.mt.features.impl.bb.Feature51"></feature>
+<feature index="52" description="absolute difference between number of semi-colon" class="shef.mt.features.impl.bb.Feature52"></feature>
+<feature index="53" description="difference between number of semi-colon in source and target normalised by sentence length" class="shef.mt.features.impl.bb.Feature53"></feature>
+<feature index="54" description="absolute difference between number of question mark" class="shef.mt.features.impl.bb.Feature54"></feature>
+<feature index="55" description="difference between number of question marks in source and target normalised by sentence length" class="shef.mt.features.impl.bb.Feature55"></feature>
+<feature index="56" description="absolute difference between number of exclamation mark" class="shef.mt.features.impl.bb.Feature56"></feature>
+<feature index="57" description="difference between number of exclamation marks in source and target normalised by sentence length" class="shef.mt.features.impl.bb.Feature57"></feature>
+<feature index="58" description="percentage of punctuation marks in the source" class="shef.mt.features.impl.bb.Feature58"></feature>
+<feature index="59" description="percentage of punctuation marks in the target" class="shef.mt.features.impl.bb.Feature59"></feature>
+<feature index="60" description="difference between number of punctuation marks in the source and target normalised by sentence length" class="shef.mt.features.impl.bb.Feature59"></feature>
+<feature index="61" description="" class="shef.mt.features.impl.bb.Feature61"></feature>
+<feature index="61a" description="" class="shef.mt.features.impl.bb.Feature61a"></feature>
+<feature index="61b" description="" class="shef.mt.features.impl.bb.Feature61b"></feature>
+<feature index="62" description="" class="shef.mt.features.impl.bb.Feature62"></feature>
+<feature index="63" description="" class="shef.mt.features.impl.bb.Feature63"></feature>
+<feature index="64" description="" class="shef.mt.features.impl.bb.Feature64"></feature>
+<feature index="65" description="" class="shef.mt.features.impl.bb.Feature65"></feature>
+<feature index="66" description="" class="shef.mt.features.impl.bb.Feature66"></feature>
+<feature index="67" description="" class="shef.mt.features.impl.bb.Feature67"></feature>
+<feature index="68" description="" class="shef.mt.features.impl.bb.Feature68"></feature>
+<feature index="69" description="" class="shef.mt.features.impl.bb.Feature69"></feature>
+<feature index="75" description="" class="shef.mt.features.impl.bb.Feature75"></feature>
+<feature index="76" description="" class="shef.mt.features.impl.bb.Feature76"></feature>
+<feature index="77" description="" class="shef.mt.features.impl.bb.Feature77"></feature>
+<feature index="78" description="" class="shef.mt.features.impl.bb.Feature78"></feature>
+<feature index="79" description="" class="shef.mt.features.impl.bb.Feature79"></feature>
+<feature index="80" description="" class="shef.mt.features.impl.bb.Feature80"></feature>
+
+
+</features>

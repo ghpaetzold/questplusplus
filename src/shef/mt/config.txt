@@ -1,0 +1,87 @@
+wlv.mt.copyright = (c) University of Wolverhampton, 2011
+
+
+
+!application defaults
+logger.folder = log
+logger.on = true
+
+features.default = all
+sourceLang.default = arabic
+targetLang.default = english
+
+!name of the input, output and language resources folders – these are created automatically if not existent
+output=output
+input =input
+resourcesPath = lang_resources
+
+featureConfig.bb = featureConfigBB.xml
+featureConfig.gb = featureConfigGB.xml
+featureConfig.all = featureConfig.xml
+
+
+! resources for english
+english.tokenizer = /home/tools/moses/scripts/scripts-20110207-1805/tokenizer/tokenizer.pl
+english.lowercase = /home/tools/moses/scripts/scripts-20110207-1805/tokenizer/lowercase.pl
+english.postagger = wlv.mt.tools.PosTreeTagger
+english.postagger.exePath=/home/tools/treetagger/2011_jan/cmd/tree-tagger-english
+english.locale=en_UK
+
+english.ngramScript.path = /home/tools/srilm/srilm-v1.5.11/bin/i686-m64/ngram
+english.ngramCountScript.path = /home/tools/srilm/srilm-v1.5.11/bin/i686-m64/ngram-count 
+english.ngram.outputFolder = english
+english.ngram.outputFileExt = ngram
+
+english.lm = /home/najeh/Anglais/LM/TrainingFileFiltred.sgm.En.Tok.LC.lm
+english.poslm = /home/najeh/darpa_project/ibm_data/training_data/enfiles/raw/TrainingFile/TrainingFile.sgm.En.Tok.Pos.LM
+english.LMPosPerplexity.outputFileExt = pos.ppl
+
+!resources for arabic
+arabic.postagger = wlv.mt.tools.ArabicPosTagger
+arabic.postagger.execPath=/home/najeh/Arabe/posAR_Columbia-1.0/
+arabic.postagger.execName=./bin/AMIRA.pl
+
+
+!MADA morpjological analyser
+arabic.morphAnalyser.execName = MADA+TOKAN.pl
+arabic.morphAnalyser.execPath = /home/tools/mada/MADA-3.1
+arabic.morphAnalyser.config = /home/tools/mada/MADA-3.1/config-files/template.madaconfig
+! this script adds a sentence ID to each sentence
+arabic.sentId = /home/najeh/scripts/AddSentenceId.pl
+
+
+arabic.locale=ar_SA
+
+arabic.ngramScript.path = /home/tools/srilm/srilm-v1.5.11/bin/i686-m64/ngram
+arabic.ngramCountScript.path = /home/tools/srilm/srilm-v1.5.11/bin/i686-m64/ngram-count 
+arabic.ngram.outputFolder = arabic
+arabic.ngram.outputFileExt = ngram
+
+arabic.lm = /home/najeh/Arabe/LM/TrainingFileFiltred.sgm.Ar.bw.TOK.lm
+arabic.ngram = lang_resources/arabic/TrainingFileFiltred.sgm.Ar.bw.TOK.ngramcounts.filtered.clean
+arabic.corpus = /home/najeh/darpa_project/ibm_data/training_data/arfiles/raw/TrainingFileFiltred/TrainingFileFiltred.sgm.Ar.bw.TOK
+
+arabic.LMperplexity.outputFileExt = ppl
+
+arabic.translit.path = /home/najeh/Arabe/TRANSLITERATION
+arabic.translit.name = ./utf2bwP
+
+
+
+!resources for pairs of languages
+pair.arabicenglish.giza.path = /home/catalina/MTFeatures/lang_resources/giza/ar-en.actual.ti.final
+pair.arabicenglish.giza2.path = /home/catalina/MTFeatures/lang_resources/giza/giza.filtered.trans
+
+
+!generic tools
+tools.ngram.path = /home/tools/srilm/srilm-v1.5.11/bin/i686-m64/
+tools.ngram.output.ext = .ppl
+tools.openfst.path = /home/catalina/tools/open-fst/bin
+!this script contains various EXPORT statements
+tools.export.exePath = /home/catalina/tools/export.sh
+tools.trainsvm.exePath = /home/catalina/tools/TRAIN-SVM.sh
+tools.testsvm.exePath = /home/catalina/tools/TEST-SVM.sh
+tools.tosvm.exePath = /home/catalina/tools/filecombiner.py
+tools.svm.path = /home/catalina/tools/svm
+
+

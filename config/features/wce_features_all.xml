@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+	<feature index="WCE1001" description="Target word." class="shef.mt.features.impl.wce.WordLevelFeature1001"></feature>
+	<feature index="WCE1002" description="Bigram at left of target word." class="shef.mt.features.impl.wce.WordLevelFeature1002"></feature>
+	<feature index="WCE1003" description="Bigram at right of target word." class="shef.mt.features.impl.wce.WordLevelFeature1003"></feature>
+	<feature index="WCE1004" description="Trigram at left of target word." class="shef.mt.features.impl.wce.WordLevelFeature1004"></feature>
+	<feature index="WCE1005" description="Trigram of right of target word." class="shef.mt.features.impl.wce.WordLevelFeature1005"></feature>
+	<feature index="WCE1006" description="Trigram at mean of target word." class="shef.mt.features.impl.wce.WordLevelFeature1006"></feature>
+	<feature index="WCE1007" description="Target word count in sentence." class="shef.mt.features.impl.wce.WordLevelFeature1007"></feature>
+	<feature index="WCE1008" description="Source word aligned to each target word." class="shef.mt.features.impl.wce.WordLevelFeature1008"></feature>
+	<feature index="WCE1009" description="Left bigram aligned to each target word." class="shef.mt.features.impl.wce.WordLevelFeature1009"></feature>
+	<feature index="WCE1010" description="Right bigram aligned to each target word." class="shef.mt.features.impl.wce.WordLevelFeature1010"></feature>
+	<feature index="WCE1011" description="Second leftmost target word along with aligned source word." class="shef.mt.features.impl.wce.WordLevelFeature1011"></feature>
+	<feature index="WCE1012" description="First leftmost target word along with aligned source word." class="shef.mt.features.impl.wce.WordLevelFeature1012"></feature>
+	<feature index="WCE1013" description="First rightmost target word along with aligned source word." class="shef.mt.features.impl.wce.WordLevelFeature1013"></feature>
+	<feature index="WCE1014" description="Second rightmost target word along with aligned source word." class="shef.mt.features.impl.wce.WordLevelFeature1014"></feature>
+	<feature index="WCE1015" description="Language model backoff behavior value." class="shef.mt.features.impl.wce.WordLevelFeature1015"></feature>
+	<feature index="WCE1016" description="POS of target word." class="shef.mt.features.impl.wce.WordLevelFeature1016"></feature>
+	<feature index="WCE1017" description="POS of source word." class="shef.mt.features.impl.wce.WordLevelFeature1017"></feature>
+	<feature index="WCE1018" description="Left bigram of POS tags of target word." class="shef.mt.features.impl.wce.WordLevelFeature1018"></feature>
+	<feature index="WCE1019" description="Right bigram of POS tags of target word." class="shef.mt.features.impl.wce.WordLevelFeature1019"></feature>
+	<feature index="WCE1020" description="Left trigram of POS tags of target word." class="shef.mt.features.impl.wce.WordLevelFeature1020"></feature>
+	<feature index="WCE1021" description="Right trigram of POS tags of target word." class="shef.mt.features.impl.wce.WordLevelFeature1021"></feature>
+	<feature index="WCE1022" description="Middle trigram of POS tags of target word." class="shef.mt.features.impl.wce.WordLevelFeature1022"></feature>
+	<feature index="WCE1023" description="1 if target word is a stop word, 0 if not." class="shef.mt.features.impl.wce.WordLevelFeature1023"></feature>
+	<feature index="WCE1024" description="1 if target word is punctuation, 0 if not." class="shef.mt.features.impl.wce.WordLevelFeature1024"></feature>
+	<feature index="WCE1025" description="1 if target word is a proper noun, 0 if not." class="shef.mt.features.impl.wce.WordLevelFeature1025"></feature>
+	<feature index="WCE1026" description="1 if target word is a numeral, 0 if not." class="shef.mt.features.impl.wce.WordLevelFeature1026"></feature>
+	<feature index="WCE1027" description="1 if target word is linked to another, 0 if not." class="shef.mt.features.impl.wce.WordLevelFeature1027"></feature>
+	<feature index="WCE1028" description="Number of senses of each target word." class="shef.mt.features.impl.wce.WordLevelFeature1028"></feature>
+	<feature index="WCE1029" description="1 if target word is in reference translation, 0 if not." class="shef.mt.features.impl.wce.WordLevelFeature1029"></feature>
+	<feature index="WCE1030" description="Tagged language model backoff behavior value." class="shef.mt.features.impl.wce.WordLevelFeature1030"></feature>
+	<feature index="WCE1031" description="Number of senses of the source word aligned to each target word." class="shef.mt.features.impl.wce.WordLevelFeature1031"></feature>
+	<feature index="WCE1032" description="Number of times each target word appears in the target sentence." class="shef.mt.features.impl.wce.WordLevelFeature1032"></feature>
+	<feature index="WCE1033" description="Number of translations of each target word given a probability threshold of 5%." class="shef.mt.features.impl.wce.WordLevelFeature1033"></feature>
+	<feature index="WCE1034" description="Number of translations of each target word given a probability threshold of 10%." class="shef.mt.features.impl.wce.WordLevelFeature1034"></feature>
+	<feature index="WCE1035" description="Number of translations of each target word given a probability threshold of 20%." class="shef.mt.features.impl.wce.WordLevelFeature1035"></feature>
+	<feature index="WCE1036" description="Number of translations of each target word given a probability threshold of 50%." class="shef.mt.features.impl.wce.WordLevelFeature1036"></feature>
+	<feature index="WCE1037" description="Longest target n-gram length." class="shef.mt.features.impl.wce.WordLevelFeature1037"></feature>
+	<feature index="WCE1038" description="Longest source n-gram length." class="shef.mt.features.impl.wce.WordLevelFeature1038"></feature>
+	<feature index="WCE1039" description="Longest target POS n-gram length." class="shef.mt.features.impl.wce.WordLevelFeature1039"></feature>
+	<feature index="WCE1040" description="Longest source POS n-gram length." class="shef.mt.features.impl.wce.WordLevelFeature1040"></feature>
+</features>

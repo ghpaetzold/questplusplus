@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<features>
+    <feature class="shef.mt.features.impl.gb.Feature2001" description="log prob score of the hypothesis" index="2001"/>
+    <feature class="shef.mt.features.impl.gb.Feature2002" description="-log probability score (base model) normalized by source sentence length" index="2002"/>
+    <feature class="shef.mt.features.impl.gb.Feature2003" description="size of nbest list" index="2003"/>
+    <feature class="shef.mt.features.impl.gb.Feature2004" description="" index="2004"/>
+    <feature class="shef.mt.features.impl.gb.Feature2005" description="using n-best for training LM: sentence 1-gram log-probability / sentence length" index="2005"/>
+    <feature class="shef.mt.features.impl.gb.Feature2006" description="using n-best for training LM: sentence 1-gram perplexity" index="2006"/>
+    <feature class="shef.mt.features.impl.gb.Feature2007" description="using n-best for training LM: sentence 2-gram log-probability" index="2007"/>
+    <feature class="shef.mt.features.impl.gb.Feature2008" description="using n-best for training LM: sentence 2-gram log-probability / sentence length" index="2008"/>
+    <feature class="shef.mt.features.impl.gb.Feature2009" description="using n-best for training LM: sentence 2-gram perplexity" index="2009"/>
+    <feature class="shef.mt.features.impl.gb.Feature2010" description="using n-best for training LM: sentence 3-gram log-probability" index="2010"/>
+    <feature class="shef.mt.features.impl.gb.Feature2011" description="using n-best for training LM: sentence 3-gram log-probability / sentence length" index="2011"/>
+    <feature class="shef.mt.features.impl.gb.Feature2012" description="-using n-best for training LM: sentence 3-gram perplexity" index="2012"/>
+    <feature class="shef.mt.features.impl.gb.Feature2014" description="dist_feat_1" index="2014"/>
+    <feature class="shef.mt.features.impl.gb.Feature2015" description="" index="2015"/>
+    <feature class="shef.mt.features.impl.gb.Feature2016" description="dist_feat_3" index="2016"/>
+    <feature class="shef.mt.features.impl.gb.Feature2017" description="dist_feat_4" index="2017"/>
+    <feature class="shef.mt.features.impl.gb.Feature2018" description="dist_feat_5" index="2018"/>
+    <feature class="shef.mt.features.impl.gb.Feature2019" description="dist_feat_6" index="2019"/>
+    <feature class="shef.mt.features.impl.gb.Feature2020" description="dist_feat_7" index="2020"/>
+    <feature class="shef.mt.features.impl.gb.Feature2021" description="CMU phrase probability phrase_prob_feat_1" index="2021"/>
+    <feature class="shef.mt.features.impl.gb.Feature2022" description="CMU phrase probability phrase_prob_feat_2" index="2022"/>
+    <feature class="shef.mt.features.impl.gb.Feature2023" description="CMU phrase probability phrase_prob_feat_3" index="2023"/>
+    <feature class="shef.mt.features.impl.gb.Feature2024" description="CMU phrase probability phrase_prob_feat_4" index="2024"/>
+    <feature class="shef.mt.features.impl.gb.Feature2025" description="CMU phrase probability phrase_prob_feat_5" index="2025"/>
+    <feature class="shef.mt.features.impl.gb.Feature2026" description="CMU word penalty" index="2026"/>
+    <!--feature class="shef.mt.features.impl.gb.Feature2027" description="" index="2027"/>
+    <feature class="shef.mt.features.impl.gb.Feature2028" description="" index="2028"/>
+    <feature class="shef.mt.features.impl.gb.Feature2029" description="IBM dist_sc" index="2029"/>
+    <feature class="shef.mt.features.impl.gb.Feature2030" description="" index="2030"/>
+    <feature class="shef.mt.features.impl.gb.Feature2031" description="" index="2031"/>
+    <feature class="shef.mt.features.impl.gb.Feature2032" description="" index="2032"/>
+    <feature class="shef.mt.features.impl.gb.Feature2033" description="" index="2033"/>
+    <feature class="shef.mt.features.impl.gb.Feature2034" description="" index="2034"/>
+    <feature class="shef.mt.features.impl.gb.Feature2035" description="" index="2035"/>
+    <feature class="shef.mt.features.impl.gb.Feature2036" description="" index="2036"/>
+    <feature class="shef.mt.features.impl.gb.Feature2037" description="" index="2037"/>
+    <feature class="shef.mt.features.impl.gb.Feature2038" description="" index="2038"/>
+    <feature class="shef.mt.features.impl.gb.Feature2039" description="" index="2039"/>
+    <feature class="shef.mt.features.impl.gb.Feature2040" description="" index="2040"/>
+    <feature class="shef.mt.features.impl.gb.Feature2041" description="" index="2041"/-->
+    <feature class="shef.mt.features.impl.gb.Feature2042" description="maximum size of the bi-phrases for the target sentence, in terms of number of words" index="2042"/>
+    <feature class="shef.mt.features.impl.gb.Feature2043" description="CMU: proportion of unknown words" index="2043"/>
+    <feature class="shef.mt.features.impl.gb.Feature2044" description="relative frequency in the nbest list" index="2044"/>
+    <feature class="shef.mt.features.impl.gb.Feature2045" description="averaged target word statistics: score-weighted relative frequency of the word in the n-best list " index="2045"/>
+    <feature class="shef.mt.features.impl.gb.Feature2046" description="averaged target word statistics: relative frequency of the word in the n-best list occurring in the same position as the target word" index="2046"/>
+    <feature class="shef.mt.features.impl.gb.Feature2047" description="ratio of log prob (base model score) of the current hypothesis to the sum of the log prob score of all hypothesis" index="2047"/>
+    <feature class="shef.mt.features.impl.gb.Feature2048" description="ratio of log prob (base model score) of the current hypothesis to the sum of the log prob score of all hypothesis " index="2048"/>
+    <feature class="shef.mt.features.impl.gb.Feature2049" description="average size of hypotheses in the n-best list" index="2049"/>
+    <feature class="shef.mt.features.impl.gb.Feature2050" description="n-best list density (vocabulary size / average sentence length)" index="2050"/>
+    <feature class="shef.mt.features.impl.gb.Feature2051" description="fertility of the words in the source sentence compared to the n-best list in terms of words (vocabulary size / source sentence length)" index="2051"/>
+    <feature class="shef.mt.features.impl.gb.Feature2052" description="edit distance of the current hypothesis to the center hypothesis " index="2052"/>
+    <feature class="shef.mt.features.impl.gb.Feature2053" description="percentage of other hypothesis with and edit distance to the centre &lt; (current hypothesis edit distance to the centre * 0.5)" index="2053"/>
+    <feature class="shef.mt.features.impl.gb.Feature2054" description="percentage of other hypothesis with and edit distance to the centre &lt; (current hypothesis edit distance to the centre * 0.35)" index="2054"/>
+    <feature class="shef.mt.features.impl.gb.Feature2055" description="CMU: totalHypotheses" index="2055"/>
+    <feature class="shef.mt.features.impl.gb.Feature2056" description="discarded search graph nodes" index="2056"/>
+    <feature class="shef.mt.features.impl.gb.Feature2057" description="CMU: percentage of discarded graph nodes" index="2057"/>
+    <feature class="shef.mt.features.impl.gb.Feature2058" description="CMU: pruned search graph nodes" index="2058"/>
+    <feature class="shef.mt.features.impl.gb.Feature2059" description="proportion of pruned search graph nodes " index="2059"/>
+    <feature class="shef.mt.features.impl.gb.Feature2060" description="number of recombined graph nodes" index="2060"/>
+    <feature class="shef.mt.features.impl.gb.Feature2061" description="proportion of recombined graph nodes" index="2061"/>
+    <feature class="shef.mt.features.impl.gb.Feature2100" description="percentage of incorrectly translated possessive pronouns" index="2100"/>
+    <feature class="shef.mt.features.impl.gb.Feature2101" description="percentage of incorrectly translated direct object personal pronouns" index="2101"/>
+</features>

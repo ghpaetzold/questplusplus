@@ -1,0 +1,7 @@
+/build/
+/dist/
+/lib/
+/output/
+/input/test
+/lang_resources/
+*.ngram
