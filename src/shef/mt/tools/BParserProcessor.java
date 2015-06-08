@@ -3,6 +3,7 @@ package shef.mt.tools;
 import java.util.Map;
 import java.util.Iterator;
 
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 import shef.mt.tools.BParser;
 import shef.mt.util.PropertiesManager;
@@ -65,6 +66,11 @@ public class BParserProcessor extends ResourceProcessor {
 		s.setValue("bparser.bestParseConfidence", parser.getBestParseConfidence());
 		s.setValue("bparser.n", parser.getParseTreesN());
 	}
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 	
 	
 }

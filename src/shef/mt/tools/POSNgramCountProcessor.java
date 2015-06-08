@@ -1,6 +1,7 @@
 
 package shef.mt.tools;
 
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 public class POSNgramCountProcessor extends ResourceProcessor {
@@ -14,6 +15,11 @@ public class POSNgramCountProcessor extends ResourceProcessor {
     @Override
     public void processNextSentence(Sentence s) {
         s.setValue("posngramcount", this.lm);
+    }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

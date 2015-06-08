@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import org.lexvo.uwn.Entity;
 import org.lexvo.uwn.Statement;
 import org.lexvo.uwn.UWN;
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 public class SenseProcessor extends ResourceProcessor {
@@ -70,6 +71,11 @@ public class SenseProcessor extends ResourceProcessor {
         }else{
             System.out.println("ERROR: Universal Wordnet is not properly set. Check the path provided in the configuration file.");
         }
+    }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 public class StopWordsProcessor extends ResourceProcessor {
@@ -35,6 +36,11 @@ public class StopWordsProcessor extends ResourceProcessor {
     @Override
     public void processNextSentence(Sentence s) {
         s.setValue("stopwords", this.stopWords);
+    }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

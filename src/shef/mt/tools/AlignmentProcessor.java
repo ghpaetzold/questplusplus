@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 public class AlignmentProcessor extends ResourceProcessor {
@@ -49,6 +50,11 @@ public class AlignmentProcessor extends ResourceProcessor {
             target.setValue("alignments", null);
             Logger.getLogger(AlignmentProcessor.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

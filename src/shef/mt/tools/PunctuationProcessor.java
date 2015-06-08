@@ -2,6 +2,7 @@
 package shef.mt.tools;
 
 import java.util.HashMap;
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 public class PunctuationProcessor extends ResourceProcessor {
@@ -22,6 +23,11 @@ public class PunctuationProcessor extends ResourceProcessor {
     @Override
     public void processNextSentence(Sentence source) {
         source.setValue("punctuation", this.punctuationMap);
+    }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

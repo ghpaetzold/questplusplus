@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 public class TranslationProbabilityProcessor extends ResourceProcessor {
@@ -69,5 +70,10 @@ public class TranslationProbabilityProcessor extends ResourceProcessor {
     public void processNextSentence(Sentence target) {
         //Add resource to sentence:
         target.setValue("translationcounts", this.transProbCount);
+    }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

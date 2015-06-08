@@ -1,5 +1,6 @@
 package shef.mt.tools.mqm.core.fluency.register;
 
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 import shef.mt.tools.ResourceProcessor;
 import shef.mt.tools.mqm.resources.SlangDictionary;
@@ -25,6 +26,11 @@ public class VariantsSlangProcessor extends ResourceProcessor {
         }
 
         sentence.setValue("slang_words_count", count);
+    }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

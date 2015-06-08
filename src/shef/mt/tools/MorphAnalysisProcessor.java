@@ -1,5 +1,6 @@
 package shef.mt.tools;
 
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 import shef.mt.features.util.PronMorph;
 import java.io.*;
@@ -145,5 +146,10 @@ public class MorphAnalysisProcessor extends ResourceProcessor {
             map.processNextSentence(s);
             i++;
         }
+    }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

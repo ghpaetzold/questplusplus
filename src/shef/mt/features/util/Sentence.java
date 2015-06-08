@@ -325,4 +325,8 @@ public class Sentence {
 
         return result.toString();
     }
+
+    public void setTags(String[] tags) {
+        this.tags=tags;
+    }
 }

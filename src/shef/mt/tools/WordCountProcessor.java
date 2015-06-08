@@ -1,6 +1,7 @@
 package shef.mt.tools;
 
 import java.util.HashMap;
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 public class WordCountProcessor extends ResourceProcessor {
@@ -24,5 +25,10 @@ public class WordCountProcessor extends ResourceProcessor {
 
         //Add resource to sentence:
         target.setValue("wordcounts", counts);
+    }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

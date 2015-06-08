@@ -1,5 +1,6 @@
 package shef.mt.tools.mqm.core.fluency;
 
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 import shef.mt.tools.ResourceProcessor;
 import shef.mt.tools.mqm.Configurable;
@@ -18,5 +19,10 @@ public class DuplicationProcessor extends ResourceProcessor implements Configura
     @Override
     public void processNextSentence(Sentence source) {
         //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

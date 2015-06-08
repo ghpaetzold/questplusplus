@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 public class ParsingProcessor extends ResourceProcessor {
@@ -194,6 +195,13 @@ public class ParsingProcessor extends ResourceProcessor {
         //Add resources to sentence:
         s.setValue("postags", POSData);
         s.setValue("depcounts", depData);
+    }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        for (int i=0;i<source.getSentences().size();i++){
+            this.processNextSentence(source.getSentence(i));
+        }
     }
 
 }

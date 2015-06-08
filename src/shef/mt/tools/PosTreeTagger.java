@@ -79,7 +79,7 @@ public class PosTreeTagger extends PosTagger {
                     //System.in.read();
 
                     bwXPos.write(split[1] + " ");
-                    bwPosLemm.write(split[0] + "_" + split[1] + "_" + split[2] + " ");
+                    bwPosLemm.write(split[0] + "_" + split[1] + "_" + split[2] + ":::");
                     bw.write(line);
                     bw.newLine();
                 }

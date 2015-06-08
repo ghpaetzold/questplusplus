@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.HashSet;
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.FeatureManager;
 import shef.mt.features.util.Sentence;
 import shef.mt.util.PropertiesManager;
@@ -74,6 +75,11 @@ public class ConnectivesProcessor extends ResourceProcessor {
 			e.printStackTrace();
 		}
         
+    }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

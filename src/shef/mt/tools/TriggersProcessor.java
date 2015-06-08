@@ -92,4 +92,9 @@ public class TriggersProcessor extends ResourceProcessorTwoSentences {
         else
             t.setValue("InterLingualSourceTargetScore",som/nb);
     }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

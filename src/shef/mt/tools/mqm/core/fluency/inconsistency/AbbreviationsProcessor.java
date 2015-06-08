@@ -1,5 +1,6 @@
 package shef.mt.tools.mqm.core.fluency.inconsistency;
 
+import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 import shef.mt.tools.ResourceProcessor;
 import shef.mt.tools.mqm.Context;
@@ -96,5 +97,10 @@ public class AbbreviationsProcessor extends ResourceProcessor implements GlobalP
                 }
             }
         }
+    }
+
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -153,7 +153,7 @@ public class FeatureSerializer {
 
     private void writeXML() {
         try {
-            // transform the Document into a String
+            // transform the Doc into a String
             DOMSource domSource = new DOMSource(doc);
             TransformerFactory tf = TransformerFactory.newInstance();
             Transformer transformer = tf.newTransformer();
