@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1001" description="number of tokens in the source document" index="1001"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1002" description="number of tokens in the target document" index="1002"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1003" description="" index="1003"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1004" description="" index="1004"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1005" description="" index="1005"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1006" description="average source token length" index="1006"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1009" description="average source token length" index="1009"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1010" description="" index="1010"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1011" description="" index="1011"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1012" description="average source token length" index="1012"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1013" description="" index="1013"/>  
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1014" description="" index="1014"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1015" description="number of occurrences of the target word within the target hypothesis (averaged for all words in the hypothesis - type/token ratio)" index="1015"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1016" description="" index="1016"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1018" description="" index="1018"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1020" description="" index="1020"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1022" description="average number of translations per source word in the sentence (as given by IBM 1 table thresholded so that prob(t|s) > 0.2)" index="1022"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1024" description="" index="1024"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1026" description="" index="1026"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1028" description="" index="1028"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1030" description="" index="1030"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1032" description="" index="1032"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1034" description="" index="1034"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1036" description="average number of translations per source word in the sentence (as given by IBM 1 table thresholded so that prob(t|s) > 0.01) weighted by the inverse frequency of each word in the source corpus" index="1036"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1038" description="" index="1038"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1040" description="" index="1040"/>   
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1042" description="" index="1042"/>   
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1044" description="" index="1044"/>     
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1046" description="percentage of unigrams in quartile 1 of frequency (lower frequency words) in a corpus of the source language (SMT training corpus)" index="1046"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1047" description="" index="1047"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1048" description="" index="1048"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1049" description="percentage of unigrams in quartile 4 of frequency (higher frequency words) in a corpus of the source document" index="1049"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1050" description="percentage of bigrams in quartile 1 of frequency of source words in a corpus of the source language" index="1050"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1051" description="" index="1051"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1052" description="" index="1052"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1053" description="percentage of bigrams in quartile 4 of frequency of source words in a corpus of the source language" index="1053"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1055" description="" index="1055"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1056" description="" index="1056"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1054" description="percentage of trigrams in quartile 1 of frequency of source words in a corpus of the source language" index="1054"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1057" description="percentage of trigrams in quartile 4 of frequency of source words in a corpus of the source language" index="1057"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1058" description="percentage of unigrams in the source document seen in a corpus (SMT training corpus)" index="1058"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1059" description="" index="1059"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1060" description="" index="1060"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1061" description="" index="1061"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1074" description="number of punctuation marks in the source sentence" index="1074"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1075" description="number of punctuation marks in the target sentence" index="1075"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1083" description="" index="1083"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1084" description="" index="1084"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1085" description="" index="1085"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1086" description="" index="1086"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1087" description="" index="1087"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1088" description="" index="1088"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1089" description="" index="1089"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1090" description="" index="1090"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1091" description="" index="1091"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1092" description="" index="1092"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1093" description="" index="1093"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1094" description="" index="1094"/>    
+    <disablefeature class="shef.mt.features.impl.doclevel.DocLevelFeature1101" description="" index="1101"/>    
+    <disablefeature class="shef.mt.features.impl.doclevel.DocLevelFeature1102" description="" index="1102"/>    
+    <disablefeature class="shef.mt.features.impl.doclevel.DocLevelFeature1115" description="" index="1115"/>    
+    <disablefeature class="shef.mt.features.impl.doclevel.DocLevelFeature9800" description="" index="9800"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9801" description="" index="9801"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9989" description="lemma repetition target" index="9989"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9990" description="word repetition source" index="9990"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9991" description="lemma repetition source" index="9991"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9992" description="ratio word repetition" index="9992"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9993" description="ratio lemma repetition" index="9993"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9994" description="noun repetition target" index="9994"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9995" description="noun repetition source" index="9995"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9996" description="ratio noun repetition" index="9996"/>
+</features>

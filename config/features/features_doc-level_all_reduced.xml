@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1001" description="number of tokens in the source document" index="1001"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1002" description="number of tokens in the target document" index="1002"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1003" description="" index="1003"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1004" description="" index="1004"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1005" description="" index="1005"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1006" description="average source token length" index="1006"/>
+</features>
