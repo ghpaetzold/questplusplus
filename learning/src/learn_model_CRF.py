@@ -56,6 +56,14 @@ class CLIError(Exception):
 		return self.msg
 
 def predict_test_labels(learning, crfsuite, algorithm, parameters):
+	"""
+	Predicts quality labels for a test set.
+
+	@param learning: configuration dictionary about the learning strategy to be used.
+	@param crfsuite: path to the CRFSuite application.
+	@param algorithm: learning algorithm to be used.
+	@param parameters: algorithm parameters to be used.
+	"""
 	temp_input_file = learning.get("temp_input", None)
 	if not temp_input_file:
 		msg = "Path to temporary output file is missing."
@@ -77,7 +85,7 @@ def predict_test_labels(learning, crfsuite, algorithm, parameters):
 
 def learn_quality_estimation_model(learning, crfsuite, algorithm, parameters):
 	"""
-	Produces the temp_input file for the training of a CRF model.
+	Learns a quality estimation model through CRFSuite.
 
 	@param learning: configuration dictionary about the learning strategy to be used.
 	@param crfsuite: path to the CRFSuite application.
@@ -114,13 +122,12 @@ def create_temp_input_file(learning, crfsuite, algorithm, parameters, X, y=[]):
 	@param X: the matrix containing feature values
 	@param y: the vector containing labels
 	"""
-	
-	# Create the temporary input file for training:
+
 	temp_input_file = learning.get("temp_input", None)
 	if not temp_input_file:
 		msg = "Path to temporary input file is missing."
 		raise Exception(msg)
-		
+	
 	f = codecs.open(temp_input_file, 'w', 'utf-8')
 	for i in range(0, len(X)):
 		features = X[i]
@@ -134,6 +141,11 @@ def create_temp_input_file(learning, crfsuite, algorithm, parameters, X, y=[]):
 	f.close()
 	
 def get_configuration_objects(config):
+	"""
+	Loads configuration data.
+
+	@param config: config node loaded through yaml.load().
+	"""
 	# Get learning parameters:
 	learning = config.get("learning", None)
 	if not learning:
@@ -221,10 +233,6 @@ def run(config):
 	labels_path = config.get("labels", None)
 
 	log.info("Opening input files ...")
-	#log.debug("X_train: %s" % x_train_path)
-	#log.debug("y_train: %s" % y_train_path)
-	#log.debug("X_test: %s" % x_test_path)
-	#log.debug("y_test_path: %s" % y_test_path)
 
 	# open feature and response files
 	X_train, y_train, X_test, y_test, labels = open_datasets(x_train_path, y_train_path, x_test_path, y_test_path, separator, labels_path, tostring=True)
