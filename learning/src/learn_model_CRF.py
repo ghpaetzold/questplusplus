@@ -55,15 +55,85 @@ class CLIError(Exception):
 	def __unicode__(self):
 		return self.msg
 
-def create_temp_input_file(config, X, y):
+def predict_test_labels(learning, crfsuite, algorithm, parameters):
+	temp_input_file = learning.get("temp_input", None)
+	if not temp_input_file:
+		msg = "Path to temporary output file is missing."
+		raise Exception(msg)
+
+	model_file = learning.get("model_file", None)
+	if not model_file:
+		msg = "Path to model file is missing."
+		raise Exception(msg)
+
+	output_file = learning.get("output_file", None)
+	if not output_file:
+		msg = "Path to output file is missing."
+		raise Exception(msg)
+
+	comm = crfsuite + ' tag -m ' + model_file + ' ' + temp_input_file + ' > ' + output_file
+	print(comm)
+	os.system(comm)		
+
+def learn_quality_estimation_model(learning, crfsuite, algorithm, parameters):
+	"""
+	Produces the temp_input file for the training of a CRF model.
+
+	@param learning: configuration dictionary about the learning strategy to be used.
+	@param crfsuite: path to the CRFSuite application.
+	@param algorithm: learning algorithm to be used.
+	@param parameters: algorithm parameters to be used.
+	"""
+
+	temp_input_file = learning.get("temp_input", None)
+	if not temp_input_file:
+		msg = "Path to temporary input file is missing."
+		raise Exception(msg)
+
+	model_file = learning.get("model_file", None)
+	if not model_file:
+		msg = "Path to model file is missing."
+		raise Exception(msg)
+	comm = crfsuite + ' learn -m ' + model_file + ' --algorithm=' + algorithm	
+
+	for parameter in parameters.keys():
+		comm += ' --set='+parameter+'='+str(parameters[parameter])
+
+	comm += ' ' + temp_input_file
+
+	os.system(comm) 
+
+def create_temp_input_file(learning, crfsuite, algorithm, parameters, X, y=[]):
 	"""
 	Produces the temp_input file for the training of a CRF model.
 	
-	@param config: the configuration file object loaded using yaml.load()
+	@param learning: configuration dictionary about the learning strategy to be used.
+	@param crfsuite: path to the CRFSuite application.
+	@param algorithm: learning algorithm to be used.
+	@param parameters: algorithm parameters to be used.
 	@param X: the matrix containing feature values
 	@param y: the vector containing labels
 	"""
 	
+	# Create the temporary input file for training:
+	temp_input_file = learning.get("temp_input", None)
+	if not temp_input_file:
+		msg = "Path to temporary input file is missing."
+		raise Exception(msg)
+		
+	f = codecs.open(temp_input_file, 'w', 'utf-8')
+	for i in range(0, len(X)):
+		features = X[i]
+		label = ''
+		if len(y)>0:
+			label = y[i]
+		line = label
+		for feature in features:
+			line += '\t' + feature
+		f.write(line.strip() + '\n')
+	f.close()
+	
+def get_configuration_objects(config):
 	# Get learning parameters:
 	learning = config.get("learning", None)
 	if not learning:
@@ -84,256 +154,8 @@ def create_temp_input_file(config, X, y):
 	if not parameters:
 		msg = "Learning parameters are missing."
 		raise Exception(msg)
-	
-	# Create the temporary input file for training:
-	temp_input_file = learning.get("temp_input", None)
-	if not temp_input_file:
-		msg = "Path to temporary input file is missing."
-		raise Exception(msg)
-		
-	f = codecs.open(temp_input_file, 'w', 'utf-8')
-	for i in range(0, len(X)):
-		features = X[i]
-		label = y[i]
-		line = label
-		for feature in features:
-			line += '\t' + feature
-		f.write(line.strip() + '\n')
-	f.close()
-	
-	# Run CRFSuite to produce the model:
-	model_file = learning.get("model_file", None)
-	if not model_file:
-		msg = "Path to model file is missing."
-		raise Exception(msg)
-	comm = crfsuite + ' learn -m ' + model_file + ' --algorithm=' + algorithm
-	print(str(parameters.keys()))
-		
-def set_selection_method(config):
-	"""
-	Given the configuration settings, this function instantiates the configured
-	feature selection method initialized with the preset parameters.
-	
-	TODO: implement the same method using reflection (load the class dinamically
-	at runtime)
-	
-	@param config: the configuration file object loaded using yaml.load()
-	@return: an object that implements the TransformerMixin class (with fit(),
-	fit_transform() and transform() methods).
-	"""
-	transformer = None
-	
-	selection_cfg = config.get("feature_selection", None)
-	if selection_cfg:
-		method_name = selection_cfg.get("method", None)
-		
-		# checks for RandomizedLasso
-		if method_name == "RandomizedLasso":
-			p = selection_cfg.get("parameters", None)
-			if p:
-				transformer = \
-				RandomizedLasso(alpha=p.get("alpha", "aic"), 
-								scaling=p.get("scaling", .5), 
-								sample_fraction=p.get('sample_fraction', .75), 
-								n_resampling=p.get('n_resampling', 200),
-								selection_threshold=p.get('selection_threshold', .25), 
-								fit_intercept=p.get('fit_intercept', True), 
-								# TODO: set verbosity according to global level
-								verbose=True, 
-								normalize=p.get('normalize', True), 
-								max_iter=p.get('max_iter', 500), 
-								n_jobs=p.get('n_jobs', 1))
-			else:
-				transformer = RandomizedLasso()
-		
-		# checks for ExtraTreesClassifier
-		elif method_name == "ExtraTreesClassifier":
-			p = selection_cfg.get("parameters", None)
-			if p:
-				transformer = \
-				ExtraTreesClassifier(n_estimators=p.get('n_estimators', 10),
-									 max_depth=p.get('max_depth', None),
-									 min_samples_split=p.get('min_samples_split', 1),
-									 min_samples_leaf=p.get('min_samples_leaf', 1),
-									 min_density=p.get('min_density', 1),
-									 max_features=p.get('max_features', 'auto'),
-									 bootstrap=p.get('bootstrap', False),
-									 compute_importances=p.get('compute_importances', True),
-									 n_jobs=p.get('n_jobs', 1),
-									 random_state=p.get('random_state', None),
-									 # TODO: set verbosity according to global level
-									 verbose=True)
-			else:
-				transformer = ExtraTreesClassifier()
 
-	return transformer
-
-
-def set_scorer_functions(scorers):
-	scores = []
-	for score in scorers:
-		if score == 'mae':
-			scores.append((score, mean_absolute_error))
-		elif score == 'rmse':
-			scores.append((score, root_mean_squared_error))
-		elif score == 'mse':
-			scores.append((score, mean_squared_error))
-		elif score == 'f1_score':
-			scores.append((score, f1_score))
-		elif score == 'precision_score':
-			scores.append((score, precision_score))
-		elif score == 'recall_score':
-			scores.append((score, recall_score))
-		elif score == 'pearson_corrcoef':
-			scores.append((score, pearson_corrcoef))
-		elif score == 'binary_precision':
-			scores.append((score, binary_precision))
-			
-	return scores
-
-
-def set_optimization_params(opt):
-	params = {}
-	for key, item in opt.items():
-		# checks if the item is a list with numbers (ignores cv and n_jobs params)
-		if isinstance(item, list) and (len(item) == 3) and assert_number(item):
-			# create linear space for each parameter to be tuned
-			params[key] = np.linspace(item[0], item[1], num=item[2], endpoint=True)
-			
-		elif isinstance(item, list) and assert_string(item):
-			print key, item
-			params[key] = item
-	
-	return params
-
-
-def optimize_model(estimator, X_train, y_train, params, scores, folds, verbose, n_jobs):
-	clf = None
-	for score_name, score_func in scores:
-		log.info("Tuning hyper-parameters for %s" % score_name)
-		
-		log.debug(params)
-		log.debug(scores)
-		
-		clf = GridSearchCV(estimator, params, loss_func=score_func, 
-						   cv=folds, verbose=verbose, n_jobs=n_jobs)
-		
-		clf.fit(X_train, y_train)
-		
-		log.info("Best parameters set found on development set:")
-		log.info(clf.best_params_)
-		
-	return clf.best_estimator_
-
-
-def set_learning_method(config, X_train, y_train):
-	"""
-	Instantiates the sklearn's class corresponding to the value set in the 
-	configuration file for running the learning method.
-	
-	TODO: use reflection to instantiate the classes
-	
-	@param config: configuration object
-	@return: an estimator with fit() and predict() methods
-	"""
-	estimator = None
-	
-	learning_cfg = config.get("learning", None)
-	if learning_cfg:
-		p = learning_cfg.get("parameters", None)
-		o = learning_cfg.get("optimize", None)
-		scorers = \
-		set_scorer_functions(learning_cfg.get("scorer", ['mae', 'rmse']))
-		
-		method_name = learning_cfg.get("method", None)
-		if method_name == "SVR":
-			if o:
-				tune_params = set_optimization_params(o)
-				estimator = optimize_model(SVR(), X_train, y_train, 
-										  tune_params, 
-										  scorers, 
-										  o.get("cv", 5),
-										  o.get("verbose", True),
-										  o.get("n_jobs", 1))
-				
-			elif p:
-				estimator = SVR(C=p.get("C", 10),
-								epsilon=p.get('epsilon', 0.01),
-								kernel=p.get('kernel', 'rbf'),
-								degree=p.get('degree', 3),
-								gamma=p.get('gamma', 0.0034),
-								tol=p.get('tol', 1e-3),
-								verbose=False)
-			else:
-				estimator = SVR()
-		
-		elif method_name == "SVC":
-			if o:
-				tune_params = set_optimization_params(o)
-				estimator = optimize_model(SVC(), X_train, y_train,
-										   tune_params,
-										   scorers,
-										   o.get('cv', 5),
-										   o.get('verbose', True),
-										   o.get('n_jobs', 1))
-				
-			elif p:
-				estimator = SVC(C=p.get('C', 1.0),
-								kernel=p.get('kernel', 'rbf'), 
-								degree=p.get('degree', 3),
-								gamma=p.get('gamma', 0.0),
-								coef0=p.get('coef0', 0.0),
-								tol=p.get('tol', 1e-3),
-								verbose=p.get('verbose', False))
-			else:
-				estimator = SVC()
-					
-		elif method_name == "LassoCV":
-			if p:
-				estimator = LassoCV(eps=p.get('eps', 1e-3),
-									n_alphas=p.get('n_alphas', 100),
-									normalize=p.get('normalize', False),
-									precompute=p.get('precompute', 'auto'),
-									max_iter=p.get('max_iter', 1000),
-									tol=p.get('tol', 1e-4),
-									cv=p.get('cv', 10),
-									verbose=False)
-			else:
-				estimator = LassoCV()
-		
-		elif method_name == "LassoLars":
-			if o:
-				tune_params = set_optimization_params(o)
-				estimator = optimize_model(LassoLars(), X_train, y_train, 
-										  tune_params,
-										  scorers,
-										  o.get("cv", 5),
-										  o.get("verbose", True),
-										  o.get("n_jobs", 1))
-				
-			if p:
-				estimator = LassoLars(alpha=p.get('alpha', 1.0),
-									  fit_intercept=p.get('fit_intercept', True),
-									  verbose=p.get('verbose', False),
-									  normalize=p.get('normalize', True),
-									  max_iter=p.get('max_iter', 500),
-									  fit_path=p.get('fit_path', True))
-			else:
-				estimator = LassoLars()
-		
-		elif method_name == "LassoLarsCV":
-			if p:
-				estimator = LassoLarsCV(max_iter=p.get('max_iter', 500),
-										normalize=p.get('normalize', True),
-										max_n_alphas=p.get('max_n_alphas', 1000),
-										n_jobs=p.get('n_jobs', 1),
-										cv=p.get('cv', 10),
-										verbose=False)
-			else:
-				estimator = LassoLarsCV()
-				
-	return estimator, scorers
-
+	return learning, crfsuite, algorithm, parameters
 
 def fit_predict(config, X_train, y_train, X_test=None, y_test=None, ref_thd=None):
 	'''
@@ -353,10 +175,16 @@ def fit_predict(config, X_train, y_train, X_test=None, y_test=None, ref_thd=None
 	@param y_test: the np.array object for the response values of each instance
 	in the test set. Default is None.
 	'''	
+
+	l, c, a, p = get_configuration_objects(config)
 	
-	create_temp_input_file(config, X_train, y_train)
+	create_temp_input_file(l, c, a, p, X_train, y=y_train)
+
+	learn_quality_estimation_model(l, c, a, p)
 	
-	#if X_test is not None:
+	if X_test is not None:
+		create_temp_input_file(l, c, a, p, X_test)
+		predict_test_labels(l, c, a, p)
 				
 	#if y_test is not None:
 
@@ -404,8 +232,7 @@ def run(config):
 
 	# fits training data and predicts the test set using the trained model
 	y_hat = fit_predict(config, X_train, y_train, X_test, y_test, config.get("ref_thd", None))
-	
-	
+
 def main(argv=None): # IGNORE:C0111
 	'''Command line options.'''
 	
