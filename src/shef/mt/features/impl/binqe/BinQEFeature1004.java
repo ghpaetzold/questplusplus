@@ -3,9 +3,6 @@ package shef.mt.features.impl.binqe;
 import shef.mt.features.impl.Feature;
 import shef.mt.features.util.Sentence;
 
-/**
- * number of tokens in the source sentence
- */
 public class BinQEFeature1004 extends Feature {
 
     public BinQEFeature1004() {

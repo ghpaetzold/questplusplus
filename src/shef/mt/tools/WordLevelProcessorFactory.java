@@ -2,23 +2,23 @@ package shef.mt.tools;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import shef.mt.enes.WordLevelFeatureExtractor;
+import shef.mt.enes.FeatureExtractorInterface;
 
 public class WordLevelProcessorFactory {
 
     private ResourceProcessor[][] resourceProcessors;
 
-    private WordLevelFeatureExtractor wlfe;
+    private FeatureExtractorInterface fe;
 
-    public WordLevelProcessorFactory(WordLevelFeatureExtractor wlfe) {
+    public WordLevelProcessorFactory(FeatureExtractorInterface fe) {
         //Setup initial instance of ResourceProcessor matrix:
         this.resourceProcessors = null;
 
         //Setup feature extractor:
-        this.wlfe = wlfe;
+        this.fe = fe;
 
         //Get required resources:
-        HashSet<String> requirements = wlfe.getFeatureManager().getRequiredResources();
+        HashSet<String> requirements = fe.getFeatureManager().getRequiredResources();
 
         //Allocate source and target processor vectors:
         ArrayList<ResourceProcessor> sourceProcessors = new ArrayList<ResourceProcessor>();
@@ -133,6 +133,14 @@ public class WordLevelProcessorFactory {
             targetProcessors.add(translationProbProcessor);
         }
 
+        if (requirements.contains("blockalignments")) {
+            //Get block alignment processor:
+            BlockAlignmentProcessor blockAlignmentProcessor = this.getBlockAlignmentProcessor();
+
+            //Add them to processor vectors:
+            targetProcessors.add(blockAlignmentProcessor);
+        }
+
         //Transform array lists in vectors:
         ResourceProcessor[] sourceProcessorVector = new ResourceProcessor[sourceProcessors.size()];
         ResourceProcessor[] targetProcessorVector = new ResourceProcessor[targetProcessors.size()];
@@ -153,18 +161,18 @@ public class WordLevelProcessorFactory {
         }
 
         //Get paths to Stanford Parser source language models:
-        String POSModel = this.wlfe.getResourceManager().getProperty(this.wlfe.getSourceLang() + ".POSModel");
-        String parseModel = this.wlfe.getResourceManager().getProperty(this.wlfe.getSourceLang() + ".parseModel");
+        String POSModel = this.fe.getResourceManager().getProperty(this.fe.getSourceLang() + ".POSModel");
+        String parseModel = this.fe.getResourceManager().getProperty(this.fe.getSourceLang() + ".parseModel");
 
         //Create source language ParsingProcessor:
-        ParsingProcessor sourceProcessor = new ParsingProcessor(this.wlfe.getSourceLang(), POSModel, parseModel, requirements);
+        ParsingProcessor sourceProcessor = new ParsingProcessor(this.fe.getSourceLang(), POSModel, parseModel, requirements);
 
         //Get paths to Stanford Parser target language models:
-        POSModel = this.wlfe.getResourceManager().getProperty(this.wlfe.getTargetLang() + ".POSModel");
-        parseModel = this.wlfe.getResourceManager().getProperty(this.wlfe.getTargetLang() + ".parseModel");
+        POSModel = this.fe.getResourceManager().getProperty(this.fe.getTargetLang() + ".POSModel");
+        parseModel = this.fe.getResourceManager().getProperty(this.fe.getTargetLang() + ".parseModel");
 
         //Create target language ParsingProcessor:
-        ParsingProcessor targetProcessor = new ParsingProcessor(this.wlfe.getTargetLang(), POSModel, parseModel, requirements);
+        ParsingProcessor targetProcessor = new ParsingProcessor(this.fe.getTargetLang(), POSModel, parseModel, requirements);
 
         //Return processors:
         return new ParsingProcessor[]{sourceProcessor, targetProcessor};
@@ -175,11 +183,11 @@ public class WordLevelProcessorFactory {
         ResourceManager.registerResource("sensecounts");
 
         //Get path to Universal Wordnet:
-        String wordnetPath = this.wlfe.getResourceManager().getProperty("tools.universalwordnet.path");
+        String wordnetPath = this.fe.getResourceManager().getProperty("tools.universalwordnet.path");
 
         //Create SenseProcessor object:
-        SenseProcessor sourceProcessor = new SenseProcessor(wordnetPath, this.wlfe.getSourceLang());
-        SenseProcessor targetProcessor = new SenseProcessor(wordnetPath, this.wlfe.getTargetLang());
+        SenseProcessor sourceProcessor = new SenseProcessor(wordnetPath, this.fe.getSourceLang());
+        SenseProcessor targetProcessor = new SenseProcessor(wordnetPath, this.fe.getTargetLang());
         SenseProcessor[] result = new SenseProcessor[]{sourceProcessor, targetProcessor};
 
         //Return processors:
@@ -209,8 +217,8 @@ public class WordLevelProcessorFactory {
         ResourceManager.registerResource("stopwords");
 
         //Get paths to stop word lists:
-        String sourcePath = this.wlfe.getResourceManager().getProperty(this.wlfe.getSourceLang() + ".stopwords");
-        String targetPath = this.wlfe.getResourceManager().getProperty(this.wlfe.getTargetLang() + ".stopwords");
+        String sourcePath = this.fe.getResourceManager().getProperty(this.fe.getSourceLang() + ".stopwords");
+        String targetPath = this.fe.getResourceManager().getProperty(this.fe.getTargetLang() + ".stopwords");
 
         //Generate processors:
         StopWordsProcessor sourceProcessor = new StopWordsProcessor(sourcePath);
@@ -234,22 +242,22 @@ public class WordLevelProcessorFactory {
 
     private PPLProcessor[] getLMProcessors() {
         //Generate output paths:
-        String sourceOutput = this.wlfe.getSourceFile() + ".ppl";
-        String targetOutput = this.wlfe.getTargetFile() + ".ppl";
+        String sourceOutput = this.fe.getSourceFile() + ".ppl";
+        String targetOutput = this.fe.getTargetFile() + ".ppl";
 
         //Read language models:
-        NGramExec nge = new NGramExec(this.wlfe.getResourceManager().getString("tools.ngram.path"), true);
+        NGramExec nge = new NGramExec(this.fe.getResourceManager().getString("tools.ngram.path"), true);
 
         //Get paths of LMs:
-        String sourceLM = this.wlfe.getResourceManager().getString(this.wlfe.getSourceLang() + ".lm");
-        String targetLM = this.wlfe.getResourceManager().getString(this.wlfe.getTargetLang() + ".lm");
+        String sourceLM = this.fe.getResourceManager().getString(this.fe.getSourceLang() + ".lm");
+        String targetLM = this.fe.getResourceManager().getString(this.fe.getTargetLang() + ".lm");
 
         //Run LM reader:
         System.out.println("Running SRILM...");
-        System.out.println(this.wlfe.getSourceFile());
-        System.out.println(this.wlfe.getTargetFile());
-        nge.runNGramPerplex(this.wlfe.getSourceFile(), sourceOutput, sourceLM);
-        nge.runNGramPerplex(this.wlfe.getTargetFile(), targetOutput, targetLM);
+        System.out.println(this.fe.getSourceFile());
+        System.out.println(this.fe.getTargetFile());
+        nge.runNGramPerplex(this.fe.getSourceFile(), sourceOutput, sourceLM);
+        nge.runNGramPerplex(this.fe.getTargetFile(), targetOutput, targetLM);
         System.out.println("SRILM finished!");
 
         //Generate PPL processors:
@@ -264,8 +272,8 @@ public class WordLevelProcessorFactory {
 
     private LanguageModel[] getNGramModels() {
         //Create ngram file processors:
-        NGramProcessor sourceNgp = new NGramProcessor(this.wlfe.getResourceManager().getString(this.wlfe.getSourceLang() + ".ngram"));
-        NGramProcessor targetNgp = new NGramProcessor(this.wlfe.getResourceManager().getString(this.wlfe.getTargetLang() + ".ngram"));
+        NGramProcessor sourceNgp = new NGramProcessor(this.fe.getResourceManager().getString(this.fe.getSourceLang() + ".ngram"));
+        NGramProcessor targetNgp = new NGramProcessor(this.fe.getResourceManager().getString(this.fe.getTargetLang() + ".ngram"));
 
         //Generate resulting handlers:
         LanguageModel[] result = new LanguageModel[]{sourceNgp.run(), targetNgp.run()};
@@ -276,9 +284,9 @@ public class WordLevelProcessorFactory {
 
     private LanguageModel[] getPOSNGramModels() {
         //Create ngram file processors:
-        NGramProcessor sourceNgp = new NGramProcessor(this.wlfe.getResourceManager().getString(this.wlfe.getSourceLang() + ".posngram"));
-        NGramProcessor targetNgp = new NGramProcessor(this.wlfe.getResourceManager().getString(this.wlfe.getTargetLang() + ".posngram"));
-        
+        NGramProcessor sourceNgp = new NGramProcessor(this.fe.getResourceManager().getString(this.fe.getSourceLang() + ".posngram"));
+        NGramProcessor targetNgp = new NGramProcessor(this.fe.getResourceManager().getString(this.fe.getTargetLang() + ".posngram"));
+
         //Generate resulting handlers:
         LanguageModel[] result = new LanguageModel[]{sourceNgp.run(), targetNgp.run()};
 
@@ -291,7 +299,7 @@ public class WordLevelProcessorFactory {
         ResourceManager.registerResource("alignments");
 
         //Get path to alignments file:
-        String alignmentsPath = this.wlfe.getResourceManager().getProperty("alignments.file");
+        String alignmentsPath = this.fe.getResourceManager().getProperty("alignments.file");
 
         //Return AlignmentProcessor:
         return new AlignmentProcessor(alignmentsPath);
@@ -302,7 +310,7 @@ public class WordLevelProcessorFactory {
         ResourceManager.registerResource("reftranslation");
 
         //Get reference translations path:
-        String refTranslationsPath = this.wlfe.getResourceManager().getProperty(wlfe.getTargetLang() + ".refTranslations");
+        String refTranslationsPath = this.fe.getResourceManager().getProperty(fe.getTargetLang() + ".refTranslations");
 
         //Return new reference translation processor:
         return new RefTranslationProcessor(refTranslationsPath);
@@ -325,7 +333,6 @@ public class WordLevelProcessorFactory {
         LanguageModel ngramModelTarget = POSNgramModels[1];
 
         //Create source and target processors:
-        
         POSNgramCountProcessor sourceProcessor = new POSNgramCountProcessor(ngramModelSource);
         POSNgramCountProcessor targetProcessor = new POSNgramCountProcessor(ngramModelTarget);
         POSNgramCountProcessor[] POSNgramProcessors = new POSNgramCountProcessor[]{sourceProcessor, targetProcessor};
@@ -354,9 +361,20 @@ public class WordLevelProcessorFactory {
         ResourceManager.registerResource("translationcounts");
 
         //Get reference translations path:
-        String translationProbPath = this.wlfe.getResourceManager().getProperty(wlfe.getSourceLang() + ".translationProbs");
+        String translationProbPath = this.fe.getResourceManager().getProperty(fe.getSourceLang() + ".translationProbs");
 
         //Return new reference translation processor:
         return new TranslationProbabilityProcessor(translationProbPath);
+    }
+
+    private BlockAlignmentProcessor getBlockAlignmentProcessor() {
+        //Register resource:
+        ResourceManager.registerResource("blockalignments");
+
+        //Create source and target processors:
+        BlockAlignmentProcessor targetProcessor = new BlockAlignmentProcessor(this.fe.getResourceManager().getProperty("alignments.file"));
+
+        //Return processors:
+        return targetProcessor;
     }
 }

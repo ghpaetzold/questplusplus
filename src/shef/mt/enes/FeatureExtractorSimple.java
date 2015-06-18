@@ -1,35 +1,35 @@
 package shef.mt.enes;
 
-import shef.mt.tools.mqm.Context;
-import shef.mt.tools.mqm.MQMManager;
-import shef.mt.xmlwrap.MOSES_XMLWrapper;
-import shef.mt.util.PropertiesManager;
-import shef.mt.util.Logger;
-import shef.mt.tools.Lucene;
-import shef.mt.tools.NGramExec;
-import shef.mt.tools.ResourceManager;
-import shef.mt.tools.FileModel;
-import shef.mt.tools.LanguageModel;
-import shef.mt.tools.POSProcessor;
-import shef.mt.tools.MTOutputProcessor;
-import shef.mt.tools.Tokenizer;
-import shef.mt.tools.Giza;
-import shef.mt.tools.TopicDistributionProcessor;
+import java.io.*;
+import java.util.HashSet;
+import org.apache.commons.cli.*;
+import shef.mt.features.util.FeatureManager;
+import shef.mt.features.util.Sentence;
 import shef.mt.tools.BParserProcessor;
+import shef.mt.tools.BlockAlignmentProcessor;
+import shef.mt.tools.FileModel;
+import shef.mt.tools.Giza;
+import shef.mt.tools.GlobalLexicon;
+import shef.mt.tools.LanguageModel;
+import shef.mt.tools.Lucene;
+import shef.mt.tools.MTOutputProcessor;
+import shef.mt.tools.NGramExec;
 import shef.mt.tools.NGramProcessor;
+import shef.mt.tools.NgramCountProcessor;
+import shef.mt.tools.POSProcessor;
 import shef.mt.tools.PPLProcessor;
 import shef.mt.tools.PosTagger;
-import shef.mt.tools.GlobalLexicon;
+import shef.mt.tools.ResourceManager;
+import shef.mt.tools.Tokenizer;
+import shef.mt.tools.TopicDistributionProcessor;
 import shef.mt.tools.Triggers;
 import shef.mt.tools.TriggersProcessor;
-import shef.mt.features.util.Sentence;
-import shef.mt.features.util.FeatureManager;
-
-import org.apache.commons.cli.*;
-
-import java.io.*;
-import shef.mt.tools.NgramCountProcessor;
+import shef.mt.tools.mqm.Context;
+import shef.mt.tools.mqm.MQMManager;
+import shef.mt.util.Logger;
 import shef.mt.util.NGramSorter;
+import shef.mt.util.PropertiesManager;
+import shef.mt.xmlwrap.MOSES_XMLWrapper;
 
 /**
  * FeatureExtractor extracts Glassbox and/or Blackbox features from a pair of
@@ -793,6 +793,9 @@ public class FeatureExtractorSimple {
      * runs the BB features
      */
     public void runBB() {
+        //Get require resources:
+        HashSet<String> resources = featureManager.getRequiredResources();
+
         File f = new File(sourceFile);
         String sourceFileName = f.getName();
         f = new File(targetFile);
@@ -975,7 +978,7 @@ public class FeatureExtractorSimple {
             Triggers itl_target = null;
             Triggers itl_source = null;
             Triggers itl_source_target = null;
-            
+
             TriggersProcessor itl_target_p = null;
             TriggersProcessor itl_source_p = null;
             TriggersProcessor itl_source_target_p = null;
@@ -1004,10 +1007,12 @@ public class FeatureExtractorSimple {
                         = new TriggersProcessor(itl_source_target);
 
             }
-            
+
             NgramCountProcessor[] ngramProcessors = this.getNgramProcessors();
             NgramCountProcessor ngramProcessorSource = ngramProcessors[0];
             NgramCountProcessor ngramProcessorTarget = ngramProcessors[1];
+
+            BlockAlignmentProcessor blockAlignmentProcessor = this.getBlockAlignmentProcessor();
             /*
              * End modification for Triggers
              */
@@ -1021,13 +1026,15 @@ public class FeatureExtractorSimple {
                 //Create sentence instances:
                 sourceSent = new Sentence(lineSource, sentCount);
                 targetSent = new Sentence(lineTarget, sentCount);
-                
+
                 //Calculate ngram values for each sentence:
                 sourceSent.computeNGrams(3);
                 targetSent.computeNGrams(3);
-                
+
                 ngramProcessorSource.processNextSentence(sourceSent);
                 ngramProcessorTarget.processNextSentence(targetSent);
+                
+                blockAlignmentProcessor.processNextSentence(targetSent);
 
                 if (posSourceExists) {
                     posSourceProc.processSentence(sourceSent);
@@ -1035,7 +1042,7 @@ public class FeatureExtractorSimple {
                 if (posTargetExists) {
                     posTargetProc.processSentence(targetSent);
                 }
-                
+
                 pplProcSource.processNextSentence(sourceSent);
                 pplProcTarget.processNextSentence(targetSent);
                 if (!isBaseline) {
@@ -1069,16 +1076,16 @@ public class FeatureExtractorSimple {
 
                 //Increment sentence counter:
                 ++sentCount;
-                
+
                 //Run features on sentence pair:
                 output.write(featureManager.runFeatures(sourceSent, targetSent));
                 output.newLine();
-                
+
                 //Read next lines:
                 lineSource = brSource.readLine();
                 lineTarget = brTarget.readLine();
             }
-            
+
             //Close open streams:
             if (posSource != null) {
                 posSource.close();
@@ -1233,7 +1240,7 @@ public class FeatureExtractorSimple {
         if (gbMode == 1) {
             gbXML = initialiseGBResources();
         }
-        
+
         //Run SRILM on ngram count files:
         LanguageModel[] ngramModels = this.getNGramModels();
         LanguageModel ngramModelSource = ngramModels[0];
@@ -1338,7 +1345,7 @@ public class FeatureExtractorSimple {
                 pplProcTarget.processNextSentence(targetSent);
 
                 pplPosTarget.processNextSentence(targetSent);
-                
+
                 sourceSent.setValue("ngramcounts", ngramModelSource);
                 targetSent.setValue("ngramcounts", ngramModelTarget);
 
@@ -1383,7 +1390,7 @@ public class FeatureExtractorSimple {
             runAll();
         }
     }
-    
+
     private LanguageModel[] getNGramModels() {
         //Create ngram file processors:
         NGramProcessor sourceNgp = new NGramProcessor(resourceManager.getString(sourceLang + ".ngram"));
@@ -1395,7 +1402,7 @@ public class FeatureExtractorSimple {
         //Return handlers:
         return result;
     }
-    
+
     private NgramCountProcessor[] getNgramProcessors() {
         //Register resource:
         ResourceManager.registerResource("ngramcount");
@@ -1412,6 +1419,17 @@ public class FeatureExtractorSimple {
 
         //Return processors:
         return result;
+    }
+
+    private BlockAlignmentProcessor getBlockAlignmentProcessor() {
+        //Register resource:
+        ResourceManager.registerResource("blockalignments");
+
+        //Create source and target processors:
+        BlockAlignmentProcessor targetProcessor = new BlockAlignmentProcessor(resourceManager.getProperty("alignments.file"));
+
+        //Return processors:
+        return targetProcessor;
     }
 
 }

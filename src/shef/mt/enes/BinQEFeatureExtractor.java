@@ -19,6 +19,7 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
+import shef.mt.features.util.FeatureManager;
 import shef.mt.features.util.Sentence;
 import shef.mt.features.util.WordLevelFeatureManager;
 import shef.mt.tools.MissingResourceGenerator;
@@ -31,7 +32,7 @@ import shef.mt.util.PropertiesManager;
  *
  * @author GustavoH
  */
-public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
+public class BinQEFeatureExtractor implements FeatureExtractorInterface{
 
     private String workDir;
     private String input;
@@ -44,14 +45,14 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
     private String targetLang;
 
     private PropertiesManager resourceManager;
-    private WordLevelFeatureManager featureManager;
+    private FeatureManager featureManager;
     private String configPath;
     private String mod;
 
     private StanfordCoreNLP sourcePipe;
     private StanfordCoreNLP targetPipe;
 
-    public WordLevelFeatureExtractor(String[] args) {
+    public BinQEFeatureExtractor(String[] args) {
         //Parse command line arguments:
         System.out.println("\n********** Parsing arguments **********");
         this.parseArguments(args);
@@ -71,7 +72,7 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
         long start = System.currentTimeMillis();
 
         //Run word-level feature extractor:
-        WordLevelFeatureExtractor wfe = new WordLevelFeatureExtractor(args);
+        BinQEFeatureExtractor wfe = new BinQEFeatureExtractor(args);
         wfe.run();
 
         //Measure ending time:
@@ -86,7 +87,7 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
         try {
             outWriter = new BufferedWriter(new FileWriter(outputPath));
         } catch (IOException ex) {
-            Logger.getLogger(WordLevelFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BinQEFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //Build input and output folders:
@@ -148,9 +149,9 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
             sourceBR.close();
             targetBR.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(WordLevelFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BinQEFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(WordLevelFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BinQEFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -240,9 +241,9 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
             this.sourceFile = sourceOutput;
             this.targetFile = targetOutput;
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(WordLevelFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BinQEFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(WordLevelFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BinQEFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -313,7 +314,7 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
                 String[] modeOpt = line.getOptionValues("mode");
                 setMod(modeOpt[0].trim());
                 configPath = getResourceManager().getString("featureConfig." + getMod());
-                featureManager = new WordLevelFeatureManager(configPath);
+                featureManager = new FeatureManager(configPath);
             }
 
             if (line.hasOption("feat")) {
@@ -392,7 +393,7 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
     /**
      * @return the featureManager
      */
-    public WordLevelFeatureManager getFeatureManager() {
+    public FeatureManager getFeatureManager() {
         return featureManager;
     }
 

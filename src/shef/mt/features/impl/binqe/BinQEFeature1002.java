@@ -6,9 +6,6 @@ import java.util.*;
 import shef.mt.features.impl.Feature;
 import shef.mt.features.util.Sentence;
 
-/**
- * number of tokens in the source sentence
- */
 public class BinQEFeature1002 extends Feature {
 
     public BinQEFeature1002() {

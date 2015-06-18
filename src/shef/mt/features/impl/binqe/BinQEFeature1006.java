@@ -4,9 +4,6 @@ import shef.mt.features.impl.Feature;
 import shef.mt.features.util.Sentence;
 import shef.mt.features.util.StringOperations;
 
-/**
- * number of tokens in the source sentence
- */
 public class BinQEFeature1006 extends Feature {
 
     public BinQEFeature1006() {

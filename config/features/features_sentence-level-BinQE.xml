@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+	<feature index="1001" description="" class="shef.mt.features.impl.binqe.BinQEFeature1001"></feature>
+	<feature index="1002" description="" class="shef.mt.features.impl.binqe.BinQEFeature1002"></feature>
+	<feature index="1003" description="" class="shef.mt.features.impl.binqe.BinQEFeature1003"></feature>
+	<feature index="1004" description="" class="shef.mt.features.impl.binqe.BinQEFeature1004"></feature>
+	<feature index="1005" description="" class="shef.mt.features.impl.binqe.BinQEFeature1005"></feature>
+	<feature index="1006" description="" class="shef.mt.features.impl.binqe.BinQEFeature1006"></feature>
+	<feature index="1007" description="" class="shef.mt.features.impl.binqe.BinQEFeature1007"></feature>
+	<feature index="1008" description="" class="shef.mt.features.impl.binqe.BinQEFeature1008"></feature>
+	<feature index="1009" description="" class="shef.mt.features.impl.binqe.BinQEFeature1009"></feature>
+	<feature index="1010" description="" class="shef.mt.features.impl.binqe.BinQEFeature1010"></feature>
+	<feature index="1011" description="" class="shef.mt.features.impl.binqe.BinQEFeature1011"></feature>
+	<feature index="1012" description="" class="shef.mt.features.impl.binqe.BinQEFeature1012"></feature>
+	<feature index="1013" description="" class="shef.mt.features.impl.binqe.BinQEFeature1013"></feature>
+	<feature index="1014" description="" class="shef.mt.features.impl.binqe.BinQEFeature1014"></feature>
+</features>
