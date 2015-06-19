@@ -3,6 +3,7 @@ package shef.mt.tools;
 import java.util.ArrayList;
 import java.util.HashSet;
 import shef.mt.enes.FeatureExtractorInterface;
+import shef.mt.tools.tercom.TERProcessor;
 
 public class WordLevelProcessorFactory {
 
@@ -139,6 +140,14 @@ public class WordLevelProcessorFactory {
 
             //Add them to processor vectors:
             targetProcessors.add(blockAlignmentProcessor);
+        }
+        
+        if (requirements.contains("teralignment")) {
+            //Get TER alignment processor:
+            TERProcessor terAlignmentProcessor = this.getTERProcessor();
+
+            //Add them to processor vectors:
+            targetProcessors.add(terAlignmentProcessor);
         }
 
         //Transform array lists in vectors:
@@ -376,5 +385,10 @@ public class WordLevelProcessorFactory {
 
         //Return processors:
         return targetProcessor;
+    }
+
+    private TERProcessor getTERProcessor() {
+        ResourceManager.registerResource("teralignment");
+        return new TERProcessor(this.fe.getSourceFile(), this.fe.getTargetFile());
     }
 }

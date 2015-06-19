@@ -14,4 +14,6 @@
 	<feature index="1012" description="" class="shef.mt.features.impl.binqe.BinQEFeature1012"></feature>
 	<feature index="1013" description="" class="shef.mt.features.impl.binqe.BinQEFeature1013"></feature>
 	<feature index="1014" description="" class="shef.mt.features.impl.binqe.BinQEFeature1014"></feature>
+	<feature index="1015" description="" class="shef.mt.features.impl.binqe.BinQEFeature1015"></feature>
+	<feature index="1016" description="" class="shef.mt.features.impl.binqe.BinQEFeature1016"></feature>
 </features>
