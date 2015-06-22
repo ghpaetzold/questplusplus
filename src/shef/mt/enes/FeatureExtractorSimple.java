@@ -61,6 +61,7 @@ public class FeatureExtractorSimple {
      * path to the input folder
      */
     private static String input;
+
     /**
      * running mode: bb , gb or all
      */
@@ -381,87 +382,8 @@ public class FeatureExtractorSimple {
      * that particular folder
      */
     private static void preprocessing() {
-        String sourceInputFolder = input + File.separator + sourceLang;
-        String targetInputFolder = input + File.separator + targetLang;
-        File origSourceFile = new File(sourceFile);
-        File inputSourceFile = new File(sourceInputFolder + File.separator + origSourceFile.getName());
 
-        System.out.println("source input:" + sourceFile);
-        System.out.println("target input:" + targetFile);
-        File origTargetFile = new File(targetFile);
-        File inputTargetFile = new File(targetInputFolder + File.separator + origTargetFile.getName());
-        try {
-            System.out.println("copying input to " + inputSourceFile.getPath());
-            copyFile(origSourceFile, inputSourceFile);
-            System.out.println("copying input to " + inputTargetFile.getPath());
-            copyFile(origTargetFile, inputTargetFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        //run tokenizer for source (English)
-        System.out.println("running tokenizer");
-
-        String src_abbr = "";
-        if (sourceLang.equalsIgnoreCase("english")) {
-            src_abbr = "en";
-        } else if (sourceLang.equalsIgnoreCase("spanish")) {
-            src_abbr = "es";
-        } else if (sourceLang.equalsIgnoreCase("french")) {
-            src_abbr = "fr";
-        } else if (sourceLang.equalsIgnoreCase("german")) {
-            src_abbr = "de";
-        } else if (targetLang.equalsIgnoreCase("dutch")) {
-            src_abbr = "nl";
-        } else if (targetLang.equalsIgnoreCase("portuguese")) {
-            src_abbr = "pt";
-        } else {
-            System.out.println("Don't recognise the source language");
-        }
-
-        String tgt_abbr = "";
-        if (targetLang.equalsIgnoreCase("english")) {
-            tgt_abbr = "en";
-        } else if (targetLang.equalsIgnoreCase("spanish")) {
-            tgt_abbr = "es";
-        } else if (targetLang.equalsIgnoreCase("french")) {
-            tgt_abbr = "fr";
-        } else if (targetLang.equalsIgnoreCase("german")) {
-            tgt_abbr = "de";
-        } else if (targetLang.equalsIgnoreCase("dutch")) {
-            tgt_abbr = "nl";
-        } else if (targetLang.equalsIgnoreCase("portuguese")) {
-            tgt_abbr = "pt";
-        } else {
-            System.out.println("Don't recognise the target language");
-        }
-
-        String truecasePath = "";
-        if (null != resourceManager.getProperty(sourceLang + ".lowercase")) {
-            truecasePath = resourceManager.getProperty(sourceLang + ".lowercase") + " -q ";
-        } else {
-            truecasePath = resourceManager.getString(sourceLang + ".truecase") + " --model " + resourceManager.getString(sourceLang + ".truecase.model");
-        }
-        Tokenizer enTok = new Tokenizer(inputSourceFile.getPath(), inputSourceFile.getPath() + ".tok", truecasePath, resourceManager.getString(sourceLang + ".tokenizer"), src_abbr, forceRun);
-
-        // Tokenizer enTok = new Tokenizer(inputSourceFile.getPath(), inputSourceFile.getPath() + ".tok", resourceManager.getString("english.lowercase"), resourceManager.getString("english.tokenizer"), "en", forceRun);
-        enTok.run();
-        sourceFile = enTok.getTok();
-        System.out.println(sourceFile);
-        //run tokenizer for target (Spanish)
-        System.out.println("running tokenizer");
-//        Tokenizer esTok = new Tokenizer(inputTargetFile.getPath(), inputTargetFile.getPath() + ".tok", resourceManager.getString("spanish.lowercase"), resourceManager.getString("spanish.tokenizer"), "es", forceRun);
-
-        if (null != resourceManager.getProperty(targetLang + ".lowercase")) {
-            truecasePath = resourceManager.getProperty(targetLang + ".lowercase") + " -q ";
-        } else {
-            truecasePath = resourceManager.getString(targetLang + ".truecase") + " --model " + resourceManager.getString(targetLang + ".truecase.model");
-        }
-        Tokenizer esTok = new Tokenizer(inputTargetFile.getPath(), inputTargetFile.getPath() + ".tok", truecasePath, resourceManager.getString(targetLang + ".tokenizer"), tgt_abbr, forceRun);
-
-        esTok.run();
-        targetFile = esTok.getTok();
-        System.out.println(targetFile);
+        tokenizeFiles();
 
         FeatureExtractorSimple.produceMissingResources();
 
@@ -1033,7 +955,7 @@ public class FeatureExtractorSimple {
 
                 ngramProcessorSource.processNextSentence(sourceSent);
                 ngramProcessorTarget.processNextSentence(targetSent);
-                
+
                 blockAlignmentProcessor.processNextSentence(targetSent);
 
                 if (posSourceExists) {
@@ -1432,4 +1354,101 @@ public class FeatureExtractorSimple {
         return targetProcessor;
     }
 
+    private static void tokenizeSource(File sourcefile) {
+        //run tokenizer for source (English)
+        System.out.println("running tokenizer");
+
+        String src_abbr = "";
+        if (sourceLang.equalsIgnoreCase("english")) {
+            src_abbr = "en";
+        } else if (sourceLang.equalsIgnoreCase("spanish")) {
+            src_abbr = "es";
+        } else if (sourceLang.equalsIgnoreCase("french")) {
+            src_abbr = "fr";
+        } else if (sourceLang.equalsIgnoreCase("german")) {
+            src_abbr = "de";
+        } else if (targetLang.equalsIgnoreCase("dutch")) {
+            src_abbr = "nl";
+        } else if (targetLang.equalsIgnoreCase("portuguese")) {
+            src_abbr = "pt";
+        } else {
+            System.out.println("Don't recognise the source language");
+        }
+
+        String truecasePath = "";
+        if (null != resourceManager.getProperty(sourceLang + ".lowercase")) {
+            truecasePath = resourceManager.getProperty(sourceLang + ".lowercase") + " -q ";
+        } else {
+            truecasePath = resourceManager.getString(sourceLang + ".truecase") + " --model " + resourceManager.getString(sourceLang + ".truecase.model");
+        }
+        Tokenizer enTok = new Tokenizer(sourcefile.getPath(), sourcefile.getPath() + ".tok", truecasePath, resourceManager.getString(sourceLang + ".tokenizer"), src_abbr, forceRun);
+
+        enTok.run();
+        sourceFile = enTok.getTok();
+        System.out.println(sourceFile);
+    }
+
+    private static void tokenizeTarget(File targetfile) {
+        String tgt_abbr = "";
+        if (targetLang.equalsIgnoreCase("english")) {
+            tgt_abbr = "en";
+        } else if (targetLang.equalsIgnoreCase("spanish")) {
+            tgt_abbr = "es";
+        } else if (targetLang.equalsIgnoreCase("french")) {
+            tgt_abbr = "fr";
+        } else if (targetLang.equalsIgnoreCase("german")) {
+            tgt_abbr = "de";
+        } else if (targetLang.equalsIgnoreCase("dutch")) {
+            tgt_abbr = "nl";
+        } else if (targetLang.equalsIgnoreCase("portuguese")) {
+            tgt_abbr = "pt";
+        } else {
+            System.out.println("Don't recognise the target language");
+        }
+
+        String truecasePath = "";
+        if (null != resourceManager.getProperty(targetLang + ".lowercase")) {
+            truecasePath = resourceManager.getProperty(targetLang + ".lowercase") + " -q ";
+        } else {
+            truecasePath = resourceManager.getString(targetLang + ".truecase") + " --model " + resourceManager.getString(targetLang + ".truecase.model");
+        }
+        Tokenizer esTok = new Tokenizer(targetfile.getPath(), targetfile.getPath() + ".tok", truecasePath, resourceManager.getString(targetLang + ".tokenizer"), tgt_abbr, forceRun);
+
+        esTok.run();
+        targetFile = esTok.getTok();
+        System.out.println(targetFile);
+    }
+
+    private static void tokenizeFiles() {
+        String sourceInputFolder = input + File.separator + sourceLang;
+        String targetInputFolder = input + File.separator + targetLang;
+        File origSourceFile = new File(sourceFile);
+        File inputSourceFile = new File(sourceInputFolder + File.separator + origSourceFile.getName());
+
+        File origTargetFile = new File(targetFile);
+        File inputTargetFile = new File(targetInputFolder + File.separator + origTargetFile.getName());
+        try {
+            copyFile(origSourceFile, inputSourceFile);
+            copyFile(origTargetFile, inputTargetFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //Discover whether or not to tokenize/truecase the source file:
+        String srcPreprocess = resourceManager.getProperty(sourceLang + ".preprocess");
+
+        //Discover whether or not to tokenize/truecase the source file:
+        String trgPreprocess = resourceManager.getProperty(targetLang + ".preprocess");
+
+        if ("1".equals(srcPreprocess)) {
+            System.out.println("Tokenizing and truecasing source file...");
+            tokenizeSource(inputSourceFile);
+            System.out.println("Source file tokenized and truecased!");
+        }
+        if ("1".equals(trgPreprocess)) {
+            System.out.println("Tokenizing and truecasing target file...");
+            tokenizeTarget(inputTargetFile);
+            System.out.println("Target file tokenized and truecased!");
+        }
+    }
 }
