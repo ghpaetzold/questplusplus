@@ -1,0 +1,76 @@
+2015/06/23 19:50:57
+output dir exists: output/test
+Output file input/test/chinese/target.word-level.ch.ppl already exists. Ngram will not run
+Output file input/test/english/source.word-level.en.ppl already exists. Ngram will not run
+Building the word model for the input file
+10 words identified. Computing frequencies... 
+***********Initiating PosTagger***************
+PosTagger parameters: type=source name:shef.mt.tools.PosTreeTagger
+Executable: /export/tools/tree-tagger/tree-tagger-chinese
+Input: /export/data/ghpaetzold/questplusplus/./input/target.word-level.ch
+Output: /export/data/ghpaetzold/questplusplus/input/test/chinese/target.word-level.ch.pos
+POS output already exists. TreeTagger will not run.
+***********Initiating PosTagger***************
+PosTagger parameters: type=target name:shef.mt.tools.PosTreeTagger
+Executable: /export/tools/tree-tagger/cmd/tree-tagger-english-utf8
+Input: /export/data/ghpaetzold/questplusplus/./input/source.word-level.en
+Output: /export/data/ghpaetzold/questplusplus/input/test/english/source.word-level.en.pos
+POS output already exists. TreeTagger will not run.
+Output file /export/data/ghpaetzold/questplusplus/input/test/english/source.word-level.en.pos.XPOS.ppl already exists. Ngram will not run
+initiating Giza from file: ./lang_resources/giza/lex.c2e
+Loading Giza...
+Giza loaded in 0.195 sec
+Loading language model...
+Cut-off frequencies:
+0-grams:
+quartile 1: 4
+quartile 2: 8
+quartile 3: 22
+quartile 4: 745817
+1-grams:
+quartile 1: 3
+quartile 2: 5
+quartile 3: 9
+quartile 4: 481475
+2-grams:
+quartile 1: 3
+quartile 2: 4
+quartile 3: 7
+quartile 4: 8007
+Language model loaded in 0.168 sec
+Loading language model...
+Cut-off frequencies:
+0-grams:
+quartile 1: 4
+quartile 2: 8
+quartile 3: 22
+quartile 4: 745817
+1-grams:
+quartile 1: 3
+quartile 2: 5
+quartile 3: 9
+quartile 4: 481475
+2-grams:
+quartile 1: 3
+quartile 2: 4
+quartile 3: 7
+quartile 4: 8007
+Language model loaded in 0.155 sec
+Loading language model...
+Cut-off frequencies:
+0-grams:
+quartile 1: 4
+quartile 2: 7
+quartile 3: 18
+quartile 4: 72549
+1-grams:
+quartile 1: 3
+quartile 2: 5
+quartile 3: 9
+quartile 4: 8511
+2-grams:
+quartile 1: 3
+quartile 2: 4
+quartile 3: 6
+quartile 4: 666
+Language model loaded in 0.072 sec
