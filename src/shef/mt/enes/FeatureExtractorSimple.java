@@ -122,8 +122,8 @@ public class FeatureExtractorSimple {
         long end = System.currentTimeMillis();
         Logger.log("processing completed in " + (end - start) / 1000 + " sec");
         Logger.close();
-        System.out.println("processing completed in " + (end - start) / 1000
-                + " sec");
+        System.out.println("Processing completed in " + (end - start) / 1000
+                + " seconds.");
 
     }
 
@@ -956,7 +956,7 @@ public class FeatureExtractorSimple {
                 ngramProcessorSource.processNextSentence(sourceSent);
                 ngramProcessorTarget.processNextSentence(targetSent);
 
-                blockAlignmentProcessor.processNextSentence(targetSent);
+                //blockAlignmentProcessor.processNextSentence(targetSent);
 
                 if (posSourceExists) {
                     posSourceProc.processSentence(sourceSent);
