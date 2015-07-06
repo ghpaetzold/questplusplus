@@ -934,7 +934,7 @@ public class FeatureExtractorSimple {
             NgramCountProcessor ngramProcessorSource = ngramProcessors[0];
             NgramCountProcessor ngramProcessorTarget = ngramProcessors[1];
 
-            BlockAlignmentProcessor blockAlignmentProcessor = this.getBlockAlignmentProcessor();
+            //BlockAlignmentProcessor blockAlignmentProcessor = this.getBlockAlignmentProcessor();
             /*
              * End modification for Triggers
              */
