@@ -254,6 +254,10 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
 
         Option input = OptionBuilder.withArgName("input").hasArgs(3)
                 .isRequired(true).create("input");
+        
+        Option alignments = OptionBuilder.withArgName("alignments").hasArgs(1)
+                .withDescription("alignments between source and target input files")
+                .isRequired(false).create("alignments");
 
         Option lang = OptionBuilder.withArgName("lang").hasArgs(2)
                 .isRequired(false).create("lang");
@@ -279,6 +283,7 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
         Options options = new Options();
         options.addOption(help);
         options.addOption(input);
+        options.addOption(alignments);
         options.addOption(mode);
         options.addOption(lang);
         options.addOption(feat);
@@ -322,6 +327,11 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
                 getFeatureManager().setFeatureList(features);
             } else {
                 getFeatureManager().setFeatureList("all");
+            }
+            
+            if (line.hasOption("alignments")) {
+                String path = line.getOptionValue("alignments");
+                this.resourceManager.put("alignments.file", path);
             }
 
         } catch (ParseException exp) {
