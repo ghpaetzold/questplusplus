@@ -21,10 +21,7 @@ public class Feature1124 extends Feature {
     public Feature1124() {
         setIndex(1124);
         setDescription("Named Entity feature: difference in number of LOCATION entities in source and target normalised by total number of person entities (max between english and arabic)");
-        HashSet res = new HashSet();
-        //requires named entities
-        res.add("ner");
-        setResources(res);
+        this.addResource("ner");
     }
 
     public void run(Sentence source, Sentence target) {

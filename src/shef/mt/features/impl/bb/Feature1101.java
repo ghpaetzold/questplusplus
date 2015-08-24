@@ -21,10 +21,7 @@ public class Feature1101 extends Feature {
     public Feature1101() {
         setIndex(1101);
         setDescription("absolute difference between the depth of the syntactic tree for the source and the depth of the syntactic tree for the target");
-        HashSet res = new HashSet();
-        //requires named entities
-        res.add("stf");
-        setResources(res);
+        this.addResource("stf");
     }
 
     public void run(Sentence source, Sentence target) {

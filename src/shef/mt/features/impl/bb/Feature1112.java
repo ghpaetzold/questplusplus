@@ -20,10 +20,7 @@ public class Feature1112 extends Feature {
     public Feature1112() {
         setIndex(1112);
         setDescription("absolute difference between the number of ADVPs in the source and target");
-        HashSet res = new HashSet();
-        //requires named entities
-        res.add("stf");
-        setResources(res);
+        this.addResource("stf");
     }
 
     /* (non-Javadoc)

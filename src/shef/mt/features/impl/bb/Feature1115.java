@@ -22,10 +22,7 @@ public class Feature1115 extends Feature {
     public Feature1115() {
         setIndex(1115);
         setDescription("absolute difference between the number of CONJP phrases in the source and target normalised by the total number of phrasal tags in the sentence");
-        HashSet res = new HashSet();
-        //requires named entities
-        res.add("stf");
-        setResources(res);
+        this.addResource("stf");
     }
 
     /* (non-Javadoc)

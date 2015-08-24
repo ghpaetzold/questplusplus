@@ -19,8 +19,7 @@ public class Feature1088 extends Feature {
     public Feature1088() {
         setIndex(1088);
         setDescription("percentage of nouns in the source");
-        HashSet res = new HashSet<String>();
-        res.add("sourcePosTagger");
+        this.addResource("sourcePosTagger");
     }
     /* (non-Javadoc)
      * @see wlv.mt.features.impl.Feature#run(wlv.mt.features.util.Sentence, wlv.mt.features.util.Sentence)

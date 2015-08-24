@@ -13,7 +13,6 @@ public class Feature1001 extends Feature {
     public Feature1001() {
         setIndex(1001);
         setDescription("number of tokens in the source sentence");
-
     }
 
     public void run(Sentence source, Sentence target) {

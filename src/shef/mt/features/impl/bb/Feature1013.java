@@ -15,9 +15,7 @@ public class Feature1013 extends Feature {
     public Feature1013() {
         setIndex(1013);
         setDescription("perplexity of the target");
-        HashSet res = new HashSet<String>();
-        res.add("ppl");
-        setResources(res);
+        this.addResource("ppl");
     }
 
     @Override

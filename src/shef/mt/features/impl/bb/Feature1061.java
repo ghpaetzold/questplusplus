@@ -23,9 +23,7 @@ public class Feature1061 extends Feature {
     public Feature1061() {
         setIndex(1061);
         setDescription("average word frequency: on average, each type (unigram) in the source sentence appears x times in the corpus (in all quartiles)");
-        HashSet res = new HashSet<String>();
-        res.add("Freq");
-        setResources(res);
+        this.addResource("Freq");
     }
 
     /* (non-Javadoc)

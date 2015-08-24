@@ -16,10 +16,8 @@ public class Feature1700 extends Feature {
     public Feature1700() {
         setIndex(1700);
         setDescription("Information retrieval scores and BLEU and F1 similarity over top retrieved instances.");
-        HashSet res = new HashSet<String>();
-        res.add("LuceneIndexSource");
-        res.add("LuceneIndexTarget");
-        setResources(res);
+        this.addResource("LuceneIndexSource");
+        this.addResource("LuceneIndexTarget");
     }
     
     @Override

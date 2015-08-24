@@ -22,9 +22,7 @@ public class Feature1017 extends Feature {
     public Feature1017() {
         setIndex(1017);
         setDescription("average number of translations per source word in the sentence (threshold in giza2: prob > 0.01)");
-        HashSet res = new HashSet<String>();
-        res.add("Giza2");
-        setResources(res);
+        this.addResource("Giza2");
     }
 
     @Override

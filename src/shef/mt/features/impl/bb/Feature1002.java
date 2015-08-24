@@ -22,8 +22,6 @@ public class Feature1002 extends Feature {
     public Feature1002() {
         setIndex(1002);
         setDescription("no tokens in target");
-        HashSet res = new HashSet<Resource>();
-        setResources(res);
     }
 
     public void run(Sentence source, Sentence target) {

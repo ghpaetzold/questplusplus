@@ -16,8 +16,7 @@ public class Feature1010 extends Feature {
     public Feature1010() {
         setIndex(1010);
         setDescription("source sentence perplexity");
-        HashSet res = new HashSet<String>();
-        res.add("ppl");
+        this.addResource("ppl");
     }
 
     @Override

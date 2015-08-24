@@ -21,10 +21,7 @@ public class Feature1107 extends Feature {
     public Feature1107() {
         setIndex("1107");
         setDescription("absolute difference between the number of NP phrases in the source and target normalised by the total number of phrasal tags in the sentence");
-        HashSet res = new HashSet();
-        //requires named entities
-        res.add("stf");
-        setResources(res);
+        this.addResource("stf");
     }
 
     /* (non-Javadoc)

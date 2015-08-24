@@ -20,10 +20,7 @@ public class Feature1106 extends Feature {
     public Feature1106() {
         setIndex(1106);
         setDescription("absolute difference between the number of NPs in the source and target");
-        HashSet res = new HashSet();
-        //requires named entities
-        res.add("stf");
-        setResources(res);
+        this.addResource("stf");
     }
 
     /* (non-Javadoc)

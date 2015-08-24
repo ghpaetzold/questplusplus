@@ -31,11 +31,8 @@ public class Feature1098 extends Feature {
     public Feature1098() {
         setIndex(1098);
         setDescription("number of dependencies with aligned constituents normalized by the total number of dependencies (max between source and target)");
-        HashSet res = new HashSet();
-        //requires stanford parser
-        res.add("stf");
-        res.add("gizaAlign");
-        setResources(res);
+        this.addResource("stf");
+        this.addResource("gizaAlign");
     }
 
     public void run(Sentence source, Sentence target) {

@@ -20,10 +20,7 @@ public class Feature1108 extends Feature {
     public Feature1108() {
         setIndex("1108");
         setDescription("absolute difference between the number of VPs in the source and target");
-        HashSet res = new HashSet();
-        //requires named entities
-        res.add("stf");
-        setResources(res);
+        this.addResource("stf");
     }
 
     /* (non-Javadoc)

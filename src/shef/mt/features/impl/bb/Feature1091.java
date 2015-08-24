@@ -20,9 +20,7 @@ public class Feature1091 extends Feature {
         setIndex(1091);
         setDescription("percentage of verbs in the target");
 
-        HashSet res = new HashSet();
-        res.add("targetPosTagger");
-        setResources(res);
+        this.addResource("targetPosTagger");
     }
 
     /* (non-Javadoc)

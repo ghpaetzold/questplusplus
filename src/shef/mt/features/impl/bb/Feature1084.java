@@ -19,9 +19,7 @@ public class Feature1084 extends Feature {
     public Feature1084() {
         setIndex(1084);
         setDescription("percentage of content words in the target");
-        HashSet res = new HashSet();
-        res.add("targetPosTagger");
-        setResources(res);
+        this.addResource("targetPosTagger");
     }
 
     /* (non-Javadoc)

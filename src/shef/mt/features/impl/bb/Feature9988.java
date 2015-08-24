@@ -12,17 +12,16 @@ import shef.mt.features.util.Sentence;
  * @author carol
  */
 public class Feature9988 extends Feature {
-    
+
     public Feature9988() {
-		// TODO Auto-generated constructor stub
-		setIndex(9988);
-		
-	}
+        // TODO Auto-generated constructor stub
+        setIndex(9988);
+    }
 
     @Override
     public void run(Sentence source, Sentence target) {
-	setValue((Float) target.getValue("word_repetition_target"));
-        
+        setValue((Float) target.getValue("word_repetition_target"));
+
     }
-    
+
 }

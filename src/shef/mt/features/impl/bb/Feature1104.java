@@ -19,11 +19,8 @@ public class Feature1104 extends Feature {
 
     public Feature1104() {
         setIndex("1104");
-        HashSet res = new HashSet();
         setDescription("absolute difference between the number of PP phrases in the source and target");
-
-        res.add("stf");
-        setResources(res);
+        this.addResource("stf");
     }
 
     /* (non-Javadoc)

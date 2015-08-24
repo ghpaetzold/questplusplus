@@ -24,10 +24,7 @@ public class Feature1058 extends Feature {
     public Feature1058() {
         setIndex(1058);
         setDescription("percentage of distinct unigrams seen in the corpus (in all quartiles)");
-        HashSet res = new HashSet<String>();
-        res.add("ngramcount");
-
-        setResources(res);
+        this.addResource("ngramcount");
     }
     /* (non-Javadoc)
      * @see wlv.mt.features.impl.Feature#run(wlv.mt.features.util.Sentence, wlv.mt.features.util.Sentence)

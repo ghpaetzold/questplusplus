@@ -20,10 +20,8 @@ public class Feature1092 extends Feature {
     public Feature1092() {
         setIndex(1092);
         setDescription("ratio of percentage of nouns in the source and target");
-        HashSet res = new HashSet();
-        res.add("sourcePosTagger");
-        res.add("targetPosTagger");
-        setResources(res);
+        this.addResource("sourcePosTagger");
+        this.addResource("targetPosTagger");
     }
 
     /* (non-Javadoc)

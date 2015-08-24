@@ -21,10 +21,7 @@ public class Feature1111 extends Feature {
     public Feature1111() {
         setIndex(1111);
         setDescription("absolute difference between the number of ADJP phrases in the source and target normalised by the total number of phrasal tags in the sentence");
-        HashSet res = new HashSet();
-        //requires named entities
-        res.add("stf");
-        setResources(res);
+        this.addResource("stf");
     }
 
     /* (non-Javadoc)

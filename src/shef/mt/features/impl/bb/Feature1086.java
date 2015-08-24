@@ -16,9 +16,7 @@ public class Feature1086 extends Feature {
     public Feature1086() {
         setIndex(1086);
         setDescription("LM log probability of POS of the target");
-        HashSet res = new HashSet();
-        res.add("poslogprob");
-        setResources(res);
+        this.addResource("poslogprob");
     }
 
     /* (non-Javadoc)

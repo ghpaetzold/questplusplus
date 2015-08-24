@@ -22,10 +22,7 @@ public class Feature1118 extends Feature {
     public Feature1118() {
         setIndex(1118);
         setDescription("Named Entity feature: difference in number of ORGANIZATION entities in source and target normalised by total number of person entities (max between english and arabic)");
-        HashSet res = new HashSet();
-        //requires named entities
-        res.add("ner");
-        setResources(res);
+        this.addResource("ner");
     }
 
     public void run(Sentence source, Sentence target) {

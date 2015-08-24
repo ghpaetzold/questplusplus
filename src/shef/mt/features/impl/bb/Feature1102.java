@@ -19,11 +19,8 @@ public class Feature1102 extends Feature {
 
     public Feature1102() {
         setIndex("1102");
-        HashSet res = new HashSet();
         setDescription("number of prepositional phrases in the source");
-        //requires named entities
-        res.add("stf");
-        setResources(res);
+        this.addResource("stf");
     }
 
     /* (non-Javadoc)

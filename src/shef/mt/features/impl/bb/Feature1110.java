@@ -20,10 +20,7 @@ public class Feature1110 extends Feature {
     public Feature1110() {
         setIndex(1110);
         setDescription("absolute difference between the number of ADJPs in the source and target");
-        HashSet res = new HashSet();
-        //requires named entities
-        res.add("stf");
-        setResources(res);
+        this.addResource("stf");
     }
 
     /* (non-Javadoc)

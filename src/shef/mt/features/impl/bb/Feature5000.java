@@ -32,9 +32,7 @@ public class Feature5000 extends Feature {
     public Feature5000() {
         setIndex(5000);
         setDescription("Number of stopwords between in target sentence");
-        HashSet res = new HashSet<String>();
-        res.add("Giza");
-        setResources(res);
+        this.addResource("Giza");
     }
 
     /* (non-Javadoc)
