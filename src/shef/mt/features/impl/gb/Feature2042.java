@@ -16,11 +16,8 @@ public class Feature2042 extends Feature {
 
     public Feature2042() {
         setIndex("2042");
-        HashSet res = new HashSet<String>();
-        res.add("phrases");
-        setResources(res);
-
         setDescription("maximum size of the bi-phrases for the target sentence, in terms of number of words");
+        this.addResource("phrases");
     }
 
     public void run(Sentence source, Sentence target) {

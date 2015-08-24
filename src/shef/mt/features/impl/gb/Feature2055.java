@@ -18,11 +18,8 @@ public class Feature2055 extends Feature {
 
     public Feature2055() {
         setIndex("2055");
-        HashSet<String> res = new HashSet<String>();
-        res.add("totalHypotheses");
-        setResources(res);
         setDescription("MOSES: totalHypotheses");
-
+        this.addResource("totalHypotheses";)
     }
 
     public void run(Sentence source, Sentence target) {

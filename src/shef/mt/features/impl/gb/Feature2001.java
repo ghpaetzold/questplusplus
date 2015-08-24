@@ -19,9 +19,7 @@ public class Feature2001 extends Feature {
     public Feature2001() {
         setIndex("2001");
         setDescription("log prob score of the hypothesis");
-        HashSet<String> res = new HashSet<String>();
-        res.add("prob");
-        setResources(res);
+        this.addResource("prob");
     }
 
     /* (non-Javadoc)

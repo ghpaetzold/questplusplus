@@ -19,10 +19,8 @@ public class Feature2045 extends Feature {
 
     public Feature2045() {
         setIndex("2045");
-        HashSet res = new HashSet<String>();
-//		res.add("prob");
-        setResources(res);
         setDescription("averaged target word statistics: score-weighted relative frequency of the word in the n-best list ");
+        //this.addResource("prob");
     }
 
     /* (non-Javadoc)

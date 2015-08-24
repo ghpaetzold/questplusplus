@@ -19,10 +19,8 @@ public class Feature2048 extends Feature {
 
     public Feature2048() {
         setIndex("2048");
-        HashSet<String> res = new HashSet<String>();
-//		res.add("log_prob_feat");
-        setResources(res);
         setDescription("ratio of log prob (base model score) of the current hypothesis to the sum of the log prob score of all hypothesis ");
+        //this.addResource("log_prob_feat");
     }
 
     /* (non-Javadoc)

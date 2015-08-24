@@ -20,7 +20,6 @@ public class Feature2052 extends Feature {
     public Feature2052() {
         setIndex("2052");
         setDescription("edit distance of the current hypothesis to the center hypothesis ");
-
     }
 
     /* (non-Javadoc)

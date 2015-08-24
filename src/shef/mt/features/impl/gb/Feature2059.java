@@ -18,11 +18,8 @@ public class Feature2059 extends Feature {
 
     public Feature2059() {
         setIndex("2059");
-        HashSet<String> res = new HashSet<String>();
-        res.add("pruned");
-        setResources(res);
         setDescription("proportion of pruned search graph nodes ");
-
+        this.addResource("pruned");
     }
 
     public void run(Sentence source, Sentence target) {

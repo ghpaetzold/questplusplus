@@ -18,9 +18,8 @@ public class Feature2041 extends Feature {
 
     public Feature2041() {
         setIndex("2041");
-        HashSet<String> res = new HashSet<String>();
-        res.add("constraint_block_wt");
-        setResources(res);
+        setDescription("IBM constraint block wt");
+        this.addResource("constraint_block_wt");
     }
 
     /* (non-Javadoc)

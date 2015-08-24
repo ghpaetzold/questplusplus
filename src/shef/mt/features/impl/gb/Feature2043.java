@@ -14,11 +14,8 @@ public class Feature2043 extends Feature {
 
     public Feature2043() {
         setIndex("2043");
-        HashSet res = new HashSet<String>();
-        res.add("unknown");
-        setResources(res);
-
         setDescription("MOSES: proportion of unknown words");
+        this.addResource("unknown");
     }
 
     public void run(Sentence source, Sentence target) {

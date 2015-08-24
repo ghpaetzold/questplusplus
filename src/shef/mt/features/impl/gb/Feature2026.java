@@ -19,9 +19,7 @@ public class Feature2026 extends Feature {
     public Feature2026() {
         setIndex("2026");
         setDescription("MOSES word penalty");
-        HashSet<String> res = new HashSet<String>();
-        res.add("word_penalty_feature");
-        setResources(res);
+        this.addResource("word_penalty_feature");
     }
 
     /* (non-Javadoc)

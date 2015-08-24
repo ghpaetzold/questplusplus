@@ -19,9 +19,7 @@ public class Feature2023 extends Feature {
     public Feature2023() {
         setIndex("2023");
         setDescription("MOSES phrase probability phrase_prob_feat_3");
-        HashSet<String> res = new HashSet<String>();
-        res.add("phrase_prob_feat_3");
-        setResources(res);
+        this.addResource("phrase_prob_feat_3");
     }
 
     /* (non-Javadoc)

@@ -18,10 +18,8 @@ public class Feature2061 extends Feature {
 
     public Feature2061() {
         setIndex("2061");
-        HashSet<String> res = new HashSet<String>();
-        res.add("recombined");
-        setResources(res);
         setDescription("proportion of recombined graph nodes");
+        this.addResource("recombined");
     }
 
     public void run(Sentence source, Sentence target) {

@@ -18,9 +18,7 @@ public class Feature2017 extends Feature {
     public Feature2017() {
         setIndex(2017);
         setDescription("dist_feat_4");
-        HashSet<String> res = new HashSet<String>();
-        res.add("dist_feat_4");
-        setResources(res);
+        this.addResource("dist_feat_4");
     }
 
     /* (non-Javadoc)

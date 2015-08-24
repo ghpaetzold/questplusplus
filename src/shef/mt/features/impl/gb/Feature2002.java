@@ -19,10 +19,8 @@ public class Feature2002 extends Feature {
 
     public Feature2002() {
         setIndex("2002");
-        HashSet<String> res = new HashSet<String>();
         setDescription("log probability score (base model) normalized by source sentence length");
-        res.add("prob");
-        setResources(res);
+        this.addResource("prob");
     }
 
     /* (non-Javadoc)

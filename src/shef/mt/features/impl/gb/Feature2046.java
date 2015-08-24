@@ -19,7 +19,6 @@ public class Feature2046 extends Feature {
     public Feature2046() {
         setIndex("2046");
         setDescription("averaged target word statistics: relative frequency of the word in the n-best list occurring in the same position as the target word");
-
     }
 
     /* (non-Javadoc)

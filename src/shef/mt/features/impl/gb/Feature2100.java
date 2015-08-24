@@ -15,10 +15,7 @@ public class Feature2100 extends Feature {
     public Feature2100() {
         setIndex(2100);
         setDescription("percentage of incorrectly translated possessive pronouns");
-        HashSet<String> res = new HashSet<String>();
-        res.add("phrases");
-        setResources(res);
-
+        this.addResource("phrases");
     }
 
     /*

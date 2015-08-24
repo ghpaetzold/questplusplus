@@ -18,11 +18,8 @@ public class Feature2057 extends Feature {
 
     public Feature2057() {
         setIndex("2057");
-        HashSet<String> res = new HashSet<String>();
-        res.add("discarded");
         setDescription("MOSES: percentage of discarded graph nodes");
-        setResources(res);
-
+        this.addResource("discarded");
     }
 
     public void run(Sentence source, Sentence target) {

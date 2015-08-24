@@ -18,9 +18,8 @@ public class Feature2033 extends Feature {
 
     public Feature2033() {
         setIndex("2033");
-        HashSet<String> res = new HashSet<String>();
-        res.add("srcSize");
-        setResources(res);
+        setDescription("IBM srcSize");
+        this.addResource("srcSize");
     }
 
     /* (non-Javadoc)
