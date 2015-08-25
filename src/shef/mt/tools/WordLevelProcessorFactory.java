@@ -26,7 +26,7 @@ public class WordLevelProcessorFactory {
         ArrayList<ResourceProcessor> sourceProcessors = new ArrayList<ResourceProcessor>();
         ArrayList<ResourceProcessor> targetProcessors = new ArrayList<ResourceProcessor>();
 
-        if (requirements.contains("stopwords")) {
+        if (requirements.contains("target.stopwords") || requirements.contains("source.stopwords")) {
             //Get stopwords processors:
             StopWordsProcessor[] stopWordsProcessors = this.getStopWordsProcessors();
             StopWordsProcessor stopWordsProcSource = stopWordsProcessors[0];
@@ -37,7 +37,7 @@ public class WordLevelProcessorFactory {
             targetProcessors.add(stopWordsProcTarget);
         }
 
-        if (requirements.contains("alignments")) {
+        if (requirements.contains("alignments.file")) {
             //Get alignment processors:
             AlignmentProcessor alignmentProcessor = this.getAlignmentProcessor();
 
@@ -53,7 +53,7 @@ public class WordLevelProcessorFactory {
             targetProcessors.add(punctuationProcessor);
         }
 
-        if (requirements.contains("ngramcount")) {
+        if (requirements.contains("source.ngram") || requirements.contains("target.ngram")) {
             //Run SRILM on ngram count files:
             NgramCountProcessor[] ngramProcessors = this.getNgramProcessors();
             NgramCountProcessor ngramProcessorSource = ngramProcessors[0];
@@ -64,7 +64,7 @@ public class WordLevelProcessorFactory {
             targetProcessors.add(ngramProcessorTarget);
         }
 
-        if (requirements.contains("posngramcount")) {
+        if (requirements.contains("source.posngram") || requirements.contains("target.posngram")) {
             //Run SRILM on ngram count files:
             POSNgramCountProcessor[] ngramProcessors = this.getPOSNgramProcessors();
             POSNgramCountProcessor sourceNgramProcessor = ngramProcessors[0];
@@ -214,7 +214,8 @@ public class WordLevelProcessorFactory {
 
     private NgramCountProcessor[] getNgramProcessors() {
         //Register resource:
-        ResourceManager.registerResource("ngramcount");
+        ResourceManager.registerResource("target.ngram");
+        ResourceManager.registerResource("source.ngram");
 
         //Get source and target Language Models:
         LanguageModel[] ngramModels = this.getNGramModels();
@@ -232,11 +233,12 @@ public class WordLevelProcessorFactory {
 
     private StopWordsProcessor[] getStopWordsProcessors() {
         //Register resource:
-        ResourceManager.registerResource("stopwords");
+        ResourceManager.registerResource("source.stopwords");
+        ResourceManager.registerResource("target.stopwords");
 
         //Get paths to stop word lists:
-        String sourcePath = this.fe.getResourceManager().getProperty(this.fe.getSourceLang() + ".stopwords");
-        String targetPath = this.fe.getResourceManager().getProperty(this.fe.getTargetLang() + ".stopwords");
+        String sourcePath = this.fe.getResourceManager().getProperty("source.stopwords");
+        String targetPath = this.fe.getResourceManager().getProperty("target.stopwords");
 
         //Generate processors:
         StopWordsProcessor sourceProcessor = new StopWordsProcessor(sourcePath);
@@ -314,7 +316,7 @@ public class WordLevelProcessorFactory {
 
     private AlignmentProcessor getAlignmentProcessor() {
         //Register resource:
-        ResourceManager.registerResource("alignments");
+        ResourceManager.registerResource("alignments.file");
 
         //Get path to alignments file:
         String alignmentsPath = this.fe.getResourceManager().getProperty("alignments.file");
@@ -343,7 +345,8 @@ public class WordLevelProcessorFactory {
 
     private POSNgramCountProcessor[] getPOSNgramProcessors() {
         //Register resource:
-        ResourceManager.registerResource("posngramcount");
+        ResourceManager.registerResource("source.posngram");
+        ResourceManager.registerResource("target.posngram");
 
         //Get target POS Language Models:
         LanguageModel[] POSNgramModels = this.getPOSNGramModels();
