@@ -16,18 +16,18 @@ public class GizaProcessor extends ResourceProcessor{
     
     public GizaProcessor(String gizaPath){
         this.gizaPath = gizaPath;
+        System.out.println(gizaPath);
+        Giza giza = new Giza(gizaPath);
     }
 
     @Override
     public void processNextSentence(Sentence source) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
     @Override
     public void processNextDocument(Doc source) {
   
-        System.out.println(gizaPath);
-        Giza giza = new Giza(gizaPath);
     }
     
 }

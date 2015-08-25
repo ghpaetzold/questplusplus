@@ -35,7 +35,7 @@ public class DocLevelProcessorFactory {
         }
         
         if (requirements.contains("postagger")) {
-            //Get stopwords processors:
+            //Get POSTagger processors:
             POSTaggerProcessor[] posTaggerProcessors = this.getPOSTaggerProcessors();
             POSTaggerProcessor posTaggerProcSource = posTaggerProcessors[0];
             POSTaggerProcessor posTaggerProcTarget = posTaggerProcessors[1];
