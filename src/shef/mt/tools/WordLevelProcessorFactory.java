@@ -75,7 +75,7 @@ public class WordLevelProcessorFactory {
             targetProcessors.add(targetNgramProcessor);
         }
 
-        if (requirements.contains("logprob") || requirements.contains("ppl") || requirements.contains("ppl1")) {
+        if (requirements.contains("source.lm") || requirements.contains("target.lm")) {
             //Run SRILM on language models:
             PPLProcessor[] pplProcessors = this.getLMProcessors();
             PPLProcessor pplProcSource = pplProcessors[0];
@@ -86,7 +86,7 @@ public class WordLevelProcessorFactory {
             targetProcessors.add(pplProcTarget);
         }
 
-        if (requirements.contains("postags") || requirements.contains("depcounts")) {
+        if (requirements.contains("source.POSModel") || requirements.contains("target.POSModel") || requirements.contains("source.parseModel") || requirements.contains("target.parseModel")) {
             //Get parsing processors:
             ParsingProcessor[] parsingProcessors = this.getParsingProcessors(requirements);
             ParsingProcessor parsingSource = parsingProcessors[0];
@@ -97,7 +97,7 @@ public class WordLevelProcessorFactory {
             targetProcessors.add(parsingTarget);
         }
 
-        if (requirements.contains("sensecounts")) {
+        if (requirements.contains("tools.universalwordnet.path")) {
             //Get sense processor:
             SenseProcessor[] senseProcessors = this.getSenseProcessors();
             SenseProcessor senseSource = senseProcessors[0];
@@ -108,7 +108,7 @@ public class WordLevelProcessorFactory {
             targetProcessors.add(senseTarget);
         }
 
-        if (requirements.contains("reftranslation")) {
+        if (requirements.contains("target.refTranslations")) {
             //Get reference translations processor:
             RefTranslationProcessor refTranslationProcessor = this.getRefTranslationProcessor();
 
@@ -127,7 +127,7 @@ public class WordLevelProcessorFactory {
             targetProcessors.add(countTarget);
         }
 
-        if (requirements.contains("translationcounts")) {
+        if (requirements.contains("source.translationProbs")) {
             //Get translation counts processor:
             TranslationProbabilityProcessor translationProbProcessor = this.getTranslationProbabilityProcessor();
 
@@ -135,7 +135,7 @@ public class WordLevelProcessorFactory {
             targetProcessors.add(translationProbProcessor);
         }
 
-        if (requirements.contains("blockalignments")) {
+        if (requirements.contains("alignments.file")) {
             //Get block alignment processor:
             BlockAlignmentProcessor blockAlignmentProcessor = this.getBlockAlignmentProcessor();
 
@@ -171,11 +171,13 @@ public class WordLevelProcessorFactory {
 
     private ParsingProcessor[] getParsingProcessors(HashSet<String> requirements) {
         //Register resources:
-        if (requirements.contains("postags")) {
-            ResourceManager.registerResource("postags");
+        if (requirements.contains("source.POSModel") || requirements.contains("target.POSModel")) {
+            ResourceManager.registerResource("source.POSModel");
+            ResourceManager.registerResource("target.POSModel");
         }
-        if (requirements.contains("depcounts")) {
-            ResourceManager.registerResource("depcounts");
+        if (requirements.contains("source.parseModel") || requirements.contains("target.parseModel")) {
+            ResourceManager.registerResource("source.parseModel");
+            ResourceManager.registerResource("target.parseModel");
         }
 
         //Get paths to Stanford Parser source language models:
@@ -198,7 +200,7 @@ public class WordLevelProcessorFactory {
 
     private SenseProcessor[] getSenseProcessors() {
         //Register resource:
-        ResourceManager.registerResource("sensecounts");
+        ResourceManager.registerResource("tools.universalwordnet.path");
 
         //Get path to Universal Wordnet:
         String wordnetPath = this.fe.getResourceManager().getProperty("tools.universalwordnet.path");
@@ -261,6 +263,10 @@ public class WordLevelProcessorFactory {
     }
 
     private PPLProcessor[] getLMProcessors() {
+        //Register resources:
+        ResourceManager.registerResource("source.lm");
+        ResourceManager.registerResource("target.lm");
+        
         //Generate output paths:
         String sourceOutput = this.fe.getSourceFile() + ".ppl";
         String targetOutput = this.fe.getTargetFile() + ".ppl";
@@ -292,8 +298,8 @@ public class WordLevelProcessorFactory {
 
     private LanguageModel[] getNGramModels() {
         //Create ngram file processors:
-        NGramProcessor sourceNgp = new NGramProcessor(this.fe.getResourceManager().getString(this.fe.getSourceLang() + ".ngram"));
-        NGramProcessor targetNgp = new NGramProcessor(this.fe.getResourceManager().getString(this.fe.getTargetLang() + ".ngram"));
+        NGramProcessor sourceNgp = new NGramProcessor(this.fe.getResourceManager().getString("source.ngram"));
+        NGramProcessor targetNgp = new NGramProcessor(this.fe.getResourceManager().getString("target.ngram"));
 
         //Generate resulting handlers:
         LanguageModel[] result = new LanguageModel[]{sourceNgp.run(), targetNgp.run()};
@@ -304,8 +310,8 @@ public class WordLevelProcessorFactory {
 
     private LanguageModel[] getPOSNGramModels() {
         //Create ngram file processors:
-        NGramProcessor sourceNgp = new NGramProcessor(this.fe.getResourceManager().getString(this.fe.getSourceLang() + ".posngram"));
-        NGramProcessor targetNgp = new NGramProcessor(this.fe.getResourceManager().getString(this.fe.getTargetLang() + ".posngram"));
+        NGramProcessor sourceNgp = new NGramProcessor(this.fe.getResourceManager().getString("source.posngram"));
+        NGramProcessor targetNgp = new NGramProcessor(this.fe.getResourceManager().getString("target.posngram"));
 
         //Generate resulting handlers:
         LanguageModel[] result = new LanguageModel[]{sourceNgp.run(), targetNgp.run()};
@@ -327,10 +333,10 @@ public class WordLevelProcessorFactory {
 
     private RefTranslationProcessor getRefTranslationProcessor() {
         //Register resource:
-        ResourceManager.registerResource("reftranslation");
+        ResourceManager.registerResource("target.refTranslations");
 
         //Get reference translations path:
-        String refTranslationsPath = this.fe.getResourceManager().getProperty(fe.getTargetLang() + ".refTranslations");
+        String refTranslationsPath = this.fe.getResourceManager().getProperty("target.refTranslations");
 
         //Return new reference translation processor:
         return new RefTranslationProcessor(refTranslationsPath);
@@ -379,10 +385,10 @@ public class WordLevelProcessorFactory {
 
     private TranslationProbabilityProcessor getTranslationProbabilityProcessor() {
         //Register resource:
-        ResourceManager.registerResource("translationcounts");
+        ResourceManager.registerResource("source.translationProbs");
 
         //Get reference translations path:
-        String translationProbPath = this.fe.getResourceManager().getProperty(fe.getSourceLang() + ".translationProbs");
+        String translationProbPath = this.fe.getResourceManager().getProperty("source.translationProbs");
 
         //Return new reference translation processor:
         return new TranslationProbabilityProcessor(translationProbPath);
@@ -390,7 +396,7 @@ public class WordLevelProcessorFactory {
 
     private BlockAlignmentProcessor getBlockAlignmentProcessor() {
         //Register resource:
-        ResourceManager.registerResource("blockalignments");
+        ResourceManager.registerResource("alignments.file");
 
         //Create source and target processors:
         BlockAlignmentProcessor targetProcessor = new BlockAlignmentProcessor(this.fe.getResourceManager().getProperty("alignments.file"));

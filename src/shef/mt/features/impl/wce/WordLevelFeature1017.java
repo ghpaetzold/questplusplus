@@ -26,7 +26,7 @@ public class WordLevelFeature1017 extends WordLevelFeature{
         String[] sourceTokens = source.getTokens();
         
         //Get pos tags or target sentence:
-        ArrayList<String> sourcePOSTags = (ArrayList<String>) source.getValue("source.POSModel");
+        ArrayList<String> sourcePOSTags = (ArrayList<String>) source.getValue("postags");
         
         //Get alignments object:
         HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments.file");

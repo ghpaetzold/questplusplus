@@ -67,7 +67,7 @@ public class SenseProcessor extends ResourceProcessor {
             }
 
             //Add sense counts as a resource:
-            s.setValue("sensecounts", senseCounts);
+            s.setValue("tools.universalwordnet.path", senseCounts);
         }else{
             System.out.println("ERROR: Universal Wordnet is not properly set. Check the path provided in the configuration file.");
         }

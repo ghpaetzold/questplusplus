@@ -22,7 +22,7 @@ public class WordLevelFeature1023 extends WordLevelFeature {
         String[] tokens = target.getTokens();
         
         //Get stop words hash:
-        HashMap<String, Integer> stopWords = (HashMap<String, Integer>) target.getValue("target.stopwords");
+        HashMap<String, Integer> stopWords = (HashMap<String, Integer>) target.getValue("stopwords");
 
         //For each token, check if it is a stop word:
         for (int i = 0; i < tokens.length; i++) {

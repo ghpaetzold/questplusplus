@@ -45,9 +45,9 @@ public class AlignmentProcessor extends ResourceProcessor {
             }
             
             //Add resource to sentence:
-            target.setValue("alignments", alignments);
+            target.setValue("alignments.file", alignments);
         } catch (IOException ex) {
-            target.setValue("alignments", null);
+            target.setValue("alignments.file", null);
             Logger.getLogger(AlignmentProcessor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

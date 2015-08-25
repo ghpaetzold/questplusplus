@@ -25,7 +25,7 @@ public class WordLevelFeature1030 extends WordLevelFeature {
         LanguageModel lm = (LanguageModel) target.getValue("posngramcount");
 
         //Ge tokens from target sentence:
-        ArrayList<String> targetPOSTokens = (ArrayList<String>) target.getValue("target.POSModel");
+        ArrayList<String> targetPOSTokens = (ArrayList<String>) target.getValue("postags");
         String[] targetTokens = new String[targetPOSTokens.size()];
         targetTokens = targetPOSTokens.toArray(targetTokens);
 

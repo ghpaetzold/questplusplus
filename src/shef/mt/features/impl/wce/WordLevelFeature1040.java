@@ -24,7 +24,7 @@ public class WordLevelFeature1040 extends WordLevelFeature {
         String[] result = new String[target.getNoTokens()];
 
         //Get language model object:
-        LanguageModel lm = (LanguageModel) source.getValue("source.posngram");
+        LanguageModel lm = (LanguageModel) source.getValue("posngramcount");
 
         //Get alignments:
         HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments.file");
@@ -33,7 +33,7 @@ public class WordLevelFeature1040 extends WordLevelFeature {
         String[] targetTokens = target.getTokens();
 
         //Get pos tags or target sentence:
-        ArrayList<String> sourcePOSTags = (ArrayList<String>) source.getValue("source.POSModel");
+        ArrayList<String> sourcePOSTags = (ArrayList<String>) source.getValue("postags");
 
         //Output word occurrences:
         for (int i = 0; i < targetTokens.length; i++) {

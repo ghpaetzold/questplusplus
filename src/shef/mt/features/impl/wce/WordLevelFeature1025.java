@@ -22,7 +22,7 @@ public class WordLevelFeature1025 extends WordLevelFeature {
         String[] tokens = target.getTokens();
         
         //Get stop words hash:
-        ArrayList<String> targetPOSTags = (ArrayList<String>) target.getValue("target.POSModel");
+        ArrayList<String> targetPOSTags = (ArrayList<String>) target.getValue("postags");
 
         //For each token, check if it is a proper noun:
         for (int i = 0; i < tokens.length; i++) {

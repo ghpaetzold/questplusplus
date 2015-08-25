@@ -22,13 +22,13 @@ public class WordLevelFeature1039 extends WordLevelFeature {
         String[] result = new String[target.getNoTokens()];
 
         //Get language model object:
-        LanguageModel lm = (LanguageModel) target.getValue("target.posngram");
+        LanguageModel lm = (LanguageModel) target.getValue("posngramcount");
 
         //Ge tokens from target sentence:
         String[] targetTokens = target.getTokens();
         
         //Get pos tags or target sentence:
-        ArrayList<String> targetPOSTags = (ArrayList<String>) target.getValue("target.POSModel");
+        ArrayList<String> targetPOSTags = (ArrayList<String>) target.getValue("postags");
 
         //Output word occurrences:
         for (int i = 0; i < targetTokens.length; i++) {

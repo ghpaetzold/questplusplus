@@ -28,7 +28,7 @@ public class WordLevelFeature1033 extends WordLevelFeature {
         String[] targetTokens = target.getTokens();
 
         //Get alignments object:
-        HashMap<String, int[]> probabilities = (HashMap<String, int[]>) target.getValue("source.translationProbs");
+        HashMap<String, int[]> probabilities = (HashMap<String, int[]>) target.getValue("translationcounts");
         
         //Get alignments:
         HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments.file");

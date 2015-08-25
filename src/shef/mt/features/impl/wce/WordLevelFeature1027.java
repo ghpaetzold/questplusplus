@@ -22,7 +22,7 @@ public class WordLevelFeature1027 extends WordLevelFeature {
         String[] tokens = target.getTokens();
         
         //Get dependency counts for target tokens:
-        HashMap<Integer, Integer> dependencyCounts = (HashMap<Integer, Integer>) target.getValue("target.parseModel");
+        HashMap<Integer, Integer> dependencyCounts = (HashMap<Integer, Integer>) target.getValue("depcounts");
 
         //For each token, check if it has a dependency link:
         for (int i = 0; i < tokens.length; i++) {

@@ -20,7 +20,7 @@ public class WordLevelFeature1015 extends WordLevelFeature {
         String[] result = new String[target.getNoTokens()];
 
         //Get alignments object:
-        LanguageModel lm = (LanguageModel) target.getValue("target.ngram");
+        LanguageModel lm = (LanguageModel) target.getValue("ngramcount");
 
         //Ge tokens from target sentence:
         String[] targetTokens = target.getTokens();

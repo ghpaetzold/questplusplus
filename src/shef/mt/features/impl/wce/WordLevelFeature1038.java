@@ -22,7 +22,7 @@ public class WordLevelFeature1038 extends WordLevelFeature {
         String[] result = new String[target.getNoTokens()];
 
         //Get alignments object:
-        LanguageModel lm = (LanguageModel) source.getValue("source.ngram");
+        LanguageModel lm = (LanguageModel) source.getValue("ngramcount");
 
         //Get alignments:
         HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments.file");

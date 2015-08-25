@@ -30,9 +30,6 @@ public class PPLProcessor extends ResourceProcessor {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        for (int i = 0; i < valNames.length; i++) {
-            ResourceManager.registerResource(valNames[i]);
-        }
     }
 
     public void processNextSentence(Sentence s) {
