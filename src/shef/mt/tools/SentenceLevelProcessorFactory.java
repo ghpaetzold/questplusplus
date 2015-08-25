@@ -36,7 +36,7 @@ public class SentenceLevelProcessorFactory {
             
         }
         
-        if (requirements.contains("Giza")) {
+        if (requirements.contains("giza.path")) {
             //Get alignment processors:
             GizaProcessor gizaProcessor = this.getGizaProcessor();
 
@@ -57,7 +57,7 @@ public class SentenceLevelProcessorFactory {
             targetProcessors.add(posTaggerProcTarget);
         }
 
-        if (requirements.contains("ngramcount")) {
+        if (requirements.contains("source.ngram") || requirements.contains("target.ngram")) {
             //Run SRILM on ngram count files:
             NgramCountProcessor[] ngramProcessors = this.getNgramProcessors();
             NgramCountProcessor ngramProcessorSource = ngramProcessors[0];
@@ -79,7 +79,7 @@ public class SentenceLevelProcessorFactory {
             targetProcessors.add(targetNgramProcessor);
         }
 
-        if (requirements.contains("logprob") || requirements.contains("ppl") || requirements.contains("ppl1")) {
+        if (requirements.contains("source.lm") || requirements.contains("target.lm")) {
             //Run SRILM on language models:
             PPLProcessor[] pplProcessors = this.getLMProcessors();
             PPLProcessor pplProcSource = pplProcessors[0];
@@ -202,8 +202,8 @@ public class SentenceLevelProcessorFactory {
         NGramExec nge = new NGramExec(this.fe.getResourceManager().getString("tools.ngram.path"), true);
 
         //Get paths of LMs:
-        String sourceLM = this.fe.getResourceManager().getString(this.fe.getSourceLang() + ".lm");
-        String targetLM = this.fe.getResourceManager().getString(this.fe.getTargetLang() + ".lm");
+        String sourceLM = this.fe.getResourceManager().getString("source.lm");
+        String targetLM = this.fe.getResourceManager().getString("target.lm");
 
         //Run LM reader:
         System.out.println("Running SRILM...");
@@ -385,8 +385,7 @@ public class SentenceLevelProcessorFactory {
     private GizaProcessor getGizaProcessor() {
         ResourceManager.registerResource("Giza");
         FileModel fm = new FileModel(this.fe.getSourceFile(), this.fe.getResourceManager().getString(this.fe.getSourceLang() + ".corpus"));
-        String gizaPath = this.fe.getResourceManager().getString("pair." + this.fe.getSourceLang()
-                + this.fe.getTargetLang() + ".giza.path");
+        String gizaPath = this.fe.getResourceManager().getString("pair.giza");
         GizaProcessor gizaProc = new GizaProcessor(gizaPath);
         return gizaProc;
     }
