@@ -68,7 +68,7 @@ public class SentenceLevelProcessorFactory {
             targetProcessors.add(ngramProcessorTarget);
         }
 
-        if (requirements.contains("posngramcount")) {
+        if (requirements.contains("source.posngram") || requirements.contains("target.posngram")) {
             //Run SRILM on ngram count files:
             POSNgramCountProcessor[] ngramProcessors = this.getPOSNgramProcessors();
             POSNgramCountProcessor sourceNgramProcessor = ngramProcessors[0];
@@ -177,7 +177,8 @@ public class SentenceLevelProcessorFactory {
 
     private NgramCountProcessor[] getNgramProcessors() {
         //Register resource:
-        ResourceManager.registerResource("ngramcount");
+        ResourceManager.registerResource("target.ngram");
+        ResourceManager.registerResource("source.ngram");
 
         //Get source and target Language Models:
         LanguageModel[] ngramModels = this.getNGramModels();
@@ -194,6 +195,10 @@ public class SentenceLevelProcessorFactory {
     }
 
     private PPLProcessor[] getLMProcessors() {
+        //Register resources:
+        ResourceManager.registerResource("source.lm");
+        ResourceManager.registerResource("target.lm");
+        
         //Generate output paths:
         String sourceOutput = this.fe.getSourceFile() + ".ppl";
         String targetOutput = this.fe.getTargetFile() + ".ppl";
@@ -224,9 +229,9 @@ public class SentenceLevelProcessorFactory {
     }
 
     private LanguageModel[] getNGramModels() {
-        //Create ngram file processors:
-        NGramProcessor sourceNgp = new NGramProcessor(this.fe.getResourceManager().getString(this.fe.getSourceLang() + ".ngram"));
-        NGramProcessor targetNgp = new NGramProcessor(this.fe.getResourceManager().getString(this.fe.getTargetLang() + ".ngram"));
+       //Create ngram file processors:
+        NGramProcessor sourceNgp = new NGramProcessor(this.fe.getResourceManager().getString("source.ngram"));
+        NGramProcessor targetNgp = new NGramProcessor(this.fe.getResourceManager().getString("target.ngram"));
 
         //Generate resulting handlers:
         LanguageModel[] result = new LanguageModel[]{sourceNgp.run(), targetNgp.run()};
@@ -237,8 +242,8 @@ public class SentenceLevelProcessorFactory {
 
     private LanguageModel[] getPOSNGramModels() {
         //Create ngram file processors:
-        NGramProcessor sourceNgp = new NGramProcessor(this.fe.getResourceManager().getString(this.fe.getSourceLang() + ".posngram"));
-        NGramProcessor targetNgp = new NGramProcessor(this.fe.getResourceManager().getString(this.fe.getTargetLang() + ".posngram"));
+        NGramProcessor sourceNgp = new NGramProcessor(this.fe.getResourceManager().getString("source.posngram"));
+        NGramProcessor targetNgp = new NGramProcessor(this.fe.getResourceManager().getString("target.posngram"));
 
         //Generate resulting handlers:
         LanguageModel[] result = new LanguageModel[]{sourceNgp.run(), targetNgp.run()};
@@ -267,7 +272,8 @@ public class SentenceLevelProcessorFactory {
 
     private POSNgramCountProcessor[] getPOSNgramProcessors() {
         //Register resource:
-        ResourceManager.registerResource("posngramcount");
+        ResourceManager.registerResource("source.posngram");
+        ResourceManager.registerResource("target.posngram");
 
         //Get target POS Language Models:
         LanguageModel[] POSNgramModels = this.getPOSNGramModels();
@@ -384,8 +390,9 @@ public class SentenceLevelProcessorFactory {
     
     private GizaProcessor getGizaProcessor() {
         ResourceManager.registerResource("Giza");
-        FileModel fm = new FileModel(this.fe.getSourceFile(), this.fe.getResourceManager().getString(this.fe.getSourceLang() + ".corpus"));
-        String gizaPath = this.fe.getResourceManager().getString("pair.giza");
+        ResourceManager.registerResource("giza.path");
+        FileModel fm = new FileModel(this.fe.getSourceFile(), this.fe.getResourceManager().getString("source.corpus"));
+        String gizaPath = this.fe.getResourceManager().getString("giza.path");
         GizaProcessor gizaProc = new GizaProcessor(gizaPath);
         return gizaProc;
     }
