@@ -17,7 +17,7 @@ public class Feature1087 extends Feature {
     public Feature1087() {
         setIndex(1087);
         setDescription("LM log perplexity of POS of the target");
-        this.addResource("posppl");
+        this.addResource("target.poslm");
     }
 
     /* (non-Javadoc)

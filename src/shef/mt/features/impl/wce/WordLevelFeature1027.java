@@ -10,7 +10,7 @@ public class WordLevelFeature1027 extends WordLevelFeature {
         this.setIndex("WCE1027");
         this.setIdentifier("NULLLINK");
         this.setDescription("1 if target word is linked to another, 0 if not.");
-        this.addResource("depcounts");
+        this.addResource("target.parseModel");
     }
 
     @Override
@@ -22,7 +22,7 @@ public class WordLevelFeature1027 extends WordLevelFeature {
         String[] tokens = target.getTokens();
         
         //Get dependency counts for target tokens:
-        HashMap<Integer, Integer> dependencyCounts = (HashMap<Integer, Integer>) target.getValue("depcounts");
+        HashMap<Integer, Integer> dependencyCounts = (HashMap<Integer, Integer>) target.getValue("target.parseModel");
 
         //For each token, check if it has a dependency link:
         for (int i = 0; i < tokens.length; i++) {

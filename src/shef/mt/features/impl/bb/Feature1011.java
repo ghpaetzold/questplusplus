@@ -14,7 +14,7 @@ public class Feature1011 extends Feature {
     public Feature1011() {
         setIndex(1011);
         setDescription("source sentence perplexity without end of sentence marker");
-        this.addResource("ppl1");
+        this.addResource("source.lm");
     }
 
     @Override

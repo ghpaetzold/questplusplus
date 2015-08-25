@@ -9,11 +9,11 @@ public class BinQEFeature1014 extends Feature {
     public BinQEFeature1014() {
         setIndex(1014);
         setDescription("Modified Lesk score.");
-        addResource("blockalignments");
+        addResource("alignments.file");
     }
 
     public void run(Sentence source, Sentence target) {
-        AlignmentData ad = (AlignmentData) target.getValue("blockalignments");
+        AlignmentData ad = (AlignmentData) target.getValue("alignments.file");
         float sum = 0;
         for(Integer[] block: ad.getAlignedBlocks()){
             float blocksize = block[1]-block[0];

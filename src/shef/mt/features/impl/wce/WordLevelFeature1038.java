@@ -12,8 +12,8 @@ public class WordLevelFeature1038 extends WordLevelFeature {
         this.setIndex("WCE1038");
         this.setIdentifier("LSNL");
         this.setDescription("Longest source n-gram length.");
-        this.addResource("ngramcount");
-        this.addResource("alignments");
+        this.addResource("source.ngram");
+        this.addResource("alignments.file");
     }
 
     @Override
@@ -22,10 +22,10 @@ public class WordLevelFeature1038 extends WordLevelFeature {
         String[] result = new String[target.getNoTokens()];
 
         //Get alignments object:
-        LanguageModel lm = (LanguageModel) source.getValue("ngramcount");
+        LanguageModel lm = (LanguageModel) source.getValue("source.ngram");
 
         //Get alignments:
-        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments");
+        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments.file");
 
         //Ge tokens from target sentence:
         String[] sourceTokens = source.getTokens();

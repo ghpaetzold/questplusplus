@@ -10,7 +10,7 @@ public class WordLevelFeature1009 extends WordLevelFeature {
         this.setIndex("WCE1009");
         this.setIdentifier("SRCALIGNLEFT");
         this.setDescription("Left bigram aligned to each target word.");
-        this.addResource("alignments");
+        this.addResource("alignments.file");
     }
 
     @Override
@@ -19,7 +19,7 @@ public class WordLevelFeature1009 extends WordLevelFeature {
         String[] result = new String[target.getNoTokens()];
 
         //Get alignments object:
-        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments");
+        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments.file");
 
         //Initialized used source word hash:
         HashMap<Integer, Integer> usedAlignments = new HashMap<>();

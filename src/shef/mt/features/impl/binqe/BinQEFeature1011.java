@@ -9,11 +9,11 @@ public class BinQEFeature1011 extends Feature {
     public BinQEFeature1011() {
         setIndex(1011);
         setDescription("Normalized number of aligned blocks.");
-        addResource("blockalignments");
+        addResource("alignments.file");
     }
 
     public void run(Sentence source, Sentence target) {
-        AlignmentData ad = (AlignmentData) target.getValue("blockalignments");
+        AlignmentData ad = (AlignmentData) target.getValue("alignments.file");
         setValue((float)ad.getAlignedBlocks().size()/(float)target.getNoTokens());
     }
 }

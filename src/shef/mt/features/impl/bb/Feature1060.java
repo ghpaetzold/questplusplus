@@ -23,7 +23,7 @@ public class Feature1060 extends Feature {
     public Feature1060() {
         setIndex(1060);
         setDescription("percentage of distinct trigrams seen in the corpus (in all quartiles)");
-        this.addResource("ngramcount");
+        this.addResource("source.ngram");
     }
     /* (non-Javadoc)
      * @see wlv.mt.features.impl.Feature#run(wlv.mt.features.util.Sentence, wlv.mt.features.util.Sentence)

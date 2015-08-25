@@ -33,7 +33,7 @@ public class Feature5010 extends Feature {
         setIndex(5010);
         setDescription("List of all WPP (for each word) in the target sentence");
         //HashSet res = new HashSet<String>();
-        //res.add("Giza");
+        //res.add("giza.path");
         //setResources(res);
     }
 

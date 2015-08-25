@@ -15,7 +15,7 @@ public class Feature1013 extends Feature {
     public Feature1013() {
         setIndex(1013);
         setDescription("perplexity of the target");
-        this.addResource("ppl");
+        this.addResource("target.lm");
     }
 
     @Override

@@ -10,7 +10,7 @@ public class WordLevelFeature1025 extends WordLevelFeature {
         this.setIndex("WCE1025");
         this.setIdentifier("PROPERNOUN");
         this.setDescription("1 if target word is a proper noun, 0 if not.");
-        this.addResource("postags");
+        this.addResource("target.POSModel");
     }
 
     @Override
@@ -22,7 +22,7 @@ public class WordLevelFeature1025 extends WordLevelFeature {
         String[] tokens = target.getTokens();
         
         //Get stop words hash:
-        ArrayList<String> targetPOSTags = (ArrayList<String>) target.getValue("postags");
+        ArrayList<String> targetPOSTags = (ArrayList<String>) target.getValue("target.POSModel");
 
         //For each token, check if it is a proper noun:
         for (int i = 0; i < tokens.length; i++) {

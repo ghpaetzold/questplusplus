@@ -9,11 +9,11 @@ public class BinQEFeature1009 extends Feature {
     public BinQEFeature1009() {
         setIndex(1009);
         setDescription("Aligned word density.");
-        addResource("blockalignments");
+        addResource("alignments.file");
     }
 
     public void run(Sentence source, Sentence target) {
-        AlignmentData ad = (AlignmentData) target.getValue("blockalignments");
+        AlignmentData ad = (AlignmentData) target.getValue("alignments.file");
         setValue((float)ad.getTargetAligned().size()/(float)ad.getAlignedBlocks().size());
     }
 }

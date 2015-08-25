@@ -33,7 +33,7 @@ public class Feature5014 extends Feature {
         setIndex(5014);
         setDescription("List of all ngram value (for each word) in the target sentence");
         //HashSet res = new HashSet<String>();
-        //res.add("Giza");
+        //res.add("giza.path");
         //setResources(res);
     }
 

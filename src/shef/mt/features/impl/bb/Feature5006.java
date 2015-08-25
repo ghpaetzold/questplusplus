@@ -29,7 +29,7 @@ public class Feature5006 extends Feature {
         setIndex(5006);
         setDescription("Average number of occurrences of all words in the target sentence");
         //HashSet res = new HashSet<String>();
-        //res.add("Giza");
+        //res.add("giza.path");
         //setResources(res);
     }
 

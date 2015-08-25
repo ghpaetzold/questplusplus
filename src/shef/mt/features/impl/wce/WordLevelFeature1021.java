@@ -10,7 +10,7 @@ public class WordLevelFeature1021 extends WordLevelFeature {
         this.setIndex("WCE1021");
         this.setIdentifier("TRGPOSTRIGRAMRIGHT");
         this.setDescription("Right trigram of POS tags of target word.");
-        this.addResource("postags");
+        this.addResource("target.POSModel");
     }
 
     @Override
@@ -22,7 +22,7 @@ public class WordLevelFeature1021 extends WordLevelFeature {
         String[] tokens = target.getTokens();
 
         //Get pos tags or target sentence:
-        ArrayList<String> targetPOSTags = (ArrayList<String>) target.getValue("postags");
+        ArrayList<String> targetPOSTags = (ArrayList<String>) target.getValue("target.POSModel");
 
         //Get POS tags of each target word:
         for (int i = 0; i < tokens.length; i++) {

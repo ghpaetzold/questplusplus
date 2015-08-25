@@ -10,7 +10,7 @@ public class WordLevelFeature1014 extends WordLevelFeature {
         this.setIndex("WCE1014");
         this.setIdentifier("TRGALIGNRIGHT2");
         this.setDescription("Second rightmost target word along with aligned source word.");
-        this.addResource("alignments");
+        this.addResource("alignments.file");
     }
 
     @Override
@@ -19,7 +19,7 @@ public class WordLevelFeature1014 extends WordLevelFeature {
         String[] result = new String[target.getNoTokens()];
 
         //Get alignments object:
-        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments");
+        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments.file");
 
         //Initialized used source word hash:
         HashMap<Integer, Integer> usedAlignments = new HashMap<>();

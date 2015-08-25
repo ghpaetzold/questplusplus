@@ -26,8 +26,8 @@ public class Feature1040 extends Feature {
     public Feature1040() {
         setIndex(1040);
         setDescription("average number of translations per source word in the sentence (threshold in giza: prob > 0.1) weighted by the inverse frequency of each word in the source corpus");
-        addResource("Giza");
-        addResource("Freq");
+        addResource("giza.path");
+        addResource("source.corpus");
     }
 
     /* (non-Javadoc)

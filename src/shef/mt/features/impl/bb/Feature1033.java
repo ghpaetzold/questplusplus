@@ -29,7 +29,7 @@ public class Feature1033 extends Feature {
         setIndex(1033);
         setDescription("average number of translations per source word in the sentence (threshold in giza2: prob > 0.2) weighted by the frequency of each word in the source corpus");
         this.addResource("Giza2");
-        this.addResource("Freq");
+        this.addResource("source.corpus");
     }
 
     /* (non-Javadoc)

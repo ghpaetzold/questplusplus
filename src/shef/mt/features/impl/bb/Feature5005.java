@@ -29,7 +29,7 @@ public class Feature5005 extends Feature {
         setIndex(5005);
         setDescription("Ratio of number of numericals in target and source sentence");
         //HashSet res = new HashSet<String>();
-        //res.add("Giza");
+        //res.add("giza.path");
         //setResources(res);
     }
 

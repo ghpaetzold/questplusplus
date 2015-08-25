@@ -12,8 +12,8 @@ public class WordLevelFeature1030 extends WordLevelFeature {
         this.setIndex("WCE1030");
         this.setIdentifier("POSLMBACKOFF");
         this.setDescription("Tagged language model backoff behavior value.");
-        this.addResource("posngramcount");
-        this.addResource("postags");
+        this.addResource("target.posngram");
+        this.addResource("target.POSModel");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class WordLevelFeature1030 extends WordLevelFeature {
         LanguageModel lm = (LanguageModel) target.getValue("posngramcount");
 
         //Ge tokens from target sentence:
-        ArrayList<String> targetPOSTokens = (ArrayList<String>) target.getValue("postags");
+        ArrayList<String> targetPOSTokens = (ArrayList<String>) target.getValue("target.POSModel");
         String[] targetTokens = new String[targetPOSTokens.size()];
         targetTokens = targetPOSTokens.toArray(targetTokens);
 

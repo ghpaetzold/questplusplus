@@ -16,7 +16,7 @@ public class Feature1009 extends Feature {
     public Feature1009() {
         setIndex(1009);
         setDescription("source sentence log probability");
-        this.addResource("logprob");
+        this.addResource("source.lm");
     }
 
     @Override

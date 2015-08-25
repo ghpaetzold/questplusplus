@@ -27,7 +27,7 @@ public class Feature1049 extends Feature {
     public Feature1049() {
         setIndex(1049);
         setDescription(" average unigram frequency in quartile 4 of frequency (lower frequency words) in the corpus of the source sentence");
-        this.addResource("ngramcount");
+        this.addResource("source.ngram");
     }
 
     /* (non-Javadoc)

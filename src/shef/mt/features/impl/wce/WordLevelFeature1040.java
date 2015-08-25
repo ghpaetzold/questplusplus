@@ -13,9 +13,9 @@ public class WordLevelFeature1040 extends WordLevelFeature {
         this.setIndex("WCE1040");
         this.setIdentifier("LSPNL");
         this.setDescription("Longest source POS n-gram length.");
-        this.addResource("postags");
-        this.addResource("posngramcount");
-        this.addResource("alignments");
+        this.addResource("source.POSModel");
+        this.addResource("source.posngram");
+        this.addResource("alignments.file");
     }
 
     @Override
@@ -24,16 +24,16 @@ public class WordLevelFeature1040 extends WordLevelFeature {
         String[] result = new String[target.getNoTokens()];
 
         //Get language model object:
-        LanguageModel lm = (LanguageModel) source.getValue("posngramcount");
+        LanguageModel lm = (LanguageModel) source.getValue("source.posngram");
 
         //Get alignments:
-        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments");
+        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments.file");
 
         //Ge tokens from target sentence:
         String[] targetTokens = target.getTokens();
 
         //Get pos tags or target sentence:
-        ArrayList<String> sourcePOSTags = (ArrayList<String>) source.getValue("postags");
+        ArrayList<String> sourcePOSTags = (ArrayList<String>) source.getValue("source.POSModel");
 
         //Output word occurrences:
         for (int i = 0; i < targetTokens.length; i++) {

@@ -27,7 +27,7 @@ public class Feature1052 extends Feature {
     public Feature1052() {
         setIndex(1052);
         setDescription("average bigram frequency in quartile 3 of frequency (lower frequency words) in the corpus of the source sentence");
-        this.addResource("ngramcount");
+        this.addResource("source.ngram");
     }
 
     /* (non-Javadoc)
@@ -42,7 +42,7 @@ public class Feature1052 extends Feature {
         int count = 0;
         int freq;
         int totalFreq = 0;
-        LanguageModel lm = (LanguageModel) source.getValue("ngramcount");
+        LanguageModel lm = (LanguageModel) source.getValue("source.ngram");
         int cutOffLow = lm.getCutOff(size, quart - 1);
         int cutOffHigh = lm.getCutOff(size, quart);
         while (it.hasNext()) {

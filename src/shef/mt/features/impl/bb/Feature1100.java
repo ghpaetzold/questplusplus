@@ -36,7 +36,7 @@ public class Feature1100 extends Feature {
         setIndex(1100);
         setDescription("number of dependencies with well aligned constituents (Giza threshold 0.1) normalized by the total number of dependencies (max between source and target)");
         this.addResource("stf");
-        this.addResource("giza");
+        this.addResource("giza.path");
     }
 
     public void run(Sentence source, Sentence target) {

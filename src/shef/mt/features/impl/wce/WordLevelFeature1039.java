@@ -12,8 +12,8 @@ public class WordLevelFeature1039 extends WordLevelFeature {
         this.setIndex("WCE1039");
         this.setIdentifier("LTPNL");
         this.setDescription("Longest target POS n-gram length.");
-        this.addResource("postags");
-        this.addResource("posngramcount");
+        this.addResource("target.POSModel");
+        this.addResource("target.posngram");
     }
 
     @Override
@@ -22,13 +22,13 @@ public class WordLevelFeature1039 extends WordLevelFeature {
         String[] result = new String[target.getNoTokens()];
 
         //Get language model object:
-        LanguageModel lm = (LanguageModel) target.getValue("posngramcount");
+        LanguageModel lm = (LanguageModel) target.getValue("target.posngram");
 
         //Ge tokens from target sentence:
         String[] targetTokens = target.getTokens();
         
         //Get pos tags or target sentence:
-        ArrayList<String> targetPOSTags = (ArrayList<String>) target.getValue("postags");
+        ArrayList<String> targetPOSTags = (ArrayList<String>) target.getValue("target.POSModel");
 
         //Output word occurrences:
         for (int i = 0; i < targetTokens.length; i++) {

@@ -12,8 +12,8 @@ public class WordLevelFeature1017 extends WordLevelFeature{
         this.setIndex("WCE1017");
         this.setIdentifier("SRCPOS");
         this.setDescription("POS of source word.");
-        this.addResource("alignments");
-        this.addResource("postags");
+        this.addResource("alignments.file");
+        this.addResource("source.POSModel");
     }
 
     @Override
@@ -26,10 +26,10 @@ public class WordLevelFeature1017 extends WordLevelFeature{
         String[] sourceTokens = source.getTokens();
         
         //Get pos tags or target sentence:
-        ArrayList<String> sourcePOSTags = (ArrayList<String>) source.getValue("postags");
+        ArrayList<String> sourcePOSTags = (ArrayList<String>) source.getValue("source.POSModel");
         
         //Get alignments object:
-        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments");
+        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments.file");
         
         //Get POS tags of each target word:
         for(int i=0; i<targetTokens.length; i++){

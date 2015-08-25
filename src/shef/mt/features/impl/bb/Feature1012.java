@@ -15,7 +15,7 @@ public class Feature1012 extends Feature {
     public Feature1012() {
         setIndex(1012);
         setDescription("log probability of the target");
-        this.addResource("logprob");
+        this.addResource("target.lm");
     }
 
     @Override

@@ -33,7 +33,7 @@ public class Feature5013 extends Feature {
         setIndex(5013);
         setDescription("List of all maximum distribution of posterior probability (for each word) in the target sentence");
         //HashSet res = new HashSet<String>();
-        //res.add("Giza");
+        //res.add("giza.path");
         //setResources(res);
     }
 

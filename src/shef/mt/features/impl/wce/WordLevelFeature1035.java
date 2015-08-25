@@ -14,8 +14,8 @@ public class WordLevelFeature1035 extends WordLevelFeature {
         this.setIndex("WCE1035");
         this.setIdentifier("TRCOUNT20");
         this.setDescription("Number of translations of each target word given a probability threshold of 20%.");
-        this.addResource("translationcounts");
-        this.addResource("alignments");
+        this.addResource("source.translationProbs");
+        this.addResource("alignments.file");
     }
 
     @Override
@@ -28,10 +28,10 @@ public class WordLevelFeature1035 extends WordLevelFeature {
         String[] targetTokens = target.getTokens();
 
         //Get alignments object:
-        HashMap<String, int[]> probabilities = (HashMap<String, int[]>) target.getValue("translationcounts");
+        HashMap<String, int[]> probabilities = (HashMap<String, int[]>) target.getValue("source.translationProbs");
         
         //Get alignments:
-        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments");
+        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments.file");
 
         //For each token, check if it has a dependency link:
         for (int i = 0; i < targetTokens.length; i++) {

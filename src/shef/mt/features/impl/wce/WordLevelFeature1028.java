@@ -9,7 +9,7 @@ public class WordLevelFeature1028 extends WordLevelFeature {
         this.setIndex("WCE1028");
         this.setIdentifier("SENSECOUNT");
         this.setDescription("Number of senses of each target word.");
-        this.addResource("sensecounts");
+        this.addResource("tools.universalwordnet.path");
     }
 
     @Override
@@ -21,7 +21,7 @@ public class WordLevelFeature1028 extends WordLevelFeature {
         String[] tokens = target.getTokens();
         
         //Get sense counts for target tokens:
-        int[] senseCounts = (int[]) target.getValue("sensecounts");
+        int[] senseCounts = (int[]) target.getValue("tools.universalwordnet.path");
 
         //For each token, check if it has a dependency link:
         for (int i = 0; i < tokens.length; i++) {

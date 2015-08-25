@@ -10,7 +10,7 @@ public class WordLevelFeature1029 extends WordLevelFeature {
         this.setIndex("WCE1029");
         this.setIdentifier("PSEUDOREF");
         this.setDescription("1 if target word is in reference translation, 0 if not.");
-        this.addResource("reftranslation");
+        this.addResource("target.refTranslations");
     }
 
     @Override

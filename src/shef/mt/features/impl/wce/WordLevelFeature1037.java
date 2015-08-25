@@ -11,7 +11,7 @@ public class WordLevelFeature1037 extends WordLevelFeature {
         this.setIndex("WCE1037");
         this.setIdentifier("LTNL");
         this.setDescription("Longest target n-gram length.");
-        this.addResource("ngramcount");
+        this.addResource("target.ngram");
     }
 
     @Override
@@ -20,7 +20,7 @@ public class WordLevelFeature1037 extends WordLevelFeature {
         String[] result = new String[target.getNoTokens()];
 
         //Get alignments object:
-        LanguageModel lm = (LanguageModel) target.getValue("ngramcount");
+        LanguageModel lm = (LanguageModel) target.getValue("target.ngram");
 
         //Ge tokens from target sentence:
         String[] targetTokens = target.getTokens();

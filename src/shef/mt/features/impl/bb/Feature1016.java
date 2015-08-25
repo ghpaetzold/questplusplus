@@ -22,7 +22,7 @@ public class Feature1016 extends Feature {
     public Feature1016() {
         setIndex(1016);
         setDescription("average number of translations per source word in the sentence (threshold in giza1: prob > 0.01)");
-        this.addResource("Giza");
+        this.addResource("giza.path");
     }
 
     @Override

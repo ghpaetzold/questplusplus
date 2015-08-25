@@ -83,14 +83,5 @@ public class POSProcessor {
         sent.setValue("nouns", nounWords);
         sent.setValue("verbs", verbWords);
         sent.setValue("prons", pronWords);
-//        line = br.readLine();
-//        if (line==null) {
-//           	System.out.println("SENTENCE IS NULL: "+sent.getIndex()+"\t"+sent.getText());
-//        	br.close();
-        // 	bwXPos.close();
-//        }
     }
-    /*      public static String getXPOS(){
-     return XPOS;
-     }*/
 }

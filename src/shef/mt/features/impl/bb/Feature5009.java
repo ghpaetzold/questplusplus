@@ -36,7 +36,7 @@ public class Feature5009 extends Feature {
         setIndex(5009);
         setDescription("List of all POS in the target sentence");
         //HashSet res = new HashSet<String>();
-        //res.add("Giza");
+        //res.add("giza.path");
         //setResources(res);
     }
 

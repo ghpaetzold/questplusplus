@@ -10,8 +10,8 @@ public class WordLevelFeature1031 extends WordLevelFeature {
         this.setIndex("WCE1031");
         this.setIdentifier("SRCSENSECOUNT");
         this.setDescription("Number of senses of the source word aligned to each target word.");
-        this.addResource("sensecounts");
-        this.addResource("alignments");
+        this.addResource("tools.universalwordnet.path");
+        this.addResource("alignments.file");
     }
 
     @Override
@@ -23,10 +23,10 @@ public class WordLevelFeature1031 extends WordLevelFeature {
         String[] targetTokens = target.getTokens();
         
         //Get alignments object:
-        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments");
+        HashMap<Integer, Integer> alignments = (HashMap<Integer, Integer>) target.getValue("alignments.file");
         
         //Get sense counts for target tokens:
-        int[] senseCounts = (int[]) source.getValue("sensecounts");
+        int[] senseCounts = (int[]) source.getValue("tools.universalwordnet.path");
 
         //For each token, check if it has a dependency link:
         for (int i = 0; i < targetTokens.length; i++) {

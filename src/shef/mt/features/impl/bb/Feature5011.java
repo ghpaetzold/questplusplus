@@ -33,7 +33,7 @@ public class Feature5011 extends Feature {
         setIndex(5011);
         setDescription("List of all number of nodes (for each word) in the target sentence");
         //HashSet res = new HashSet<String>();
-        //res.add("Giza");
+        //res.add("giza.path");
         //setResources(res);
     }
 

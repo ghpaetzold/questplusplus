@@ -29,7 +29,7 @@ public class Feature5003 extends Feature {
         setIndex(5003);
         setDescription("Number of numericals in the target sentence");
         //HashSet res = new HashSet<String>();
-        //res.add("Giza");
+        //res.add("giza.path");
         //setResources(res);
     }
 

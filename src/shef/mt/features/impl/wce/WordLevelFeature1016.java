@@ -11,7 +11,7 @@ public class WordLevelFeature1016 extends WordLevelFeature{
         this.setIndex("WCE1016");
         this.setIdentifier("TRGPOS");
         this.setDescription("POS of target word.");
-        this.addResource("postags");
+        this.addResource("target.POSModel");
     }
 
     @Override
@@ -23,7 +23,7 @@ public class WordLevelFeature1016 extends WordLevelFeature{
         String[] tokens = target.getTokens();
         
         //Get pos tags or target sentence:
-        ArrayList<String> targetPOSTags = (ArrayList<String>) target.getValue("postags");
+        ArrayList<String> targetPOSTags = (ArrayList<String>) target.getValue("target.POSModel");
         
         //Get POS tags of each target word:
         for(int i=0; i<tokens.length; i++){
