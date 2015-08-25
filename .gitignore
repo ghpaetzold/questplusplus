@@ -4,3 +4,4 @@
 /input/test
 *.ngram
 *models.jar
+/nbproject/
