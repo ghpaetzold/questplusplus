@@ -15,7 +15,8 @@ import shef.mt.features.util.Sentence;
 public class DocLevelFeature9995 extends DocLevelFeature{
     public DocLevelFeature9995() {
 		// TODO Auto-generated constructor stub
-		setIndex(9995);
+		this.setIndex(9995);
+                this.setDescription("Source noun repetition");
 		this.addResource("postagger");
                 this.addResource("discrep");
 	}
