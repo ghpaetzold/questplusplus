@@ -6,4 +6,6 @@
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1004" description="" index="1004"/>    
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1005" description="" index="1005"/>    
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1006" description="average source token length" index="1006"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1018" description="" index="1018"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1020" description="" index="1020"/> 
 </features>

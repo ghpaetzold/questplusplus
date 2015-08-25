@@ -71,7 +71,7 @@ public class FileModel {
                 line = br.readLine();
             }
             br.close();
-            ResourceManager.registerResource("Freq");
+            ResourceManager.registerResource("source.corpus");
             //	print();
         } catch (Exception e) {
             e.printStackTrace();
