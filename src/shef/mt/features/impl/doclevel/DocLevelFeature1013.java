@@ -11,15 +11,17 @@ import shef.mt.features.util.Sentence;
 
 /**
  *
- * @author carol
+ * Target document perplexity
+ * 
+ * @author Carolina Scarton
  */
 public class DocLevelFeature1013 extends DocLevelFeature {
     
     public DocLevelFeature1013() {
         setIndex(1013);
-        setDescription("perplexity of the target");
-        this.addResource("ppl");
-        this.addResource("postagger");
+        setDescription("perplexity of the target document");
+        this.addResource("target.lm");
+        
     }
 
     @Override

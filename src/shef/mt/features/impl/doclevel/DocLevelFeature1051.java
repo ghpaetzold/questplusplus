@@ -15,10 +15,10 @@ import shef.mt.tools.LanguageModel;
 
 /**
  *
- * average bigram frequency in quartile 2 of frequency (lower frequency words)
- * in the corpus of the source sentence
+ * Average bigram frequency in quartile 2 of frequency (lower frequency words)
+ * in the corpus of the source document
  *
- * @author Catalina Hallett
+ * @author Carolina Scarton
  *
  */
 public class DocLevelFeature1051 extends DocLevelFeature {
@@ -27,9 +27,9 @@ public class DocLevelFeature1051 extends DocLevelFeature {
     static int quart = 2;
 
     public DocLevelFeature1051() {
-        setIndex(1051);
-        setDescription("average bigram frequency in quartile 2 of frequency (lower frequency words) in the corpus of the source sentence");
-        this.addResource("ngramcount");
+        this.setIndex(1051);
+        this.setDescription("average bigram frequency in quartile 2 of frequency (lower frequency words) in the corpus of the source document");
+        this.addResource("source.ngram");
 
     }
 
@@ -44,8 +44,8 @@ public class DocLevelFeature1051 extends DocLevelFeature {
 
     @Override
     public void run(Doc source, Doc target) {
-        float total=0.0f;
-        for(int i=0;i<source.getSentences().size();i++){
+        float total = 0.0f;
+        for (int i = 0; i < source.getSentences().size(); i++) {
             ArrayList<String> ngrams = source.getSentence(i).getNGrams(size);
             Iterator<String> it = ngrams.iterator();
             String ngram;
@@ -62,9 +62,13 @@ public class DocLevelFeature1051 extends DocLevelFeature {
                     count++;
                 }
             }
-            total+=(float) count / ngrams.size();
-            
+            if (count == 0 || ngrams.size()==0) {
+                total+=0;
+            } else {
+                total+=(float) count / ngrams.size();
+            }
         }
-        setValue((float) total/source.getSentences().size());
+        
+        setValue((float) total / source.getSentences().size());
     }
 }

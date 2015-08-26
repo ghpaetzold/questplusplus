@@ -6,7 +6,7 @@
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1004" description="" index="1004"/>    
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1005" description="" index="1005"/>    
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1006" description="average source token length" index="1006"/>
-    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1009" description="average source token length" index="1009"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1009" description="" index="1009"/>
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1010" description="" index="1010"/>    
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1011" description="" index="1011"/>    
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1012" description="average source token length" index="1012"/>

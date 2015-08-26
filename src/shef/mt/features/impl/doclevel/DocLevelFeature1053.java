@@ -26,9 +26,9 @@ public class DocLevelFeature1053 extends DocLevelFeature {
     static int quart = 4;
 
     public DocLevelFeature1053() {
-        setIndex(1053);
-        setDescription("average bigram frequency in quartile 4 of frequency (lower frequency words) in the corpus of the source document");
-        this.addResource("ngramcount");
+        this.setIndex(1053);
+        this.setDescription("average bigram frequency in quartile 4 of frequency (lower frequency words) in the corpus of the source document");
+        this.addResource("source.ngram");
     }
 
 
@@ -58,7 +58,7 @@ public class DocLevelFeature1053 extends DocLevelFeature {
                     count++;
                 }
             }
-            if (count == 0) {
+            if (count == 0 || ngrams.size()==0) {
                 total+=0;
             } else {
                 total+=(float) count / ngrams.size();

@@ -17,9 +17,9 @@ import shef.mt.features.util.Sentence;
 public class DocLevelFeature1015 extends DocLevelFeature{
     
     public DocLevelFeature1015() {
-        setIndex(1015);
-        setDescription("number of occurrences of the target word within the target hypothesis (averaged for all words in the hypothesis - type/token ratio)");
-
+        this.setIndex(1015);
+        this.setDescription("number of occurrences of the target word within the target hypothesis (averaged for all words in the hypothesis - type/token ratio)");
+        
     }
 
     @Override

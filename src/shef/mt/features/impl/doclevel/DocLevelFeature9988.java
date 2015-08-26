@@ -16,15 +16,17 @@ import shef.mt.util.PropertiesManager;
 
 /**
  *
- * @author carol
+ * Word repetition in target document
+ * 
+ * @author Carolina Scarton
  */
 public class DocLevelFeature9988 extends DocLevelFeature {
     
     public DocLevelFeature9988() {
 		// TODO Auto-generated constructor stub
-		setIndex(9988);
-                setDescription("Word repetition target");
-                this.addResource("postagger");
+		this.setIndex(9988);
+                this.setDescription("Word repetition target");
+                this.addResource("target.postagger");
                 this.addResource("discrep");
 		
 	}

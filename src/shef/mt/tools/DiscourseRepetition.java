@@ -53,13 +53,15 @@ public class DiscourseRepetition extends ResourceProcessor {
         String tag;
         String word;
         for (String token:sentence_tags){
-            
+
             if(token.split("_").length==3){
                 tag = token.split("_")[1].trim();
                 word = token.split("_")[0].trim();
-
+                
                 if ((PosTagger.isNoun(tag)) || (PosTagger.isVerb(tag)) || (tag.equals("ADJ")) || (tag.equals("ADV"))){
                     lemma = token.split("_")[2].trim();
+                    
+                    
                     if (PosTagger.isNoun(tag)){
                         if (nounRepetition.containsKey(word+"_"+tag)){
                             nounRepetition.put(word+"_"+tag,nounRepetition.get(word+"_"+tag)+1);
@@ -93,6 +95,8 @@ public class DiscourseRepetition extends ResourceProcessor {
                 }
             }
         }
+        
+        //System.out.println("(((((("+);
         
         if (contentWords == 0){
             contentWords = 1;
@@ -129,6 +133,8 @@ public class DiscourseRepetition extends ResourceProcessor {
         for (int value : nounRepetition.values()){
             sumNounRepetition+=value;
         }
+        
+       
         doc.setValue("word_repetition", new Float((float)sumWordRepetition/(float)contentWords));
         doc.setValue("lemma_repetition", new Float((float)sumLemmaRepetition/(float)lemmas));
         doc.setValue("noun_repetition", new Float((float)sumNounRepetition/(float)nouns));

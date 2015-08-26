@@ -8,4 +8,12 @@
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1006" description="average source token length" index="1006"/>
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1018" description="" index="1018"/>    
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1020" description="" index="1020"/> 
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9990" description="" index="9990"/>  
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9991" description="" index="9991"/>  
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9992" description="" index="9992"/>  
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9993" description="" index="9993"/>  
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9994" description="" index="9994"/>  
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9995" description="" index="9995"/>  
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9996" description="" index="9996"/> 
+    
 </features>

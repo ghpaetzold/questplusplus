@@ -26,9 +26,9 @@ public class DocLevelFeature1057 extends DocLevelFeature {
     static int quart = 4;
 
     public DocLevelFeature1057() {
-        setIndex(1057);
-        setDescription("average trigram frequency in quartile 4 of frequency (lower frequency words) in the corpus of the source document");
-        this.addResource("ngramcount");
+        this.setIndex(1057);
+        this.setDescription("average trigram frequency in quartile 4 of frequency (lower frequency words) in the corpus of the source document");
+        this.addResource("source.ngram");
     }
 
     @Override
@@ -57,7 +57,7 @@ public class DocLevelFeature1057 extends DocLevelFeature {
                     count++;
                 }
             }
-            if (count == 0) {
+            if (count == 0 || ngrams.size()==0) {
                 total+=0;
             } else {
                 total+=(float) count / ngrams.size();

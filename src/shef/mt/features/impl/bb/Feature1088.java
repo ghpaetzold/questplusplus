@@ -9,17 +9,17 @@ import shef.mt.features.impl.Feature;
 import shef.mt.features.util.Sentence;
 
 /**
- * percentage of nouns in the source
+ * Percentage of nouns in the source document
  *
- * @author cat
+ * @author Carolina Scarton
  *
  */
 public class Feature1088 extends Feature {
 
     public Feature1088() {
-        setIndex(1088);
-        setDescription("percentage of nouns in the source");
-        this.addResource("postagger");
+        this.setIndex(1088);
+        this.setDescription("percentage of nouns in the source document");
+        this.addResource("source.postagger");
     }
     /* (non-Javadoc)
      * @see wlv.mt.features.impl.Feature#run(wlv.mt.features.util.Sentence, wlv.mt.features.util.Sentence)

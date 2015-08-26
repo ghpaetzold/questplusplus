@@ -22,8 +22,7 @@ public class DocLevelFeature1009 extends DocLevelFeature {
     public DocLevelFeature1009() {
         setIndex(1009);
         setDescription("source document log probability");
-        this.addResource("logprob");
-        this.addResource("postagger");
+        this.addResource("source.lm");
     }
 
 
@@ -34,7 +33,9 @@ public class DocLevelFeature1009 extends DocLevelFeature {
         for(int i=0; i<sentences.size();i++){
             
             doc_log_prob+=(float) sentences.get(i).getValue("logprob");
+            
         }
+        
         setValue((float) doc_log_prob/sentences.size());
     }
 

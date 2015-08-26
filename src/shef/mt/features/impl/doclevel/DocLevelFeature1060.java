@@ -12,9 +12,9 @@ import shef.mt.features.util.Sentence;
 import shef.mt.tools.LanguageModel;
 
 /**
- * percentage of distinct trigrams seen in the corpus (in all quartiles)
+ * Percentage of distinct trigrams seen in the corpus (in all quartiles) - document-level
  *
- * @author Catalina Hallett
+ * @author Carolina Scarton
  *
  */
 public class DocLevelFeature1060 extends DocLevelFeature {
@@ -23,8 +23,8 @@ public class DocLevelFeature1060 extends DocLevelFeature {
 
     public DocLevelFeature1060() {
         setIndex(1060);
-        setDescription("percentage of distinct trigrams seen in the corpus (in all quartiles)");
-        this.addResource("ngramcount");
+        setDescription("percentage of distinct trigrams seen in the corpus (in all quartiles) - document-level");
+        this.addResource("source.ngram");
 
         
     }

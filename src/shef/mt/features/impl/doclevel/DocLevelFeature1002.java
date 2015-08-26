@@ -7,6 +7,7 @@ import shef.mt.features.impl.DocLevelFeature;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 import java.util.*;
+import shef.mt.features.impl.bb.Feature1002;
 
 
     
@@ -17,8 +18,8 @@ import java.util.*;
  */
 public class DocLevelFeature1002 extends DocLevelFeature {
     public DocLevelFeature1002(){
-        setIndex(1002);
-        setDescription("number of tokens in the target document");
+        this.setIndex(1002);
+        this.setDescription("number of tokens in the target document");
     }
 
     @Override

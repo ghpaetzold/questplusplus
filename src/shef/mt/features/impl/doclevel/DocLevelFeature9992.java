@@ -10,14 +10,18 @@ import shef.mt.features.util.Sentence;
 
 /**
  *
- * @author carol
+ * Ratio word repetition in target and source documents
+ * 
+ * @author Carolina Scarton
  */
 public class DocLevelFeature9992 extends DocLevelFeature{
     
     public DocLevelFeature9992() {
 		// TODO Auto-generated constructor stub
-		setIndex(9992);
-                this.addResource("postagger");
+		this.setIndex(9992);
+                this.setDescription("Ratio word repetition in target and source documents");
+                this.addResource("target.postagger");
+                this.addResource("source.postagger");
                 this.addResource("discrep");
 		
 	}

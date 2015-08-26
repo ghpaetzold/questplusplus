@@ -11,17 +11,18 @@ import shef.mt.features.util.Sentence;
 
 /**
  *
- * ratio of percentage of nouns in the source and target
+ * Ratio of percentage of nouns in the source and target documents
  *
- * @author cat
+ * @author Carolina Scarton
  *
  */
 public class DocLevelFeature1092 extends DocLevelFeature {
 
     public DocLevelFeature1092() {
-        setIndex(1092);
-        setDescription("ratio of percentage of nouns in the source and target");
-        this.addResource("postagger");
+        this.setIndex(1092);
+        this.setDescription("ratio of percentage of nouns in the source and target documents");
+        this.addResource("source.postagger");
+        this.addResource("target.postagger");
     }
 
     /* (non-Javadoc)

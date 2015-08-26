@@ -14,10 +14,10 @@ import shef.mt.features.util.Sentence;
 import shef.mt.tools.LanguageModel;
 
 /**
- * average trigram frequency in quartile 3 of frequency (lower frequency words)
- * in the corpus of the source sentence
+ * Average trigram frequency in quartile 3 of frequency (lower frequency words)
+ * in the corpus of the source document
  *
- * @author Catalina Hallett
+ * @author Carolina Scarton
  *
  */
 public class DocLevelFeature1056 extends DocLevelFeature {
@@ -26,12 +26,9 @@ public class DocLevelFeature1056 extends DocLevelFeature {
     static int quart = 3;
 
     public DocLevelFeature1056() {
-        setIndex(1056);
-        setDescription("average trigram frequency in quartile 3 of frequency (lower frequency words) in the corpus of the source sentence");
-        this.addResource("ngramcount");
-//		res.add(FeatureExtractor.getPosTagger());
-//		res.add(FeatureExtractor.getGiza());
-
+        this.setIndex(1056);
+        this.setDescription("average trigram frequency in quartile 3 of frequency (lower frequency words) in the corpus of the source document");
+        this.addResource("source.ngram");
         
     }
 
@@ -64,7 +61,11 @@ public class DocLevelFeature1056 extends DocLevelFeature {
                     count++;
                 }
             }
-            total+=(float) count / ngrams.size();
+            if (count == 0 || ngrams.size()==0) {
+                total+=0;
+            } else {
+                total+=(float) count / ngrams.size();
+            }
             
         }
         setValue((float)total/source.getSentences().size());

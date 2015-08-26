@@ -10,14 +10,16 @@ import shef.mt.features.util.Sentence;
 
 /**
  *
- * @author carol
+ * Noun repetition in source document
+ * 
+ * @author Carolina Scarton
  */
 public class DocLevelFeature9995 extends DocLevelFeature{
     public DocLevelFeature9995() {
 		// TODO Auto-generated constructor stub
 		this.setIndex(9995);
-                this.setDescription("Source noun repetition");
-		this.addResource("postagger");
+                this.setDescription("noun repetition in source document");
+		this.addResource("source.postagger");
                 this.addResource("discrep");
 	}
 

@@ -10,14 +10,17 @@ import shef.mt.features.util.Sentence;
 
 /**
  *
+ * Ratio noun repetition between target and source documents
+ * 
  * @author carol
  */
 public class DocLevelFeature9996 extends DocLevelFeature{
     public DocLevelFeature9996() {
 		// TODO Auto-generated constructor stub
 		this.setIndex(9996);
-                this.setDescription("Ratio noun repetition");
-		this.addResource("postagger");
+                this.setDescription("Ratio noun repetition between target and source docuemnts");
+		this.addResource("target.postagger");
+                this.addResource("source.postagger");
                 this.addResource("discrep");
 	}
 

@@ -5,18 +5,22 @@
 package shef.mt.features.impl.doclevel;
 
 import shef.mt.features.impl.DocLevelFeature;
+import shef.mt.features.impl.bb.Feature1001;
+import shef.mt.features.impl.bb.Feature1002;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 /**
  *
- * @author carol
+ * Ratio of number of tokens in the target and source documents
+ * 
+ * @author Carolina Scarton
  */
 public class DocLevelFeature1004 extends DocLevelFeature {
     
     public DocLevelFeature1004() {
-        setIndex(1004);
-        setDescription("no tokens in the target / no tokens in the source");
+        this.setIndex(1004);
+        this.setDescription("no tokens in the target / no tokens in the source");
     }
 
     @Override
@@ -24,8 +28,9 @@ public class DocLevelFeature1004 extends DocLevelFeature {
         int sourceTok = 0;
         int targetTok = 0;
         for(int i=0;i<source.getSentences().size();i++){
+            Feature1001 sentFeatureSource = new Feature1001();
             sourceTok+=source.getSentence(i).getNoTokens();
-            targetTok+=target.getSentence(i).getNoTokens();
+            targetTok+=source.getSentence(i).getNoTokens();
         }
         if (sourceTok == 0) {
             setValue(0);

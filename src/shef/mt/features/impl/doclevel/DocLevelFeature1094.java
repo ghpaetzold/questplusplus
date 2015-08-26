@@ -11,17 +11,18 @@ import shef.mt.features.util.Sentence;
 
 /**
  *
- * ratio of percentage of pronouns in the source and target
+ * Ratio of percentage of pronouns in the source and target documents
  *
- * @author cat
+ * @author Carolina Scarton
  *
  */
 public class DocLevelFeature1094 extends DocLevelFeature {
 
     public DocLevelFeature1094() {
-        setIndex(1094);
-        setDescription("ratio of percentage of pronouns in the source and target");
-        this.addResource("postagger");
+        this.setIndex(1094);
+        this.setDescription("ratio of percentage of pronouns in the source and target documents");
+        this.addResource("source.postagger");
+        this.addResource("target.postagger");
     }
     /* (non-Javadoc)
      * @see wlv.mt.features.impl.Feature#run(wlv.mt.features.util.Sentence, wlv.mt.features.util.Sentence)

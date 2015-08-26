@@ -13,10 +13,10 @@ import shef.mt.features.util.Sentence;
 import shef.mt.tools.LanguageModel;
 
 /**
- * average unigram frequency in quartile_2 of frequency (lower frequency words)
- * in the corpus of the source sentence
+ * Average unigram frequency in quartile_2 of frequency (lower frequency words)
+ * in the corpus of the source document
  *
- * @author Catalina Hallett
+ * @author Carolina Scarton
  *
  */
 public class DocLevelFeature1047 extends DocLevelFeature {
@@ -25,9 +25,9 @@ public class DocLevelFeature1047 extends DocLevelFeature {
     static int quart = 2;
 
     public DocLevelFeature1047() {
-        setIndex(1047);
-        setDescription(" average unigram frequency in quartile_2 of frequency (lower frequency words) in the corpus of the source sentence");
-        this.addResource("ngramcount");
+        this.setIndex(1047);
+        this.setDescription(" average unigram frequency in quartile_2 of frequency (lower frequency words) in the corpus of the source document");
+        this.addResource("source.ngram");
 
     }
 
@@ -60,7 +60,11 @@ public class DocLevelFeature1047 extends DocLevelFeature {
                 }
             }
 
-            total+=(float) count / ngrams.size();
+            if (count == 0 || ngrams.size()==0) {
+                total+=0;
+            } else {
+                total+=(float) count / ngrams.size();
+            }
         }
         setValue((float) total/source.getSentences().size());
     }

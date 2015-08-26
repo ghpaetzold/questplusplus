@@ -10,12 +10,14 @@ import shef.mt.features.util.Sentence;
 
 /**
  *
- * @author carol
+ * Absolute difference between no tokens and source and target normalised by source length
+ * 
+ * @author Carolina Scarton
  */
 public class DocLevelFeature1005 extends DocLevelFeature {
     public DocLevelFeature1005() {
-        setIndex(1005);
-        setDescription("absolute difference between no tokens and source and target normalised by source length");
+        this.setIndex(1005);
+        this.setDescription("absolute difference between no tokens and source and target normalised by source length");
     }
 
     @Override

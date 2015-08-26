@@ -35,7 +35,7 @@ import shef.mt.tools.Tokenizer;
  *
  * @author GustavoH
  */
-public class DocLevelFeatureExtractor {
+public class DocLevelFeatureExtractor implements FeatureExtractorInterface{
 
     
 
@@ -293,16 +293,16 @@ public class DocLevelFeatureExtractor {
             System.out.println("Don't recognise the source language");
         
 	String truecasePath = "";
-        if (null != resourceManager.getProperty(getSourceLang() + ".lowercase")) {
-            truecasePath = resourceManager.getProperty(getSourceLang() + ".lowercase")  + " -q ";
+        if (null != resourceManager.getProperty("source.lowercase")) {
+            truecasePath = resourceManager.getProperty("source.lowercase")  + " -q ";
         } else {
-            truecasePath = resourceManager.getString(getSourceLang() + ".truecase") + " --model " + resourceManager.getString(getSourceLang() + ".truecase.model");
+            truecasePath = resourceManager.getString("source.truecase") + " --model " + resourceManager.getString("source.truecase.model");
         }
-        Tokenizer enTok = new Tokenizer(inputSourceFile.getPath(), inputSourceFile.getPath() + ".tok", truecasePath, resourceManager.getString(getSourceLang() + ".tokenizer"), src_abbr, forceRun);
+        Tokenizer sourceTok = new Tokenizer(inputSourceFile.getPath(), inputSourceFile.getPath() + ".tok", truecasePath, resourceManager.getString("source.tokenizer"), src_abbr, forceRun);
         
-        enTok.run();
+        sourceTok.run();
         //Update input paths:
-	this.sourceFile = enTok.getTok();
+	this.sourceFile = sourceTok.getTok();
         System.out.println("New source file: "+sourceFile);
 
         //run tokenizer for target
@@ -326,16 +326,16 @@ public class DocLevelFeatureExtractor {
             System.out.println("Don't recognise the target language");
         
 
-        if (null != resourceManager.getProperty(targetLang + ".lowercase")) {
-            truecasePath = resourceManager.getProperty(getTargetLang() + ".lowercase")  + " -q ";
+        if (null != resourceManager.getProperty("target.lowercase")) {
+            truecasePath = resourceManager.getProperty("target.lowercase")  + " -q ";
         } else {
-            truecasePath = resourceManager.getString(getTargetLang() + ".truecase") + " --model " + resourceManager.getString(getTargetLang() + ".truecase.model");
+            truecasePath = resourceManager.getString("target.truecase") + " --model " + resourceManager.getString("target.truecase.model");
         }
-        Tokenizer esTok = new Tokenizer(inputTargetFile.getPath(),inputTargetFile.getPath() + ".tok", truecasePath, resourceManager.getString(getTargetLang() + ".tokenizer"), tgt_abbr, forceRun);
+        Tokenizer targetTok = new Tokenizer(inputTargetFile.getPath(),inputTargetFile.getPath() + ".tok", truecasePath, resourceManager.getString("target.tokenizer"), tgt_abbr, forceRun);
         
-        esTok.run();
+        targetTok.run();
 	//Update input paths:
-        targetFile = esTok.getTok();
+        targetFile = targetTok.getTok();
         System.out.println("New target file: "+targetFile);
     }
 

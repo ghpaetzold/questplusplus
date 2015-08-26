@@ -18,8 +18,8 @@ import java.util.*;
 public class DocLevelFeature1006 extends DocLevelFeature {
 
     public DocLevelFeature1006() {
-        setIndex(1006);
-        setDescription("average source token length");
+        this.setIndex(1006);
+        this.setDescription("average source token length");
     }
 
     @Override

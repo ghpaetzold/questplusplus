@@ -13,11 +13,11 @@ import shef.mt.tools.FileModel;
 import shef.mt.tools.Giza;
 
 /**
- * average number of translations per source word in the sentence (threshold in
+ * Average number of translations per source word in the document (threshold in
  * giza1: prob > 0.2) weighted by the frequency of each word in the source
  * corpus
  *
- * @author Catalina Hallett
+ * @author Carolina Scarton
  *
  *
  */
@@ -26,10 +26,10 @@ public class DocLevelFeature1032 extends DocLevelFeature {
     final static Float probThresh = 0.2f;
 
     public DocLevelFeature1032() {
-        setIndex(1032);
-        setDescription("average number of translations per source word in the sentence (threshold in giza1: prob > 0.2) weighted by the frequency of each word in the source corpus");
-        this.addResource("Giza");
-        //res.add("Freq");
+        this.setIndex(1032);
+        this.setDescription("average number of translations per source word in the document (threshold in giza1: prob > 0.2) weighted by the frequency of each word in the source corpus");
+        this.addResource("giza.path");
+        
 
     }
 

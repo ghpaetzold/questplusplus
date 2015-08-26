@@ -24,9 +24,9 @@ public class DocLevelFeature1058 extends DocLevelFeature {
     private int size = 1;
 
     public DocLevelFeature1058() {
-        setIndex(1058);
-        setDescription("percentage of distinct unigrams seen in the corpus (in all quartiles) - document-level");
-        this.addResource("ngramcount");
+        this.setIndex(1058);
+        this.setDescription("percentage of distinct unigrams seen in the corpus (in all quartiles) - document-level");
+        this.addResource("source.ngram");
     }
 
     @Override

@@ -20,9 +20,9 @@ import shef.mt.features.impl.DocLevelFeature;
 public class DocLevelFeature1012 extends DocLevelFeature {
 
     public DocLevelFeature1012() {
-        setIndex(1009);
-        setDescription("target document log probability");
-        this.addResource("logprob");
+        this.setIndex(1009);
+        this.setDescription("target document log probability");
+        this.addResource("target.lm");
     }
 
 

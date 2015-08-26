@@ -16,8 +16,8 @@ import shef.mt.features.util.Doc;
 public class DocLevelFeature1075 extends DocLevelFeature {
 
     public DocLevelFeature1075() {
-        setIndex(1075);
-        setDescription("percentage of punctuation marks in target document");
+        this.setIndex(1075);
+        this.setDescription("percentage of punctuation marks in target document");
     }
 
     public void run(Sentence source, Sentence target) {

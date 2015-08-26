@@ -7,17 +7,17 @@ import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 /**
- * LM log probability of POS of the target
+ * LM log probability of POS of the target document
  *
- * @author Catalina Hallett
+ * @author Carolina Scarton
  *
  */
 public class DocLevelFeature1086 extends DocLevelFeature {
 
     public DocLevelFeature1086() {
-        setIndex(1086);
-        setDescription("LM log probability of POS of the target");
-        this.addResource("poslogprob");
+        this.setIndex(1086);
+        this.setDescription("LM log probability of POS of the target document");
+        this.addResource("target.poslm");
         
     }
 

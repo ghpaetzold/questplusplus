@@ -29,8 +29,8 @@ public class DocLevelFeature1036 extends DocLevelFeature {
     public DocLevelFeature1036() {
         setIndex(1036);
         setDescription("average number of translations per source word in the document (threshold in giza: prob > 0.01) weighted by the inverse frequency of each word in the source corpus");
-        this.addResource("Giza");
-        //this.addResource("Freq");
+        this.addResource("giza.path");
+        
     }
 
     /* (non-Javadoc)

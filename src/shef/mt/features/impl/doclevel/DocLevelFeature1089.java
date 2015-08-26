@@ -10,17 +10,17 @@ import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 /**
- * percentage of verbs in the source
+ * Percentage of verbs in the source document
  *
- * @author cat
+ * @author Carolina Scarton
  *
  */
 public class DocLevelFeature1089 extends DocLevelFeature {
 
     public DocLevelFeature1089() {
-        setIndex(1089);
-        setDescription("percentage of verbs in the source");
-        this.addResource("postagger");
+        this.setIndex(1089);
+        this.setDescription("percentage of verbs in the source document");
+        this.addResource("source.postagger");
         
     }
 

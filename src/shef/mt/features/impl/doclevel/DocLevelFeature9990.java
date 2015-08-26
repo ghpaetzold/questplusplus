@@ -12,15 +12,17 @@ import shef.mt.tools.PosTagger;
 
 /**
  *
- * @author carol
+ * Word repetition in source document
+ * 
+ * @author Carolina Scarton
  */
 public class DocLevelFeature9990 extends DocLevelFeature{
     
      public DocLevelFeature9990() {
 		// TODO Auto-generated constructor stub
-		setIndex(9990);
-                setDescription("Word repetition source");
-                this.addResource("postagger");
+		this.setIndex(9990);
+                this.setDescription("Word repetition source document");
+                this.addResource("source.postagger");
                 this.addResource("discrep");
 		
 	}

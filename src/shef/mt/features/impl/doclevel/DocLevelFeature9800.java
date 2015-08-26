@@ -10,14 +10,16 @@ import shef.mt.features.util.Sentence;
 
 /**
  *
- * @author carol
+ * Number of sentences in the source document
+ * 
+ * @author Carolina Scarton
  */
 public class DocLevelFeature9800 extends DocLevelFeature {
     
     public DocLevelFeature9800() {
 		// TODO Auto-generated constructor stub
-		setIndex(9800);
-                setDescription("Number of sentences in the source document");
+		this.setIndex(9800);
+                this.setDescription("Number of sentences in the source document");
 		
 	}
 

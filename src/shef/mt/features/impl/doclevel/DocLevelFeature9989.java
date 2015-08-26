@@ -12,15 +12,17 @@ import shef.mt.tools.PosTagger;
 
 /**
  *
- * @author carol
+ * Lemma repetition in target document
+ * 
+ * @author Carolina Scarton
  */
 public class DocLevelFeature9989 extends DocLevelFeature{
     
     public DocLevelFeature9989() {
 		// TODO Auto-generated constructor stub
-		setIndex(9989);
-                setDescription("Lemma repetition target");
-                this.addResource("postagger");
+		this.setIndex(9989);
+                this.setDescription("Lemma repetition target");
+                this.addResource("target.postagger");
                 this.addResource("discrep");
 		
 	}

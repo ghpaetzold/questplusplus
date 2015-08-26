@@ -13,18 +13,18 @@ import shef.mt.tools.FileModel;
 import shef.mt.tools.Giza;
 
 /**
- * average word frequency: on average, each type (unigram) in the source
- * sentence appears x times in the corpus (in all quartiles)
+ * Average word frequency: on average, each type (unigram) in the source
+ * document appears x times in the corpus (in all quartiles)
  *
- * @author Catalina Hallett
+ * @author Carolina Scarton
  *
  */
 public class DocLevelFeature1061 extends DocLevelFeature {
 
     public DocLevelFeature1061() {
-        setIndex(1061);
-        setDescription("average word frequency: on average, each type (unigram) in the source sentence appears x times in the corpus (in all quartiles)");
-
+        this.setIndex(1061);
+        this.setDescription("average word frequency: on average, each type (unigram) in the source document appears x times in the corpus (in all quartiles)");
+        this.addResource("source.ngram");
     }
 
     /* (non-Javadoc)

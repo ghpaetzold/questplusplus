@@ -10,17 +10,17 @@ import shef.mt.features.util.Sentence;
 
 /**
  *
- * percentage of content words in the target
+ * Percentage of content words in the target document
  *
- * @author cat
+ * @author Carolina Scarton
  *
  */
 public class DocLevelFeature1083 extends DocLevelFeature {
 
     public DocLevelFeature1083() {
-        setIndex(1083);
-        setDescription("percentage of content words in the target");
-        this.addResource("postagger");
+        this.setIndex(1083);
+        this.setDescription("percentage of content words in the target documetn");
+        this.addResource("target.postagger");
         
     }
 

@@ -10,17 +10,17 @@ import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 /**
- * percentage of nouns in the target
+ * Percentage of nouns in the target document
  *
- * @author cat
+ * @author Carolina Scarton
  *
  */
 public class DocLevelFeature1090 extends DocLevelFeature {
 
     public DocLevelFeature1090() {
-        setIndex(1090);
-        setDescription("percentage of nouns in the target");
-        this.addResource("postagger");
+        this.setIndex(1090);
+        this.setDescription("percentage of nouns in the target document");
+        this.addResource("target.postagger");
         
     }
 

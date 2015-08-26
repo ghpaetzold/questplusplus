@@ -11,15 +11,17 @@ import shef.mt.features.util.Sentence;
 
 /**
  *
- * @author carol
+ * Target document perplexity without end of sentence markers
+ * 
+ * @author Carolina Scarton
  */
 public class DocLevelFeature1014 extends DocLevelFeature {
     
     public DocLevelFeature1014() {
-        setIndex(1014);
-        setDescription("perplexity of the target document without end of sentences marker");
-        this.addResource("ppl1");
-        this.addResource("postagger");
+        this.setIndex(1014);
+        this.setDescription("perplexity of the target document without end of sentence markers");
+        this.addResource("target.lm");
+        
     }
 
     @Override

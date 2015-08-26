@@ -11,7 +11,9 @@ import shef.mt.tools.Giza;
 
 /**
  *
- * @author carol
+ * Average number of translations per source word in the sentence (threshold in giza1: prob > 0.05)
+ * 
+ * @author Carolina Scarton
  */
 public class DocLevelFeature1018 extends DocLevelFeature {
 
@@ -20,7 +22,7 @@ public class DocLevelFeature1018 extends DocLevelFeature {
     public DocLevelFeature1018() {
         setIndex(1016);
         setDescription("average number of translations per source word in the sentence (threshold in giza1: prob > 0.05)");
-        this.addResource("Giza");
+        this.addResource("giza.path");
     }
     
     @Override

@@ -12,9 +12,9 @@ import shef.mt.features.util.Sentence;
 import shef.mt.tools.LanguageModel;
 
 /**
- * percentage of distinct bigrams seen in the corpus (in all quartiles)
+ * Percentage of distinct bigrams seen in the corpus (in all quartiles) - document-level
  *
- * @author Catalina Hallett
+ * @author Carolina Scarton
  *
  */
 public class DocLevelFeature1059 extends DocLevelFeature {
@@ -22,9 +22,9 @@ public class DocLevelFeature1059 extends DocLevelFeature {
     private int size = 2;
 
     public DocLevelFeature1059() {
-        setIndex(1059);
-        setDescription(" percentage of distinct bigrams seen in the corpus (in all quartiles)");
-        this.addResource("ngramcount");
+        this.setIndex(1059);
+        this.setDescription(" percentage of distinct bigrams seen in the corpus (in all quartiles) - document-level");
+        this.addResource("source.ngram");
 
     }
     /* (non-Javadoc)

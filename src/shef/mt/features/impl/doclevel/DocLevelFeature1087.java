@@ -8,18 +8,18 @@ import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 /**
- * LM log perplexity of POS of the target
+ * LM log perplexity of POS of the target document
  *
- * @author cat
+ * @author Carolina Scarton
  *
  *
  */
 public class DocLevelFeature1087 extends DocLevelFeature {
 
     public DocLevelFeature1087() {
-        setIndex(1087);
-        setDescription("LM log perplexity of POS of the target");
-        this.addResource("posppl");
+        this.setIndex(1087);
+        this.setDescription("LM log perplexity of POS of the target document");
+        this.addResource("target.poslm");
         
     }
 
