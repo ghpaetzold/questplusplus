@@ -109,7 +109,7 @@ public class SentenceLevelProcessorFactory {
             targetProcessors.add(topicDistProcTarget);
         }
         
-        if (requirements.contains("berkeley.parser")) {
+        if (requirements.contains("source.bparser.grammar") || requirements.contains("target.bparser.grammar")) {
             //Get TM processors:
             BParserProcessor[] bParserProcessors = this.getBParserProcessor();
             BParserProcessor bParserProcSource = bParserProcessors[0];
@@ -449,8 +449,10 @@ public class SentenceLevelProcessorFactory {
             
         bParserProcSource = new BParserProcessor();
         bParserProcTarget = new BParserProcessor();
-        bParserProcSource.initialize(this.fe.getSourceFile(), this.fe.getResourceManager(), this.fe.getSourceLang());
-        bParserProcTarget.initialize(this.fe.getTargetFile(), this.fe.getResourceManager(), this.fe.getTargetLang());
+       // bParserProcSource.initialize(this.fe.getSourceFile(), this.fe.getResourceManager(), this.fe.getSourceLang());
+       // bParserProcTarget.initialize(this.fe.getTargetFile(), this.fe.getResourceManager(), this.fe.getTargetLang());
+        bParserProcSource.initialize(this.fe.getResourceManager().getString("source.bparser.grammar"), this.fe.getResourceManager(), "source");
+        bParserProcTarget.initialize(this.fe.getResourceManager().getString("target.bparser.grammar"), this.fe.getResourceManager(), "target");
         //Return processors:
         return new BParserProcessor[]{bParserProcSource, bParserProcTarget};
         

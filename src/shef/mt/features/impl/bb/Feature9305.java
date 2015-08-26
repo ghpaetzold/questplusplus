@@ -20,7 +20,8 @@ public class Feature9305 extends Feature {
     public Feature9305() {
         setIndex(9305);
         setDescription("Target PCFG average confidence of all possible parses in n-best list");
-        this.addResource("BParser");
+       // this.addResource("BParser");
+         this.addResource("target.bparser.grammar");
     }
 
     public void run(Sentence source, Sentence target) {

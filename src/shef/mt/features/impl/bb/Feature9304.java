@@ -20,7 +20,8 @@ public class Feature9304 extends Feature {
     public Feature9304() {
         setIndex(9304);
         setDescription("Target PCFG Parse log-likelihood");
-        this.addResource("BParser");
+       // this.addResource("BParser");
+        this.addResource("target.bparser.grammar");
     }
 
     public void run(Sentence source, Sentence target) {

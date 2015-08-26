@@ -20,7 +20,8 @@ public class Feature9303 extends Feature {
     public Feature9303() {
         setIndex(9303);
         setDescription("Count of possible source PCFG parses (n)");
-        this.addResource("BParser");
+       // this.addResource("BParser");
+        this.addResource("source.bparser.grammar");
     }
 
     public void run(Sentence source, Sentence target) {

@@ -50,7 +50,9 @@ public class BParserProcessor extends ResourceProcessor {
 		tokenizer = false;
 		
 		//parser initialized, so register the resource, so that the features know it is available
-		ResourceManager.registerResource("BParser");
+		//ResourceManager.registerResource("BParser");
+                ResourceManager.registerResource(language + ".bparser.grammar");
+                System.out.println(language + ".bparser.grammar");
 	}
 	
 
