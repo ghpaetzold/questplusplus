@@ -337,8 +337,8 @@ public class SentenceLevelProcessorFactory {
     }
     private POSTaggerProcessor[] getPOSTaggerProcessors() {
         ResourceManager.registerResource("postagger");
-        String posNameSource = this.fe.getResourceManager().getString(this.fe.getSourceLang() + ".postagger");
-        String posNameTarget = this.fe.getResourceManager().getString(this.fe.getTargetLang() + ".postagger");
+        String posNameSource = this.fe.getResourceManager().getString("source.postagger");
+        String posNameTarget = this.fe.getResourceManager().getString("target.postagger");
         String outputPathSource = this.fe.getResourceManager().getProperty("input") + File.separator + this.fe.getSourceLang()+File.separator;
         String outputPathTarget = this.fe.getResourceManager().getProperty("input") + File.separator + this.fe.getTargetLang()+File.separator;
         File sourceFile = new File(this.fe.getSourceFile());
@@ -349,10 +349,8 @@ public class SentenceLevelProcessorFactory {
         String fileNameTarget = targetFile.getName();
         String outputFileSource = outputPathSource+fileNameSource+".pos";
         String outputFileTarget = outputPathTarget+fileNameTarget+".pos";
-        String posSourceTaggerPath = this.fe.getResourceManager().getString(this.fe.getSourceLang()
-                + ".postagger.exePath");
-        String posTargetTaggerPath = this.fe.getResourceManager().getString(this.fe.getTargetLang()
-                + ".postagger.exePath");
+        String posSourceTaggerPath = this.fe.getResourceManager().getString("source.postagger.exePath");
+        String posTargetTaggerPath = this.fe.getResourceManager().getString("target.postagger.exePath");
         String sourceOutput = "";
         String targetOutput = "";
         //run for Target
