@@ -15,7 +15,7 @@ public class NgramCountProcessor extends ResourceProcessor {
     @Override
     public void processNextSentence(Sentence s) {
         s.setValue("ngramcount", this.lm);
-        
+        s.computeNGrams(3);
     }
 
     @Override
