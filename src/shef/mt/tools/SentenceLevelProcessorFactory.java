@@ -431,11 +431,11 @@ public class SentenceLevelProcessorFactory {
     }
     
     private TopicDistributionProcessor[] getTopicDistributionProcessor(){
-        String sourceTopicDistributionFile = this.fe.getResourceManager().getString(this.fe.getSourceFile() + ".topic.distribution");
-        String targetTopicDistributionFile = this.fe.getResourceManager().getString(this.fe.getTargetFile() + ".topic.distribution");
+        String sourceTopicDistributionFile = this.fe.getResourceManager().getString("source.topic.distribution");
+        String targetTopicDistributionFile = this.fe.getResourceManager().getString("target.topic.distribution");
         
-        TopicDistributionProcessor topicDistProcSource = new TopicDistributionProcessor(sourceTopicDistributionFile, "sourceTopicDistribution");
-        TopicDistributionProcessor topicDistProcTarget = new TopicDistributionProcessor(targetTopicDistributionFile, "targetTopicDistribution");
+        TopicDistributionProcessor topicDistProcSource = new TopicDistributionProcessor(sourceTopicDistributionFile, "source.topic.distribution");
+        TopicDistributionProcessor topicDistProcTarget = new TopicDistributionProcessor(targetTopicDistributionFile, "target.topic.distribution");
 
         //Return processors:
         return new TopicDistributionProcessor[]{topicDistProcSource, topicDistProcTarget};

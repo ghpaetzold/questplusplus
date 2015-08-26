@@ -31,8 +31,10 @@ public class TopicDistributionProcessor extends ResourceProcessor {
             this.bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(topicDistributionFile), "utf-8"));
             this.topicDistributionFile = topicDistributionFile;
 	    ResourceManager.registerResource(resourceName);
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             e.printStackTrace();
+    
         }
     }
 
@@ -48,7 +50,8 @@ public class TopicDistributionProcessor extends ResourceProcessor {
 	    s.setValue( "topicDistribution", topicVector );
 	} catch ( NullPointerException e ) {
 	    System.err.println( "NullPointerException: The topic distribution file does not contain so many lines!\nIt is probably shorter than the source and/or the target text files.\nI am trying to process the file " + this.topicDistributionFile + ", line number " + ( s.getIndex() + 1 ) );
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             e.printStackTrace();
         }
     }

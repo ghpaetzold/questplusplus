@@ -59,8 +59,8 @@ public class MissingResourceGenerator {
             Process process = Runtime.getRuntime().exec(args);
 
             //
-            process.waitFor(30, TimeUnit.SECONDS);
-          
+           // process.waitFor(30, TimeUnit.SECONDS);
+            process.waitFor();
             //Create BufferedReader of fast align's output:
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
