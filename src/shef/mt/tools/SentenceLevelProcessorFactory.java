@@ -90,6 +90,14 @@ public class SentenceLevelProcessorFactory {
             targetProcessors.add(pplProcTarget);
         }
         
+        if (requirements.contains("target.poslm")) {
+            //Run SRILM on language models:
+            PPLProcessor pplProcTarget = this.getPOSLMProcessor();
+
+            //Add them to processor vectors:
+            targetProcessors.add(pplProcTarget);
+        }
+        
         if (requirements.contains("topic.distribution")) {
             //Get TM processors:
             TopicDistributionProcessor[] topicDistProcessors = this.getTopicDistributionProcessor();
@@ -226,6 +234,33 @@ public class SentenceLevelProcessorFactory {
 
         //Return processors:
         return new PPLProcessor[]{pplProcSource, pplProcTarget};
+    }
+    
+    private PPLProcessor getPOSLMProcessor() {
+        //Register resources:
+        ResourceManager.registerResource("target.poslm");
+        
+        //Generate output paths:
+        String targetOutput = this.fe.getTargetFile() + ".ppl";
+
+        //Read language models:
+        NGramExec nge = new NGramExec(this.fe.getResourceManager().getString("tools.ngram.path"), true);
+
+        //Get paths of LMs:
+        String targetLM = this.fe.getResourceManager().getString("target.poslm");
+
+        //Run LM reader:
+        System.out.println("Running SRILM...");
+        System.out.println(this.fe.getTargetFile());
+        nge.runNGramPerplex(this.fe.getTargetFile(), targetOutput, targetLM);
+        System.out.println("SRILM finished!");
+
+        //Generate PPL processors:
+        PPLProcessor pplProcTarget = new PPLProcessor(targetOutput,
+                new String[]{"poslogprob", "posppl", "posppl1"});
+
+        //Return processors:
+        return pplProcTarget;
     }
 
     private LanguageModel[] getNGramModels() {
