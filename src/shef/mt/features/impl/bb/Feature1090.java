@@ -19,7 +19,7 @@ public class Feature1090 extends Feature {
     public Feature1090() {
         setIndex(1090);
         setDescription("percentage of nouns in the target");
-        this.addResource("targetPosTagger");
+        this.addResource("postagger");
     }
 
     /* (non-Javadoc)
