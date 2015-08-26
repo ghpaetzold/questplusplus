@@ -98,7 +98,7 @@ public class SentenceLevelProcessorFactory {
             targetProcessors.add(pplProcTarget);
         }
         
-        if (requirements.contains("topic.distribution")) {
+        if (requirements.contains("source.topic.distribution") || requirements.contains("target.topic.distribution")) {
             //Get TM processors:
             TopicDistributionProcessor[] topicDistProcessors = this.getTopicDistributionProcessor();
             TopicDistributionProcessor topicDistProcSource = topicDistProcessors[0];

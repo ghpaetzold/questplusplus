@@ -25,6 +25,8 @@ public class Feature1301 extends Feature {
     public Feature1301() {
         setIndex("1301");
         setDescription("Jensen-Shannon divergence of source and target topic distributions");
+        this.addResource("source.topic.distribution");
+        this.addResource("target.topic.distribution");
     }
 
     /**

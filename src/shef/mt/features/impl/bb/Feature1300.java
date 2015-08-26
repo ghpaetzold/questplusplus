@@ -24,6 +24,8 @@ public class Feature1300 extends Feature {
     public Feature1300() {
         setIndex("1300");
         setDescription("Kullback-Leibler divergence of source and target topic distributions");
+        this.addResource("source.topic.distribution");
+        this.addResource("target.topic.distribution");
     }
 
     /* (non-Javadoc)
