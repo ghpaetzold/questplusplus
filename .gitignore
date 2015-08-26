@@ -5,3 +5,4 @@
 *.ngram
 *models.jar
 /nbproject/
+/config/config.sentence-level.new.properties
