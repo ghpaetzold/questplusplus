@@ -464,13 +464,12 @@ public class SentenceLevelProcessorFactory {
         return new BParserProcessor[]{bParserProcSource, bParserProcTarget};
 
     }
-
-    private GlobalLexiconProcessor getGlobalLexiconProcessor() {
-        String glmodelpath = this.fe.getResourceManager().getString("pair." + this.fe.getSourceLang()
-                + this.fe.getTargetLang() + ".glmodel.path");
+ 
+    private GlobalLexiconProcessor getGlobalLexiconProcessor(){
+        ResourceManager.registerResource("globallexicon");
+        String glmodelpath = this.fe.getResourceManager().getString("pair.glmodel.path");
         final Double minweight = Double.valueOf(
-                this.fe.getResourceManager().getString("pair." + this.fe.getSourceLang()
-                        + this.fe.getTargetLang() + ".glmodel.minweight"));
+                this.fe.getResourceManager().getString("pair.glmodel.minweight"));
         GlobalLexiconProcessor globalLexicon = new GlobalLexiconProcessor(glmodelpath, minweight);
         return globalLexicon;
     }
