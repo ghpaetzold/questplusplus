@@ -15,6 +15,7 @@ public class Feature1200 extends Feature {
     public Feature1200() {
         setIndex("1200");
         setDescription("foo");
+        this.addResource("source.postagger");
     }
 
     /* (non-Javadoc)
