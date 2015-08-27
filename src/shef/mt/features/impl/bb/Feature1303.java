@@ -16,6 +16,7 @@ public class Feature1303 extends Feature {
     public Feature1303() {
         setIndex(1303);
         setDescription("target sentence intra lingual mutual information");
+        this.addResource("target.intra.triggers.file");
         //if I add this resource while I declare OK this resource in IntraLingualTriggers. It does not work.
         //I forget until I understand.
         //addResource("IntraLingualTriggers");
