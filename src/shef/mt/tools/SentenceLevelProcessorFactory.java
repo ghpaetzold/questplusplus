@@ -6,6 +6,7 @@ import java.util.HashSet;
 import shef.mt.enes.FeatureExtractorInterface;
 import shef.mt.tools.jrouge.ROUGEProcessor;
 import shef.mt.tools.tercom.TERProcessor;
+import shef.mt.xmlwrap.MOSES_XMLWrapper;
 
 public class SentenceLevelProcessorFactory {
 
@@ -33,9 +34,9 @@ public class SentenceLevelProcessorFactory {
 
             //Add them to processor vectors:
             targetProcessors.add(globalLexiconProcessor);
-            
+
         }
-        
+
         if (requirements.contains("giza.path")) {
             //Get alignment processors:
             GizaProcessor gizaProcessor = this.getGizaProcessor();
@@ -43,10 +44,10 @@ public class SentenceLevelProcessorFactory {
             //Add them to processor vectors:
             targetProcessors.add(gizaProcessor);
             sourceProcessors.add(gizaProcessor);
-            
+
         }
-        
-        if (requirements.contains("postagger")) {
+
+        if (requirements.contains("source.postagger") || requirements.contains("target.postagger")) {
             //Get POSTagger processors:
             POSTaggerProcessor[] posTaggerProcessors = this.getPOSTaggerProcessors();
             POSTaggerProcessor posTaggerProcSource = posTaggerProcessors[0];
@@ -89,7 +90,7 @@ public class SentenceLevelProcessorFactory {
             sourceProcessors.add(pplProcSource);
             targetProcessors.add(pplProcTarget);
         }
-        
+
         if (requirements.contains("target.poslm")) {
             //Run SRILM on language models:
             PPLProcessor pplProcTarget = this.getPOSLMProcessor();
@@ -97,7 +98,7 @@ public class SentenceLevelProcessorFactory {
             //Add them to processor vectors:
             targetProcessors.add(pplProcTarget);
         }
-        
+
         if (requirements.contains("source.topic.distribution") || requirements.contains("target.topic.distribution")) {
             //Get TM processors:
             TopicDistributionProcessor[] topicDistProcessors = this.getTopicDistributionProcessor();
@@ -108,7 +109,7 @@ public class SentenceLevelProcessorFactory {
             sourceProcessors.add(topicDistProcSource);
             targetProcessors.add(topicDistProcTarget);
         }
-        
+
         if (requirements.contains("source.bparser.grammar") || requirements.contains("target.bparser.grammar")) {
             //Get TM processors:
             BParserProcessor[] bParserProcessors = this.getBParserProcessor();
@@ -171,6 +172,14 @@ public class SentenceLevelProcessorFactory {
             targetProcessors.add(rougeProcessor);
         }
 
+        if (requirements.contains("moses.xml")) {
+            //Get MT output processors:
+            MTOutputProcessor mtOutputProc = this.getMTOutputProcessor();
+
+            //Add them to processor vectors:
+            sourceProcessors.add(mtOutputProc);
+        }
+
         //Transform array lists in vectors:
         ResourceProcessor[] sourceProcessorVector = new ResourceProcessor[sourceProcessors.size()];
         ResourceProcessor[] targetProcessorVector = new ResourceProcessor[targetProcessors.size()];
@@ -180,8 +189,6 @@ public class SentenceLevelProcessorFactory {
         //Return vectors:
         this.resourceProcessors = new ResourceProcessor[][]{sourceProcessorVector, targetProcessorVector};
     }
-
-
 
     private NgramCountProcessor[] getNgramProcessors() {
         //Register resource:
@@ -206,7 +213,7 @@ public class SentenceLevelProcessorFactory {
         //Register resources:
         ResourceManager.registerResource("source.lm");
         ResourceManager.registerResource("target.lm");
-        
+
         //Generate output paths:
         String sourceOutput = this.fe.getSourceFile() + ".ppl";
         String targetOutput = this.fe.getTargetFile() + ".ppl";
@@ -235,11 +242,11 @@ public class SentenceLevelProcessorFactory {
         //Return processors:
         return new PPLProcessor[]{pplProcSource, pplProcTarget};
     }
-    
+
     private PPLProcessor getPOSLMProcessor() {
         //Register resources:
         ResourceManager.registerResource("target.poslm");
-        
+
         //Generate output paths:
         String targetOutput = this.fe.getTargetFile() + ".ppl";
 
@@ -264,7 +271,7 @@ public class SentenceLevelProcessorFactory {
     }
 
     private LanguageModel[] getNGramModels() {
-       //Create ngram file processors:
+        //Create ngram file processors:
         NGramProcessor sourceNgp = new NGramProcessor(this.fe.getResourceManager().getString("source.ngram"));
         NGramProcessor targetNgp = new NGramProcessor(this.fe.getResourceManager().getString("target.ngram"));
 
@@ -370,20 +377,22 @@ public class SentenceLevelProcessorFactory {
         ResourceManager.registerResource("rouge-n");
         return new ROUGEProcessor(this.fe.getSourceFile(), this.fe.getTargetFile());
     }
+
     private POSTaggerProcessor[] getPOSTaggerProcessors() {
-        ResourceManager.registerResource("postagger");
+        ResourceManager.registerResource("source.postagger");
+        ResourceManager.registerResource("target.postagger");
         String posNameSource = this.fe.getResourceManager().getString("source.postagger");
         String posNameTarget = this.fe.getResourceManager().getString("target.postagger");
-        String outputPathSource = this.fe.getResourceManager().getProperty("input") + File.separator + this.fe.getSourceLang()+File.separator;
-        String outputPathTarget = this.fe.getResourceManager().getProperty("input") + File.separator + this.fe.getTargetLang()+File.separator;
+        String outputPathSource = this.fe.getResourceManager().getProperty("input") + File.separator + this.fe.getSourceLang() + File.separator;
+        String outputPathTarget = this.fe.getResourceManager().getProperty("input") + File.separator + this.fe.getTargetLang() + File.separator;
         File sourceFile = new File(this.fe.getSourceFile());
-        File targetFile = new File(this.fe.getTargetFile());   
+        File targetFile = new File(this.fe.getTargetFile());
         String absoluteSourceFilePath = sourceFile.getAbsolutePath();
         String absoluteTargetFilePath = targetFile.getAbsolutePath();
         String fileNameSource = sourceFile.getName();
         String fileNameTarget = targetFile.getName();
-        String outputFileSource = outputPathSource+fileNameSource+".pos";
-        String outputFileTarget = outputPathTarget+fileNameTarget+".pos";
+        String outputFileSource = outputPathSource + fileNameSource + ".pos";
+        String outputFileTarget = outputPathTarget + fileNameTarget + ".pos";
         String posSourceTaggerPath = this.fe.getResourceManager().getString("source.postagger.exePath");
         String posTargetTaggerPath = this.fe.getResourceManager().getString("target.postagger.exePath");
         String sourceOutput = "";
@@ -410,17 +419,16 @@ public class SentenceLevelProcessorFactory {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         //Generate POSTagger processors:
         POSTaggerProcessor posTaggerProcTarget = new POSTaggerProcessor(targetOutput);
         POSTaggerProcessor posTaggerProcSource = new POSTaggerProcessor(sourceOutput);
-
 
         //Return processors:
         return new POSTaggerProcessor[]{posTaggerProcSource, posTaggerProcTarget};
         //return null;
     }
-    
+
     private GizaProcessor getGizaProcessor() {
         ResourceManager.registerResource("Giza");
         ResourceManager.registerResource("giza.path");
@@ -429,36 +437,35 @@ public class SentenceLevelProcessorFactory {
         GizaProcessor gizaProc = new GizaProcessor(gizaPath);
         return gizaProc;
     }
-    
-    private TopicDistributionProcessor[] getTopicDistributionProcessor(){
+
+    private TopicDistributionProcessor[] getTopicDistributionProcessor() {
         String sourceTopicDistributionFile = this.fe.getResourceManager().getString("source.topic.distribution");
         String targetTopicDistributionFile = this.fe.getResourceManager().getString("target.topic.distribution");
-        
+
         TopicDistributionProcessor topicDistProcSource = new TopicDistributionProcessor(sourceTopicDistributionFile, "source.topic.distribution");
         TopicDistributionProcessor topicDistProcTarget = new TopicDistributionProcessor(targetTopicDistributionFile, "target.topic.distribution");
 
         //Return processors:
         return new TopicDistributionProcessor[]{topicDistProcSource, topicDistProcTarget};
-        
+
     }
-    
-    private BParserProcessor[] getBParserProcessor(){
+
+    private BParserProcessor[] getBParserProcessor() {
         BParserProcessor bParserProcSource = null;
         BParserProcessor bParserProcTarget = null;
 
-            
         bParserProcSource = new BParserProcessor();
         bParserProcTarget = new BParserProcessor();
-       // bParserProcSource.initialize(this.fe.getSourceFile(), this.fe.getResourceManager(), this.fe.getSourceLang());
-       // bParserProcTarget.initialize(this.fe.getTargetFile(), this.fe.getResourceManager(), this.fe.getTargetLang());
+        // bParserProcSource.initialize(this.fe.getSourceFile(), this.fe.getResourceManager(), this.fe.getSourceLang());
+        // bParserProcTarget.initialize(this.fe.getTargetFile(), this.fe.getResourceManager(), this.fe.getTargetLang());
         bParserProcSource.initialize(this.fe.getResourceManager().getString("source.bparser.grammar"), this.fe.getResourceManager(), "source");
         bParserProcTarget.initialize(this.fe.getResourceManager().getString("target.bparser.grammar"), this.fe.getResourceManager(), "target");
         //Return processors:
         return new BParserProcessor[]{bParserProcSource, bParserProcTarget};
-        
+
     }
-    
-    private GlobalLexiconProcessor getGlobalLexiconProcessor(){
+
+    private GlobalLexiconProcessor getGlobalLexiconProcessor() {
         String glmodelpath = this.fe.getResourceManager().getString("pair." + this.fe.getSourceLang()
                 + this.fe.getTargetLang() + ".glmodel.path");
         final Double minweight = Double.valueOf(
@@ -467,6 +474,34 @@ public class SentenceLevelProcessorFactory {
         GlobalLexiconProcessor globalLexicon = new GlobalLexiconProcessor(glmodelpath, minweight);
         return globalLexicon;
     }
-}
-    
+
+    private MTOutputProcessor getMTOutputProcessor() {
+        //Create the XML file if not provided:
+        String xmlOut = null;
+        if (this.fe.getResourceManager().getString("moses.xml") == null) {
+            xmlOut = this.fe.getResourceManager().getString("input") + File.separator + "systems" + File.separator;
+            File f = new File(this.fe.getSourceFile());
+            xmlOut += "moses_" + f.getName() + ".xml";
+
+            String nbestInput = this.fe.getResourceManager().getString("moses.nbestInput");
+            String onebestPhrases = this.fe.getResourceManager().getString("moses.onebestPhrases");
+            String onebestLog = this.fe.getResourceManager().getString("moses.onebestLog");
+            MOSES_XMLWrapper cmuwrap = new MOSES_XMLWrapper(nbestInput, xmlOut, onebestPhrases, onebestLog);
+            cmuwrap.run();
             
+            this.fe.getResourceManager().put("moses.xml", xmlOut);
+        }else{
+            xmlOut = this.fe.getResourceManager().getString("moses.xml");
+        }
+
+        //Create MTOutputProcessor:
+        String nbestSentPath = this.fe.getResourceManager().getString("input")
+                + File.separator +  this.fe.getTargetLang() + File.separator + "temp";
+        String ngramExecPath = this.fe.getResourceManager().getString("tools.ngram.path");
+        int ngramSize = Integer.parseInt(this.fe.getResourceManager().getString("ngramsize"));
+
+        MTOutputProcessor mtop = new MTOutputProcessor(xmlOut, nbestSentPath, ngramExecPath, ngramSize);
+        
+        return mtop;
+    }
+}

@@ -19,7 +19,7 @@ public class Feature2026 extends Feature {
     public Feature2026() {
         setIndex("2026");
         setDescription("MOSES word penalty");
-        this.addResource("word_penalty_feature");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

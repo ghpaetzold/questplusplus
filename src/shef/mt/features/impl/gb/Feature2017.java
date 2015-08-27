@@ -18,7 +18,7 @@ public class Feature2017 extends Feature {
     public Feature2017() {
         setIndex(2017);
         setDescription("dist_feat_4");
-        this.addResource("dist_feat_4");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

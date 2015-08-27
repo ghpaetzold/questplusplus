@@ -15,7 +15,7 @@ public class Feature2043 extends Feature {
     public Feature2043() {
         setIndex("2043");
         setDescription("MOSES: proportion of unknown words");
-        this.addResource("unknown");
+        this.addResource("moses.xml");
     }
 
     public void run(Sentence source, Sentence target) {

@@ -19,7 +19,7 @@ public class Feature2055 extends Feature {
     public Feature2055() {
         setIndex("2055");
         setDescription("MOSES: totalHypotheses");
-        this.addResource("totalHypotheses");
+        this.addResource("moses.xml");
     }
 
     public void run(Sentence source, Sentence target) {

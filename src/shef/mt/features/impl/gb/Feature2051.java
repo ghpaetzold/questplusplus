@@ -20,6 +20,7 @@ public class Feature2051 extends Feature {
     public Feature2051() {
         setIndex("2051");
         setDescription("fertility of the words in the source sentence compared to the n-best list in terms of words (vocabulary size / source sentence length)");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

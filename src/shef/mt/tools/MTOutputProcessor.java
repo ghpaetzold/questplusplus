@@ -13,7 +13,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.*;
 
-import java.util.*;
+import shef.mt.features.util.Doc;
 
 /**
  * This class receives as input an XML file containing sentences and lists of
@@ -22,7 +22,7 @@ import java.util.*;
  * @author Catalina Hallett
  *
  */
-public class MTOutputProcessor {
+public class MTOutputProcessor extends ResourceProcessor {
 
     private int sentCount;
     private Document doc;
@@ -58,9 +58,9 @@ public class MTOutputProcessor {
         }
     }
 
-    public boolean processNextSentence(Sentence sent) {
+    public void processNextSentence(Sentence sent) {
         if (sentCount >= sentences.getLength()) {
-            return false;
+            return;
         }
         try {
             String ngramSentFile = nbestPath + File.separator + input.getName().trim() + "_" + sent.getIndex() + ".nbest";
@@ -129,7 +129,7 @@ public class MTOutputProcessor {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;
+        return;
     }
 
     public void deleteTempFiles() {
@@ -144,9 +144,8 @@ public class MTOutputProcessor {
 
     }
 
-    public static void main(String[] args) {
-        MTOutputProcessor mt = new MTOutputProcessor(args[0], args[1], args[2], Integer.parseInt(args[3]));
-        Sentence s = new Sentence("This is a test sentence", 0);
-        mt.processNextSentence(s);
+    @Override
+    public void processNextDocument(Doc source) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

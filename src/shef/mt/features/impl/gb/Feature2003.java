@@ -19,6 +19,7 @@ public class Feature2003 extends Feature {
     public Feature2003() {
         setIndex("2003");
         setDescription("size of nbest list");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

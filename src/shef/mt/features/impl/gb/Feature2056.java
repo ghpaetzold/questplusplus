@@ -19,7 +19,7 @@ public class Feature2056 extends Feature {
     public Feature2056() {
         setIndex("2056");
         setDescription("discarded search graph nodes");
-        this.addResource("discarded");
+        this.addResource("moses.xml");
     }
 
     public void run(Sentence source, Sentence target) {

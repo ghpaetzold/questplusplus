@@ -20,7 +20,7 @@ public class Feature2048 extends Feature {
     public Feature2048() {
         setIndex("2048");
         setDescription("ratio of log prob (base model score) of the current hypothesis to the sum of the log prob score of all hypothesis ");
-        //this.addResource("log_prob_feat");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

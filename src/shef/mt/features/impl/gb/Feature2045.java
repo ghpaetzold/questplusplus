@@ -20,7 +20,7 @@ public class Feature2045 extends Feature {
     public Feature2045() {
         setIndex("2045");
         setDescription("averaged target word statistics: score-weighted relative frequency of the word in the n-best list ");
-        //this.addResource("prob");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

@@ -20,8 +20,8 @@ public class Feature1094 extends Feature {
     public Feature1094() {
         setIndex(1094);
         setDescription("ratio of percentage of pronouns in the source and target");
-        this.addResource("postagger");
-        this.addResource("postagger");
+        this.addResource("source.postagger");
+        this.addResource("target.postagger");
     }
     /* (non-Javadoc)
      * @see wlv.mt.features.impl.Feature#run(wlv.mt.features.util.Sentence, wlv.mt.features.util.Sentence)

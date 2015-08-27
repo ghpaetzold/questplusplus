@@ -19,8 +19,8 @@ public class Feature1093 extends Feature {
     public Feature1093() {
         setIndex(1093);
         setDescription("ratio of percentage of verbs in the source and target");
-        this.addResource("postagger");
-        this.addResource("postagger");
+        this.addResource("source.postagger");
+        this.addResource("target.postagger");
     }
     /* (non-Javadoc)
      * @see wlv.mt.features.impl.Feature#run(wlv.mt.features.util.Sentence, wlv.mt.features.util.Sentence)

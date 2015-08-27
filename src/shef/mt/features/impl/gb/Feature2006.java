@@ -18,6 +18,7 @@ public class Feature2006 extends Feature {
     public Feature2006() {
         setIndex("2006");
         setDescription("using n-best for training LM: sentence 1-gram perplexity");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

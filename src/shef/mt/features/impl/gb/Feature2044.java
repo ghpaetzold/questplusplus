@@ -19,6 +19,7 @@ public class Feature2044 extends Feature {
     public Feature2044() {
         setIndex("2044");
         setDescription("relative frequency in the nbest list");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

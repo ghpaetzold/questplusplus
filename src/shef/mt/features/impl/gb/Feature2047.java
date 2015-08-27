@@ -21,7 +21,7 @@ public class Feature2047 extends Feature {
     public Feature2047() {
         setIndex("2047");
         setDescription("relative frequency of the word in the n-best list occurring in the same position as the target word multiplied by the log prob");
-        //this.addResource("log_prob_feat");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

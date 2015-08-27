@@ -20,8 +20,8 @@ public class Feature1092 extends Feature {
     public Feature1092() {
         setIndex(1092);
         setDescription("ratio of percentage of nouns in the source and target");
-        this.addResource("postagger");
-        this.addResource("postagger");
+        this.addResource("source.postagger");
+        this.addResource("target.postagger");
     }
 
     /* (non-Javadoc)

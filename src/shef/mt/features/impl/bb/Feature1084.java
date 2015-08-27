@@ -19,7 +19,7 @@ public class Feature1084 extends Feature {
     public Feature1084() {
         setIndex(1084);
         setDescription("percentage of content words in the target");
-        this.addResource("postagger");
+        this.addResource("target.postagger");
     }
 
     /* (non-Javadoc)

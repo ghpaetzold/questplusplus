@@ -21,6 +21,7 @@ public class Feature2054 extends Feature {
     public Feature2054() {
         setIndex("2054");
         setDescription("percentage of other hypothesis with and edit distance to the centre < (current hypothesis edit distance to the centre * 0.35)");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

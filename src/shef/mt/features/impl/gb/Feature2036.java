@@ -19,7 +19,7 @@ public class Feature2036 extends Feature {
     public Feature2036() {
         setIndex("2036");
         setDescription("IBM hole wt");
-        this.addResource("hole_wt");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

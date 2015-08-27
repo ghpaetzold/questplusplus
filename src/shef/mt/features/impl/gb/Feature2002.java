@@ -20,7 +20,7 @@ public class Feature2002 extends Feature {
     public Feature2002() {
         setIndex("2002");
         setDescription("log probability score (base model) normalized by source sentence length");
-        this.addResource("prob");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

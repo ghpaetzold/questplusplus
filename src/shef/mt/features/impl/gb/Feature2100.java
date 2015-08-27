@@ -15,7 +15,7 @@ public class Feature2100 extends Feature {
     public Feature2100() {
         setIndex(2100);
         setDescription("percentage of incorrectly translated possessive pronouns");
-        this.addResource("phrases");
+        this.addResource("moses.xml");
     }
 
     /*

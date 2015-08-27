@@ -19,7 +19,7 @@ public class Feature2022 extends Feature {
     public Feature2022() {
         setIndex("2022");
         setDescription("MOSES phrase probability phrase_prob_feat_2");
-        this.addResource("phrase_prob_feat_2");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

@@ -19,6 +19,7 @@ public class Feature2049 extends Feature {
     public Feature2049() {
         setIndex("2049");
         setDescription("average size of hypotheses in the n-best list");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

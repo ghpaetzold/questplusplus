@@ -20,6 +20,7 @@ public class Feature2050 extends Feature {
     public Feature2050() {
         setIndex("2050");
         setDescription("n-best list density (vocabulary size / average sentence length)");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

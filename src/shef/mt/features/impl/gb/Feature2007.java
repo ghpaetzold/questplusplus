@@ -18,6 +18,7 @@ public class Feature2007 extends Feature {
     public Feature2007() {
         setIndex("2007");
         setDescription("using n-best for training LM: sentence 2-gram log-probability");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

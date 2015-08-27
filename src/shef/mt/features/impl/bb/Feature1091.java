@@ -19,8 +19,7 @@ public class Feature1091 extends Feature {
     public Feature1091() {
         setIndex(1091);
         setDescription("percentage of verbs in the target");
-
-        this.addResource("postagger");
+        this.addResource("target.postagger");
     }
 
     /* (non-Javadoc)

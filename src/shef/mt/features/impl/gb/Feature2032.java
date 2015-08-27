@@ -19,7 +19,7 @@ public class Feature2032 extends Feature {
     public Feature2032() {
         setIndex("2032");
         setDescription("IBM tsize");
-        this.addResource("tsize");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

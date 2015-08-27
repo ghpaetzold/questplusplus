@@ -19,7 +19,7 @@ public class Feature2040 extends Feature {
     public Feature2040() {
         setIndex("2040");
         setDescription("IBM reordering");
-        this.addResource("reordering");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

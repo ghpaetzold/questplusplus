@@ -19,7 +19,7 @@ public class Feature2001 extends Feature {
     public Feature2001() {
         setIndex("2001");
         setDescription("log prob score of the hypothesis");
-        this.addResource("prob");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

@@ -19,7 +19,7 @@ public class Feature2061 extends Feature {
     public Feature2061() {
         setIndex("2061");
         setDescription("proportion of recombined graph nodes");
-        this.addResource("recombined");
+        this.addResource("moses.xml");
     }
 
     public void run(Sentence source, Sentence target) {

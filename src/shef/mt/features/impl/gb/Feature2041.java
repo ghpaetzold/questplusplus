@@ -19,7 +19,7 @@ public class Feature2041 extends Feature {
     public Feature2041() {
         setIndex("2041");
         setDescription("IBM constraint block wt");
-        this.addResource("constraint_block_wt");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)

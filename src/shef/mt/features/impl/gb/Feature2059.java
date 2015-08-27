@@ -19,7 +19,7 @@ public class Feature2059 extends Feature {
     public Feature2059() {
         setIndex("2059");
         setDescription("proportion of pruned search graph nodes ");
-        this.addResource("pruned");
+        this.addResource("moses.xml");
     }
 
     public void run(Sentence source, Sentence target) {

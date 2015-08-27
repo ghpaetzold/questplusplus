@@ -19,7 +19,7 @@ public class Feature2033 extends Feature {
     public Feature2033() {
         setIndex("2033");
         setDescription("IBM srcSize");
-        this.addResource("srcSize");
+        this.addResource("moses.xml");
     }
 
     /* (non-Javadoc)
