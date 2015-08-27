@@ -35,7 +35,10 @@ public class TriggersProcessor extends ResourceProcessorTwoSentences {
                     phrasesSource.put(phrase, 1);
             }
         }
-                
+        
+        s.setValue("phrases", phrasesSource);
+        s.setValue("ilt", this.ilt);   
+        
         for( String phraseSource1 : phrasesSource.keySet() ){
             for( String phraseSource2 : phrasesSource.keySet() ){
                 if ( !phraseSource1.equals(phraseSource2) ){

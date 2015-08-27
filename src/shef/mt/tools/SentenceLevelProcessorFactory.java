@@ -27,6 +27,21 @@ public class SentenceLevelProcessorFactory {
         //Allocate source and target processor vectors:
         ArrayList<ResourceProcessor> sourceProcessors = new ArrayList<ResourceProcessor>();
         ArrayList<ResourceProcessor> targetProcessors = new ArrayList<ResourceProcessor>();
+        
+
+        if (requirements.contains("pair.inter.triggers.file") || requirements.contains("source.intra.triggers.file") || requirements.contains("target.intra.triggers.file")) {
+            //Get trigger processors:
+            TriggersProcessor[] triggerProcessors = this.getTriggersProcessor();
+            TriggersProcessor triggerProcSource = triggerProcessors[0];
+            TriggersProcessor triggerProcTarget = triggerProcessors[1];
+            TriggersProcessor triggerProcPair = triggerProcessors[2];
+
+            //Add them to processor vectors:
+            targetProcessors.add(triggerProcTarget);
+            sourceProcessors.add(triggerProcSource);
+            targetProcessors.add(triggerProcPair);
+            sourceProcessors.add(triggerProcPair);
+        }
 
         if (requirements.contains("globallexicon")) {
             //Get alignment processors:
@@ -34,7 +49,7 @@ public class SentenceLevelProcessorFactory {
 
             //Add them to processor vectors:
             targetProcessors.add(globalLexiconProcessor);
-
+            sourceProcessors.add(globalLexiconProcessor);
         }
 
         if (requirements.contains("giza.path")) {
@@ -464,8 +479,8 @@ public class SentenceLevelProcessorFactory {
         return new BParserProcessor[]{bParserProcSource, bParserProcTarget};
 
     }
- 
-    private GlobalLexiconProcessor getGlobalLexiconProcessor(){
+
+    private GlobalLexiconProcessor getGlobalLexiconProcessor() {
         ResourceManager.registerResource("globallexicon");
         String glmodelpath = this.fe.getResourceManager().getString("pair.glmodel.path");
         final Double minweight = Double.valueOf(
@@ -487,20 +502,61 @@ public class SentenceLevelProcessorFactory {
             String onebestLog = this.fe.getResourceManager().getString("moses.onebestLog");
             MOSES_XMLWrapper cmuwrap = new MOSES_XMLWrapper(nbestInput, xmlOut, onebestPhrases, onebestLog);
             cmuwrap.run();
-            
+
             this.fe.getResourceManager().put("moses.xml", xmlOut);
-        }else{
+        } else {
             xmlOut = this.fe.getResourceManager().getString("moses.xml");
         }
 
         //Create MTOutputProcessor:
         String nbestSentPath = this.fe.getResourceManager().getString("input")
-                + File.separator +  this.fe.getTargetLang() + File.separator + "temp";
+                + File.separator + this.fe.getTargetLang() + File.separator + "temp";
         String ngramExecPath = this.fe.getResourceManager().getString("tools.ngram.path");
         int ngramSize = Integer.parseInt(this.fe.getResourceManager().getString("ngramsize"));
 
         MTOutputProcessor mtop = new MTOutputProcessor(xmlOut, nbestSentPath, ngramExecPath, ngramSize);
-        
+
         return mtop;
+    }
+
+    private TriggersProcessor[] getTriggersProcessor() {
+        ResourceManager.registerResource("target.intra.triggers.file");
+        ResourceManager.registerResource("source.intra.triggers.file");
+        ResourceManager.registerResource("pair.inter.triggers.file");
+        
+        Triggers itl_target = null;
+        Triggers itl_source = null;
+        Triggers itl_source_target = null;
+
+        TriggersProcessor itl_target_p = null;
+        TriggersProcessor itl_source_p = null;
+        TriggersProcessor itl_source_target_p = null;
+        
+        
+
+        itl_target
+                = new Triggers(
+                        this.fe.getResourceManager().getString("target.intra.triggers.file"),
+                        Integer.parseInt(this.fe.getResourceManager().getString("target.nb.max.intra.triggers")),
+                        this.fe.getResourceManager().getString("phrase.separator"));
+        itl_target_p = new TriggersProcessor(itl_target);
+
+        itl_source
+                = new Triggers(
+                        this.fe.getResourceManager().getString("source.intra.triggers.file"),
+                        Integer.parseInt(this.fe.getResourceManager().getString("source.nb.max.intra.triggers")),
+                        this.fe.getResourceManager().getString("phrase.separator"));
+        itl_source_p = new TriggersProcessor(itl_source);
+
+        itl_source_target
+                = new Triggers(
+                        this.fe.getResourceManager().getString("pair.inter.triggers.file"),
+                        Integer.parseInt(this.fe.getResourceManager().getString("pair.nb.max.inter.triggers")),
+                        this.fe.getResourceManager().getString("phrase.separator"));
+        itl_source_target_p
+                = new TriggersProcessor(itl_source_target);
+
+        //Return processors:
+        return new TriggersProcessor[]{itl_source_p,itl_target_p,itl_source_target_p};
     }
 }

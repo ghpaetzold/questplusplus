@@ -114,6 +114,7 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface{
         ResourceProcessor[][] resourceProcessors = processorFactory.getResourceProcessors();
         ResourceProcessor[] resourceProcessorsSource = resourceProcessors[0];
         ResourceProcessor[] resourceProcessorsTarget = resourceProcessors[1];
+       
 
         //Process sentences and calculate features:
         System.out.println("\n********** Producing output **********");
@@ -139,6 +140,7 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface{
                 for (ResourceProcessor processor : resourceProcessorsTarget) {
                     processor.processNextSentence(targetSentence);
                 }
+               
 
                 //Run features for sentence pair:
                 String featureValues = getFeatureManager().runFeatures(sourceSentence, targetSentence).trim();
