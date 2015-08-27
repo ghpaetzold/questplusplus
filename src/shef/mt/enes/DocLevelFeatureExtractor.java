@@ -68,6 +68,7 @@ public class DocLevelFeatureExtractor implements FeatureExtractorInterface{
         workDir = System.getProperty("user.dir");
         input = workDir + File.separator + resourceManager.getString("input");
         output = workDir + File.separator + resourceManager.getString("output");
+        
         System.out.println("Work dir: " + workDir);
         System.out.println("Input folder: " + input);
         System.out.println("Output folder: " + output);

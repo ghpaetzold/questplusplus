@@ -189,12 +189,12 @@ public class DocLevelProcessorFactory {
         System.out.println(this.fe.getSourceFile());
         System.out.println(this.fe.getTargetFile());
         if (fSource.exists() && fSource.length() != 0) {
-            System.out.println(this.fe.getSourceFile()+" exists! SRILIM will not run!");
+            System.out.println(sourceOutput+" exists! SRILIM will not run!");
         }else{
             nge.runNGramPerplex(this.fe.getSourceFile(), sourceOutput, sourceLM);
         }
         if (fTarget.exists() && fTarget.length() != 0) {
-            System.out.println(this.fe.getTargetFile()+" exists! SRILIM will not run!");
+            System.out.println(targetOutput+" exists! SRILIM will not run!");
         }else{
             nge.runNGramPerplex(this.fe.getTargetFile(), targetOutput, targetLM);
         }
