@@ -267,7 +267,7 @@ public class SentenceLevelProcessorFactory {
         ResourceManager.registerResource("target.poslm");
 
         //Generate output paths:
-        String targetOutput = this.fe.getTargetFile() + ".XPOS.ppl";
+        String targetOutput = this.fe.getTargetFile() + ".pos.XPOS.ppl";
 
         //Read language models:
         NGramExec nge = new NGramExec(this.fe.getResourceManager().getString("tools.ngram.path"), true);

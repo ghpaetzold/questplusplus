@@ -42,6 +42,7 @@ public class Tokenizer extends Resource {
     public void run() {
         System.out.println("running tokenizer on " + input);
         File f = new File(output);
+        
 
 
         long start = System.currentTimeMillis();

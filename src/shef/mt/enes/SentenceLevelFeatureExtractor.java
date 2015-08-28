@@ -21,6 +21,7 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 import shef.mt.features.util.Sentence;
 import shef.mt.features.util.FeatureManager;
+import shef.mt.tools.Caser;
 import shef.mt.tools.MissingResourceGenerator;
 import shef.mt.tools.ResourceProcessor;
 import shef.mt.tools.Tokenizer;
@@ -221,6 +222,25 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface 
             System.out.println(e);
             return;
         }
+        
+        if (this.casing!=null){
+            String truecasePath = "";
+            if (this.casing.equals("lower")){
+                truecasePath = resourceManager.getProperty("tools.lowercase.path") + " -q ";
+            }
+            else if (this.casing.equals("true")){
+                truecasePath = resourceManager.getString("tools.truecase.path") + " --model ";
+            }
+            Caser sourceCaser = new Caser(inputSourceFile.getPath(), inputSourceFile.getPath() + ".cased", truecasePath + resourceManager.getString("source.truecase.model"), forceRun);
+            Caser targetCaser = new Caser(inputSourceFile.getPath(), inputSourceFile.getPath() + ".cased", truecasePath + resourceManager.getString("target.truecase.model"), forceRun);
+            sourceCaser.run();
+            targetCaser.run();
+            this.sourceFile = sourceCaser.getCaser();
+            System.out.println("New source file: " + sourceFile);
+            this.sourceFile = sourceCaser.getCaser();
+            System.out.println("New source file: " + sourceFile);
+        
+        }
 
         if (tok) {
             //run tokenizer for source
@@ -297,6 +317,9 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface 
 
         Option tokenize = OptionBuilder.withArgName("tok").hasArgs(0)
                 .isRequired(false).create("tok");
+        
+        Option casing = OptionBuilder.withArgName("case").hasArgs(1)
+                .isRequired(false).create("case");
 
         CommandLineParser parser = new PosixParser();
         Options options = new Options();
@@ -309,6 +332,7 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface 
         options.addOption(gb);
         options.addOption(config);
         options.addOption(tokenize);
+        options.addOption(casing);
 
         try {
             CommandLine line = parser.parse(options, args);
@@ -323,6 +347,12 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface 
                 String[] files = line.getOptionValues("input");
                 sourceFile = files[0];
                 targetFile = files[1];
+            }
+            
+            if (line.hasOption("case")) {
+                this.casing = line.getOptionValue("case");
+            } else {
+                this.casing = null;
             }
 
             if (line.hasOption("lang")) {
