@@ -28,7 +28,7 @@ public class Feature1400 extends Feature {
     public Feature1400() {
         setIndex(1400);
         setDescription("geometric average of target word probabilities under Global Lexicon Model");
-        this.addResource("GlobalLexicon");
+        this.addResource("globallexicon");
     }
 
     public static Double geometricMean(Double[] probs) {
