@@ -204,7 +204,6 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface 
         String targetInputFolder = input + File.separator + getTargetLang();
         System.out.println(sourceInputFolder);
         File origSourceFile = new File(getSourceFile());
-        //System.out.println(getSourceFile());
         File inputSourceFile = new File(sourceInputFolder + File.separator + origSourceFile.getName());
         File origTargetFile = new File(getTargetFile());
         File inputTargetFile = new File(targetInputFolder + File.separator + origTargetFile.getName());
@@ -221,6 +220,10 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface 
         }
         
         if (this.casing!=null){
+            origSourceFile = new File(getSourceFile());
+            inputSourceFile = new File(sourceInputFolder + File.separator + origSourceFile.getName());
+            origTargetFile = new File(getTargetFile());
+            inputTargetFile = new File(targetInputFolder + File.separator + origTargetFile.getName());
             String truecasePath = "";
             if (this.casing.equals("lower")){
                 truecasePath = resourceManager.getProperty("tools.lowercase.path") + " -q ";
@@ -229,17 +232,22 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface 
                 truecasePath = resourceManager.getString("tools.truecase.path") + " --model ";
             }
             Caser sourceCaser = new Caser(inputSourceFile.getPath(), inputSourceFile.getPath() + ".cased", truecasePath + resourceManager.getString("source.truecase.model"), forceRun);
-            Caser targetCaser = new Caser(inputSourceFile.getPath(), inputSourceFile.getPath() + ".cased", truecasePath + resourceManager.getString("target.truecase.model"), forceRun);
+            Caser targetCaser = new Caser(inputTargetFile.getPath(), inputTargetFile.getPath() + ".cased", truecasePath + resourceManager.getString("target.truecase.model"), forceRun);
             sourceCaser.run();
             targetCaser.run();
             this.sourceFile = sourceCaser.getCaser();
             System.out.println("New source file: " + sourceFile);
-            this.sourceFile = sourceCaser.getCaser();
-            System.out.println("New source file: " + sourceFile);
+            this.targetFile = targetCaser.getCaser();
+            System.out.println("New target file: " + targetFile);
         
         }
 
         if (tok) {
+            origSourceFile = new File(getSourceFile());
+            inputSourceFile = new File(sourceInputFolder + File.separator + origSourceFile.getName());
+            origTargetFile = new File(getTargetFile());
+            inputTargetFile = new File(targetInputFolder + File.separator + origTargetFile.getName());
+            
             //run tokenizer for source
             System.out.println("Running tokenizer for source file...");
 
@@ -247,12 +255,7 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface 
             String src_abbr = this.getResourceManager().getString("source.tokenizer.lang");
 
             String truecasePath = "";
-            if (null != resourceManager.getProperty("tools.lowercase.path")) {
-                truecasePath = resourceManager.getProperty("tools.lowercase.path") + " -q ";
-            } else {
-                truecasePath = resourceManager.getString("tools.truecase.path") + " --model " + resourceManager.getString("source.truecase.model");
-            }
-            Tokenizer sourceTok = new Tokenizer(inputSourceFile.getPath(), inputSourceFile.getPath() + ".tok", truecasePath, resourceManager.getString("tools.tokenizer.path"), src_abbr, forceRun);
+            Tokenizer sourceTok = new Tokenizer(inputSourceFile.getPath(), inputSourceFile.getPath() + ".tok", resourceManager.getString("tools.tokenizer.path"), src_abbr, forceRun);
 
             sourceTok.run();
             //Update input paths:
@@ -265,12 +268,7 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface 
             //verify language support
             String tgt_abbr = this.getResourceManager().getString("target.tokenizer.lang");
 
-            if (null != resourceManager.getProperty("tools.lowercase.path")) {
-                truecasePath = resourceManager.getProperty("tools.lowercase.path") + " -q ";
-            } else {
-                truecasePath = resourceManager.getString("tools.truecase.path") + " --model " + resourceManager.getString("target.truecase.model");
-            }
-            Tokenizer targetTok = new Tokenizer(inputTargetFile.getPath(), inputTargetFile.getPath() + ".tok", truecasePath, resourceManager.getString("tools.tokenizer.path"), tgt_abbr, forceRun);
+            Tokenizer targetTok = new Tokenizer(inputTargetFile.getPath(), inputTargetFile.getPath() + ".tok", resourceManager.getString("tools.tokenizer.path"), tgt_abbr, forceRun);
 
             targetTok.run();
             //Update input paths:

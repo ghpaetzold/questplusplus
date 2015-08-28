@@ -290,7 +290,7 @@ public class DocLevelFeatureExtractor implements FeatureExtractorInterface {
         } else {
             truecasePath = resourceManager.getString("source.truecase") + " --model " + resourceManager.getString("source.truecase.model");
         }
-        Tokenizer sourceTok = new Tokenizer(inputSourceFile.getPath(), inputSourceFile.getPath() + ".tok", truecasePath, resourceManager.getString("source.tokenizer"), src_abbr, forceRun);
+        Tokenizer sourceTok = new Tokenizer(inputSourceFile.getPath(), inputSourceFile.getPath() + ".tok", resourceManager.getString("source.tokenizer"), src_abbr, forceRun);
 
         sourceTok.run();
         //Update input paths:
@@ -323,7 +323,7 @@ public class DocLevelFeatureExtractor implements FeatureExtractorInterface {
         } else {
             truecasePath = resourceManager.getString("target.truecase") + " --model " + resourceManager.getString("target.truecase.model");
         }
-        Tokenizer targetTok = new Tokenizer(inputTargetFile.getPath(), inputTargetFile.getPath() + ".tok", truecasePath, resourceManager.getString("target.tokenizer"), tgt_abbr, forceRun);
+        Tokenizer targetTok = new Tokenizer(inputTargetFile.getPath(), inputTargetFile.getPath() + ".tok", resourceManager.getString("target.tokenizer"), tgt_abbr, forceRun);
 
         targetTok.run();
         //Update input paths:

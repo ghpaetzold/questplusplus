@@ -1381,10 +1381,10 @@ public class FeatureExtractorSimple {
         } else {
             truecasePath = resourceManager.getString(sourceLang + ".truecase") + " --model " + resourceManager.getString(sourceLang + ".truecase.model");
         }
-        Tokenizer enTok = new Tokenizer(sourcefile.getPath(), sourcefile.getPath() + ".tok", truecasePath, resourceManager.getString(sourceLang + ".tokenizer"), src_abbr, forceRun);
+        //Tokenizer enTok = new Tokenizer(sourcefile.getPath(), sourcefile.getPath() + ".tok", truecasePath, resourceManager.getString(sourceLang + ".tokenizer"), src_abbr, forceRun);
 
-        enTok.run();
-        sourceFile = enTok.getTok();
+        //enTok.run();
+        //sourceFile = enTok.getTok();
         System.out.println(sourceFile);
     }
 
@@ -1412,10 +1412,10 @@ public class FeatureExtractorSimple {
         } else {
             truecasePath = resourceManager.getString(targetLang + ".truecase") + " --model " + resourceManager.getString(targetLang + ".truecase.model");
         }
-        Tokenizer esTok = new Tokenizer(targetfile.getPath(), targetfile.getPath() + ".tok", truecasePath, resourceManager.getString(targetLang + ".tokenizer"), tgt_abbr, forceRun);
+        //Tokenizer esTok = new Tokenizer(targetfile.getPath(), targetfile.getPath() + ".tok", truecasePath, resourceManager.getString(targetLang + ".tokenizer"), tgt_abbr, forceRun);
 
-        esTok.run();
-        targetFile = esTok.getTok();
+        //esTok.run();
+        //targetFile = esTok.getTok();
         System.out.println(targetFile);
     }
 

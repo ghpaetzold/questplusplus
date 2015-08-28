@@ -19,17 +19,15 @@ public class Tokenizer extends Resource {
 
     private String input;
     private String output;
-    private String lowercasePath;
     private String tokPath;
     private String lang;
     private boolean forceRun = false;
     private static PropertiesManager resourceManager;
 
-    public Tokenizer(String input, String output, String lowercasePath, String tokPath, String lang, boolean run) {
+    public Tokenizer(String input, String output, String tokPath, String lang, boolean run) {
         super(null);
         this.input = input;
         this.output = output;
-        this.lowercasePath = lowercasePath;
         this.tokPath = tokPath;
         this.forceRun = run;
         this.lang = lang;
@@ -50,7 +48,6 @@ public class Tokenizer extends Resource {
         try {
             System.out.println(tokPath);
 
-            System.out.println(lowercasePath);
 
             //run lowercase first into a temporary file
             String tempOut = output + ".temp";
@@ -67,6 +64,9 @@ public class Tokenizer extends Resource {
             Process process = pb.start();
             Logger.log("Executing: " + process.toString());
 
+            // Create the final output file
+            fos = new FileOutputStream(output);
+            
 
             // any error message from the process?
             StreamGobbler errorGobbler = new StreamGobbler(process.getErrorStream(), "STDERR");
@@ -106,66 +106,6 @@ public class Tokenizer extends Resource {
 
             System.out.println("done");
 
-           // Logger.log("Transforming the input to lower case...");
-            Logger.log("Transforming the input to true case...");
-
-
-          //  System.out.println("running lowercase");
-            System.out.println("running truecase");
-           // String[] args = new String[]{"perl", lowercasePath, "-l", lang};
-            //String[] truecaseOptions = lowercasePath.split("\\|");
-            //args = new String[]{"perl",truecaseOptions[0], "--model", truecaseOptions[1]};
-            System.err.println(lowercasePath);
-            args = ("perl " + lowercasePath).split("\\s+");
-            pb = new ProcessBuilder(args);
-            process = pb.start();
-            Logger.log("Executing: " + process.toString());
-
-            // Create the final output file
-            fos = new FileOutputStream(output);
-
-            // any error message form the process?
-            errorGobbler = new StreamGobbler(process.getErrorStream(), "STDERR");
-            // any output from the process?
-            outputGobbler = new StreamGobbler(process.getInputStream(), "STDOUT", fos);
-
-            // Start listeners for the process's errors and output
-            errorGobbler.start();
-            outputGobbler.start();
-
-            // Process any input to the process
-            if (input != null) {
-              //  BufferedReader br = new BufferedReader(new FileReader(input));
-               
-                BufferedReader br = new BufferedReader(new FileReader(tempOut));
-                
-                PrintWriter writer = new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(process.getOutputStream())), true);
-
-                // Send input to the process
-                int ch;
-                while ((ch = br.read()) != -1) {
-                    writer.print((char) ch);
-                    //System.out.print((char)ch);
-                }
-
-                writer.flush();
-                writer.close();
-                br.close();
-            }
-
-            process.getOutputStream().close();
-
-            // Let the process finish
-            process.waitFor();
-
-            // Wait until we're done with remaining error and output
-            errorGobbler.join();
-            outputGobbler.join();
-
-            fos.close();
-
-            System.out.println("done");
-
             //we don't need the lowercase temporary output, we can delete it
             f = new File(tempOut);
             f.delete();
@@ -181,7 +121,7 @@ public class Tokenizer extends Resource {
     }
 
     public static void main(String[] args) {
-        Tokenizer et = new Tokenizer(args[0], args[1], args[2], args[3], args[4], true);
+        Tokenizer et = new Tokenizer(args[0], args[1], args[2], args[3], true);
         et.run();
     }
 }
