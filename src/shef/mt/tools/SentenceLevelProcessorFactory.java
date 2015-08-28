@@ -267,7 +267,7 @@ public class SentenceLevelProcessorFactory {
         ResourceManager.registerResource("target.poslm");
 
         //Generate output paths:
-        String targetOutput = this.fe.getTargetFile() + ".ppl";
+        String targetOutput = this.fe.getTargetFile() + ".XPOS.ppl";
 
         //Read language models:
         NGramExec nge = new NGramExec(this.fe.getResourceManager().getString("tools.ngram.path"), true);
@@ -277,8 +277,8 @@ public class SentenceLevelProcessorFactory {
 
         //Run LM reader:
         System.out.println("Running SRILM...");
-        System.out.println(this.fe.getTargetFile());
-        nge.runNGramPerplex(this.fe.getTargetFile(), targetOutput, targetLM);
+        System.out.println(targetOutput);
+        nge.runNGramPerplex(this.fe.getTargetFile()+".pos.XPOS", targetOutput, targetLM);
         System.out.println("SRILM finished!");
 
         //Generate PPL processors:
@@ -400,8 +400,8 @@ public class SentenceLevelProcessorFactory {
     private POSTaggerProcessor[] getPOSTaggerProcessors() {
         ResourceManager.registerResource("source.postagger");
         ResourceManager.registerResource("target.postagger");
-        String posNameSource = this.fe.getResourceManager().getString("source.postagger");
-        String posNameTarget = this.fe.getResourceManager().getString("target.postagger");
+        String posNameSource = "shef.mt.tools.PosTreeTagger";
+        String posNameTarget = "shef.mt.tools.PosTreeTagger";
         String outputPathSource = this.fe.getResourceManager().getProperty("input") + File.separator + this.fe.getSourceLang() + File.separator;
         String outputPathTarget = this.fe.getResourceManager().getProperty("input") + File.separator + this.fe.getTargetLang() + File.separator;
         File sourceFile = new File(this.fe.getSourceFile());
@@ -412,8 +412,8 @@ public class SentenceLevelProcessorFactory {
         String fileNameTarget = targetFile.getName();
         String outputFileSource = outputPathSource + fileNameSource + ".pos";
         String outputFileTarget = outputPathTarget + fileNameTarget + ".pos";
-        String posSourceTaggerPath = this.fe.getResourceManager().getString("source.postagger.exePath");
-        String posTargetTaggerPath = this.fe.getResourceManager().getString("target.postagger.exePath");
+        String posSourceTaggerPath = this.fe.getResourceManager().getString("source.postagger");
+        String posTargetTaggerPath = this.fe.getResourceManager().getString("target.postagger");
         String sourceOutput = "";
         String targetOutput = "";
         //run for Target
