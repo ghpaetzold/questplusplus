@@ -23,7 +23,7 @@ import shef.mt.features.util.Sentence;
 import shef.mt.features.util.WordLevelFeatureManager;
 import shef.mt.tools.MissingResourceGenerator;
 import shef.mt.tools.ResourceProcessor;
-import shef.mt.tools.WordLevelProcessorFactory;
+import shef.mt.tools.SentenceLevelProcessorFactory;
 import shef.mt.util.PropertiesManager;
 
 /**
@@ -107,7 +107,7 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
 
         //Create processor factory:
         System.out.println("\n********** Creating processors **********");
-        WordLevelProcessorFactory processorFactory = new WordLevelProcessorFactory(this);
+        SentenceLevelProcessorFactory processorFactory = new SentenceLevelProcessorFactory(this);
         
         //Get required resource processors:
         ResourceProcessor[][] resourceProcessors = processorFactory.getResourceProcessors();
