@@ -136,26 +136,26 @@ public class MissingResourceGenerator {
     private void produceMissingLanguageModels(HashSet<String> required) {
         //Check if source LM is missing:
         if (required.contains("logprob") || required.contains("ppl") || required.contains("ppl1")) {
-            if (this.fe.getResourceManager().getProperty(this.fe.getSourceLang() + ".lm") == null) {
+            if (this.fe.getResourceManager().getProperty("source.lm") == null) {
                 if (this.fe.getResourceManager().getProperty("tools.ngram.path") != null) {
-                    if (this.fe.getResourceManager().getProperty(this.fe.getSourceLang() + ".corpus") != null) {
+                    if (this.fe.getResourceManager().getProperty("source.corpus") != null) {
                         if (this.fe.getResourceManager().getProperty("resourcesPath") != null) {
-                            System.out.println("Producing resource: " + this.fe.getSourceLang() + ".lm");
+                            System.out.println("Producing resource: source.lm");
                             String outputPath = this.fe.getResourceManager().getProperty("resourcesPath") + File.separator + this.fe.getSourceLang() + File.separator + this.fe.getSourceLang() + "_lm.lm";
                             String[] args = new String[]{
                                 this.fe.getResourceManager().getProperty("tools.ngram.path") + File.separator + "ngram-count",
                                 "-order",
                                 this.fe.getResourceManager().getProperty("ngramsize"),
                                 "-text",
-                                this.fe.getResourceManager().getProperty(this.fe.getSourceLang() + ".corpus"),
+                                this.fe.getResourceManager().getProperty("source.corpus"),
                                 "-lm",
                                 outputPath};
                             try {
                                 Process process = Runtime.getRuntime().exec(args);
                                 process.waitFor();
-                                this.fe.getResourceManager().setProperty(this.fe.getSourceLang() + ".lm",
+                                this.fe.getResourceManager().setProperty("source.lm",
                                         outputPath);
-                                System.out.println("Resource " + this.fe.getSourceLang() + ".lm " + "saved at: " + outputPath);
+                                System.out.println("Resource source.lm saved at: " + outputPath);
                             } catch (IOException e) {
                                 System.out.println("ERROR: Problem while running SRILM.");
                                 e.printStackTrace();
@@ -164,37 +164,37 @@ public class MissingResourceGenerator {
                                 e.printStackTrace();
                             }
                         } else {
-                            System.out.println("Missing resource " + this.fe.getSourceLang() + ".lm and resources path is not defined!");
+                            System.out.println("Missing resource source.lm and resources path is not defined!");
                         }
                     } else {
-                        System.out.println("Missing resource " + this.fe.getSourceLang() + ".lm and corpus is not available!");
+                        System.out.println("Missing resource source.lm and corpus is not available!");
                     }
                 } else {
-                    System.out.println("Missing resource " + this.fe.getSourceLang() + ".lm and SRILM is not available!");
+                    System.out.println("Missing resource source.lm and SRILM is not available!");
                 }
             }
 
             //Check if target LM is missing:
-            if (this.fe.getResourceManager().getProperty(this.fe.getTargetLang() + ".lm") == null) {
+            if (this.fe.getResourceManager().getProperty("target.lm") == null) {
                 if (this.fe.getResourceManager().getProperty("tools.ngram.path") != null) {
-                    if (this.fe.getResourceManager().getProperty(this.fe.getTargetLang() + ".corpus") != null) {
+                    if (this.fe.getResourceManager().getProperty("target.corpus") != null) {
                         if (this.fe.getResourceManager().getProperty("resourcesPath") != null) {
-                            System.out.println("Producing resource: " + this.fe.getTargetLang() + ".lm");
+                            System.out.println("Producing resource: target.lm");
                             String outputPath = this.fe.getResourceManager().getProperty("resourcesPath") + File.separator + this.fe.getTargetLang() + File.separator + this.fe.getSourceLang() + "_lm.lm";
                             String[] args = new String[]{
                                 this.fe.getResourceManager().getProperty("tools.ngram.path") + File.separator + "ngram-count",
                                 "-order",
                                 this.fe.getResourceManager().getProperty("ngramsize"),
                                 "-text",
-                                this.fe.getResourceManager().getProperty(this.fe.getTargetLang() + ".corpus"),
+                                this.fe.getResourceManager().getProperty("target.corpus"),
                                 "-lm",
                                 outputPath};
                             try {
                                 Process process = Runtime.getRuntime().exec(args);
                                 process.waitFor();
-                                this.fe.getResourceManager().setProperty(this.fe.getTargetLang() + ".lm",
+                                this.fe.getResourceManager().setProperty("target.lm",
                                         outputPath);
-                                System.out.println("Resource " + this.fe.getTargetLang() + ".lm " + "saved at: " + outputPath);
+                                System.out.println("Resource " + "target.lm " + "saved at: " + outputPath);
                             } catch (IOException e) {
                                 System.out.println("ERROR: Problem while running SRILM.");
                                 e.printStackTrace();
@@ -203,13 +203,13 @@ public class MissingResourceGenerator {
                                 e.printStackTrace();
                             }
                         } else {
-                            System.out.println("Missing resource " + this.fe.getTargetLang() + ".lm and resources path is not defined!");
+                            System.out.println("Missing resource target.lm and resources path is not defined!");
                         }
                     } else {
-                        System.out.println("Missing resource " + this.fe.getTargetLang() + ".lm and corpus is not available!");
+                        System.out.println("Missing resource target.lm and corpus is not available!");
                     }
                 } else {
-                    System.out.println("Missing resource " + this.fe.getTargetLang() + ".lm and SRILM is not available!");
+                    System.out.println("Missing resource target.lm and SRILM is not available!");
                 }
             }
         }
@@ -218,18 +218,18 @@ public class MissingResourceGenerator {
     private void produceMissingNgramCounts(HashSet<String> required) {
         //Check if source NGRAM file is missing:
         if (required.contains("ngramcount")) {
-            if (this.fe.getResourceManager().getProperty(this.fe.getSourceLang() + ".ngram") == null) {
+            if (this.fe.getResourceManager().getProperty("source.ngram") == null) {
                 if (this.fe.getResourceManager().getProperty("tools.ngram.path") != null) {
-                    if (this.fe.getResourceManager().getProperty(this.fe.getSourceLang() + ".corpus") != null) {
+                    if (this.fe.getResourceManager().getProperty("source.corpus") != null) {
                         if (this.fe.getResourceManager().getProperty("resourcesPath") != null) {
-                            System.out.println("Producing resource: " + this.fe.getSourceLang() + ".ngram");
+                            System.out.println("Producing resource: " + "source.ngram");
                             String rawNgramFile = this.fe.getResourceManager().getProperty("resourcesPath") + File.separator + this.fe.getSourceLang() + File.separator + this.fe.getSourceLang() + "_ngram.ngram";
                             String[] args = new String[]{
                                 this.fe.getResourceManager().getProperty("tools.ngram.path") + File.separator + "ngram-count",
                                 "-order",
                                 this.fe.getResourceManager().getProperty("ngramsize"),
                                 "-text",
-                                this.fe.getResourceManager().getProperty(this.fe.getSourceLang() + ".corpus"),
+                                this.fe.getResourceManager().getProperty("source.corpus"),
                                 "-write",
                                 rawNgramFile};
                             try {
@@ -238,8 +238,8 @@ public class MissingResourceGenerator {
 
                                 NGramSorter.run(rawNgramFile, 4, Integer.parseInt(this.fe.getResourceManager().getProperty("ngramsize")), 2, rawNgramFile);
 
-                                this.fe.getResourceManager().setProperty(this.fe.getSourceLang() + ".ngram", rawNgramFile + ".clean");
-                                System.out.println("Resource " + this.fe.getSourceLang() + ".ngram " + "saved at: " + rawNgramFile + ".clean");
+                                this.fe.getResourceManager().setProperty("source.ngram", rawNgramFile + ".clean");
+                                System.out.println("Resource source.ngram " + "saved at: " + rawNgramFile + ".clean");
                             } catch (IOException e) {
                                 System.out.println("ERROR: Problem while running SRILM.");
                                 e.printStackTrace();
@@ -248,29 +248,29 @@ public class MissingResourceGenerator {
                                 e.printStackTrace();
                             }
                         } else {
-                            System.out.println("Missing resource " + this.fe.getSourceLang() + ".ngram and resources path is not defined!");
+                            System.out.println("Missing resource source.ngram and resources path is not defined!");
                         }
                     } else {
-                        System.out.println("Missing resource " + this.fe.getSourceLang() + ".ngram and corpus is not available!");
+                        System.out.println("Missing resource source.ngram and corpus is not available!");
                     }
                 } else {
-                    System.out.println("Missing resource " + this.fe.getSourceLang() + ".ngram and SRILM is not available!");
+                    System.out.println("Missing resource source.ngram and SRILM is not available!");
                 }
             }
 
             //Check if target NGRAM file is missing:
-            if (this.fe.getResourceManager().getProperty(this.fe.getTargetLang() + ".ngram") == null) {
+            if (this.fe.getResourceManager().getProperty("target.ngram") == null) {
                 if (this.fe.getResourceManager().getProperty("tools.ngram.path") != null) {
-                    if (this.fe.getResourceManager().getProperty(this.fe.getTargetLang() + ".corpus") != null) {
+                    if (this.fe.getResourceManager().getProperty("target.corpus") != null) {
                         if (this.fe.getResourceManager().getProperty("resourcesPath") != null) {
-                            System.out.println("Producing resource: " + this.fe.getTargetLang() + ".ngram");
+                            System.out.println("Producing resource: target.ngram");
                             String rawNgramFile = this.fe.getResourceManager().getProperty("resourcesPath") + File.separator + this.fe.getTargetLang() + File.separator + this.fe.getTargetLang() + "_ngram.ngram";
                             String[] args = new String[]{
                                 this.fe.getResourceManager().getProperty("tools.ngram.path") + File.separator + "ngram-count",
                                 "-order",
                                 this.fe.getResourceManager().getProperty("ngramsize"),
                                 "-text",
-                                this.fe.getResourceManager().getProperty(this.fe.getTargetLang() + ".corpus"),
+                                this.fe.getResourceManager().getProperty("target.corpus"),
                                 "-write",
                                 rawNgramFile};
                             try {
@@ -279,8 +279,8 @@ public class MissingResourceGenerator {
 
                                 NGramSorter.run(rawNgramFile, 4, Integer.parseInt(this.fe.getResourceManager().getProperty("ngramsize")), 2, rawNgramFile);
 
-                                this.fe.getResourceManager().setProperty(this.fe.getTargetLang() + ".ngram", rawNgramFile + ".clean");
-                                System.out.println("Resource " + this.fe.getTargetLang() + ".ngram saved at: " + rawNgramFile + ".clean");
+                                this.fe.getResourceManager().setProperty("target.ngram", rawNgramFile + ".clean");
+                                System.out.println("Resource target.ngram saved at: " + rawNgramFile + ".clean");
                             } catch (IOException e) {
                                 System.out.println("ERROR: Problem while running SRILM.");
                                 e.printStackTrace();
@@ -289,13 +289,13 @@ public class MissingResourceGenerator {
                                 e.printStackTrace();
                             }
                         } else {
-                            System.out.println("Missing resource " + this.fe.getTargetLang() + ".ngram and resources path is not defined!");
+                            System.out.println("Missing resource target.ngram and resources path is not defined!");
                         }
                     } else {
-                        System.out.println("Missing resource " + this.fe.getTargetLang() + ".ngram and corpus is not available!");
+                        System.out.println("Missing resource target.ngram and corpus is not available!");
                     }
                 } else {
-                    System.out.println("Missing resource " + this.fe.getTargetLang() + ".ngram and SRILM is not available!");
+                    System.out.println("Missing resource target.ngram and SRILM is not available!");
                 }
             }
         }
@@ -305,18 +305,18 @@ public class MissingResourceGenerator {
         //Check if source NGRAM file is missing:
         if (required.contains("posngramcount")) {
             //Check if target NGRAM file is missing:
-            if (this.fe.getResourceManager().getProperty(this.fe.getTargetLang() + ".posngram") == null) {
+            if (this.fe.getResourceManager().getProperty("target.posngram") == null) {
                 if (this.fe.getResourceManager().getProperty("tools.ngram.path") != null) {
-                    if (this.fe.getResourceManager().getProperty(this.fe.getTargetLang() + ".poscorpus") != null) {
+                    if (this.fe.getResourceManager().getProperty("target.poscorpus") != null) {
                         if (this.fe.getResourceManager().getProperty("resourcesPath") != null) {
-                            System.out.println("Producing resource: " + this.fe.getTargetLang() + ".posngram");
+                            System.out.println("Producing resource: target.posngram");
                             String rawNgramFile = this.fe.getResourceManager().getProperty("resourcesPath") + File.separator + this.fe.getTargetLang() + File.separator + this.fe.getTargetLang() + "_posngram.posngram";
                             String[] args = new String[]{
                                 this.fe.getResourceManager().getProperty("tools.ngram.path") + File.separator + "ngram-count",
                                 "-order",
                                 this.fe.getResourceManager().getProperty("ngramsize"),
                                 "-text",
-                                this.fe.getResourceManager().getProperty(this.fe.getTargetLang() + ".poscorpus"),
+                                this.fe.getResourceManager().getProperty("target.poscorpus"),
                                 "-write",
                                 rawNgramFile};
                             try {
@@ -325,8 +325,8 @@ public class MissingResourceGenerator {
 
                                 NGramSorter.run(rawNgramFile, 4, Integer.parseInt(this.fe.getResourceManager().getProperty("ngramsize")), 2, rawNgramFile);
 
-                                this.fe.getResourceManager().setProperty(this.fe.getTargetLang() + ".posngram", rawNgramFile + ".clean");
-                                System.out.println("Resource " + this.fe.getTargetLang() + ".posngram saved at: " + rawNgramFile + ".clean");
+                                this.fe.getResourceManager().setProperty("target.posngram", rawNgramFile + ".clean");
+                                System.out.println("Resource target.posngram saved at: " + rawNgramFile + ".clean");
                             } catch (IOException e) {
                                 System.out.println("ERROR: Problem while running SRILM.");
                                 e.printStackTrace();
@@ -335,29 +335,29 @@ public class MissingResourceGenerator {
                                 e.printStackTrace();
                             }
                         } else {
-                            System.out.println("Missing resource " + this.fe.getTargetLang() + ".posngram and resources path is not defined!");
+                            System.out.println("Missing resource target.posngram and resources path is not defined!");
                         }
                     } else {
-                        System.out.println("Missing resource " + this.fe.getTargetLang() + ".posngram and corpus is not available!");
+                        System.out.println("Missing resource target.posngram and corpus is not available!");
                     }
                 } else {
-                    System.out.println("Missing resource " + this.fe.getTargetLang() + ".posngram and SRILM is not available!");
+                    System.out.println("Missing resource target.posngram and SRILM is not available!");
                 }
             }
             
             //Check if target NGRAM file is missing:
-            if (this.fe.getResourceManager().getProperty(this.fe.getSourceLang() + ".posngram") == null) {
+            if (this.fe.getResourceManager().getProperty("source.posngram") == null) {
                 if (this.fe.getResourceManager().getProperty("tools.ngram.path") != null) {
-                    if (this.fe.getResourceManager().getProperty(this.fe.getSourceLang() + ".poscorpus") != null) {
+                    if (this.fe.getResourceManager().getProperty("source.poscorpus") != null) {
                         if (this.fe.getResourceManager().getProperty("resourcesPath") != null) {
-                            System.out.println("Producing resource: " + this.fe.getSourceLang() + ".posngram");
+                            System.out.println("Producing resource: source.posngram");
                             String rawNgramFile = this.fe.getResourceManager().getProperty("resourcesPath") + File.separator + this.fe.getSourceLang() + File.separator + this.fe.getSourceLang() + "_posngram.posngram";
                             String[] args = new String[]{
                                 this.fe.getResourceManager().getProperty("tools.ngram.path") + File.separator + "ngram-count",
                                 "-order",
                                 this.fe.getResourceManager().getProperty("ngramsize"),
                                 "-text",
-                                this.fe.getResourceManager().getProperty(this.fe.getSourceLang() + ".poscorpus"),
+                                this.fe.getResourceManager().getProperty("source.poscorpus"),
                                 "-write",
                                 rawNgramFile};
                             try {
@@ -366,8 +366,8 @@ public class MissingResourceGenerator {
 
                                 NGramSorter.run(rawNgramFile, 4, Integer.parseInt(this.fe.getResourceManager().getProperty("ngramsize")), 2, rawNgramFile);
 
-                                this.fe.getResourceManager().setProperty(this.fe.getSourceLang() + ".posngram", rawNgramFile + ".clean");
-                                System.out.println("Resource " + this.fe.getSourceLang() + ".posngram saved at: " + rawNgramFile + ".clean");
+                                this.fe.getResourceManager().setProperty("source.posngram", rawNgramFile + ".clean");
+                                System.out.println("Resource source.posngram saved at: " + rawNgramFile + ".clean");
                             } catch (IOException e) {
                                 System.out.println("ERROR: Problem while running SRILM.");
                                 e.printStackTrace();
@@ -376,13 +376,13 @@ public class MissingResourceGenerator {
                                 e.printStackTrace();
                             }
                         } else {
-                            System.out.println("Missing resource " + this.fe.getSourceLang() + ".posngram and resources path is not defined!");
+                            System.out.println("Missing resource source.posngram and resources path is not defined!");
                         }
                     } else {
-                        System.out.println("Missing resource " + this.fe.getSourceLang() + ".posngram and corpus is not available!");
+                        System.out.println("Missing resource source.posngram and corpus is not available!");
                     }
                 } else {
-                    System.out.println("Missing resource " + this.fe.getSourceLang() + ".posngram and SRILM is not available!");
+                    System.out.println("Missing resource source.posngram and SRILM is not available!");
                 }
             }
         }
