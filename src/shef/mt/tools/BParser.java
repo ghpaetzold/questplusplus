@@ -91,9 +91,9 @@ public class BParser extends Resource{
 	}
 	
 	public void getParseFeatures(String line, Boolean tokenize){
-		System.out.println("Parsing... " +line);
+		//System.out.println("Running Berkeley Parser... " +line);
 		try {
-			System.out.println ("parsing first string");
+			//System.out.println ("parsing first string");
 			List<String> sentence;
 			
 			if (!tokenize) sentence = Arrays.asList(line.split(" "));

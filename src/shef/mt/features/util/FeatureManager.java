@@ -213,6 +213,7 @@ public class FeatureManager {
         Feature f;
         while (it.hasNext()) {
             String index = it.next();
+            //System.out.println(index);
             f = features.get(index);
 //			System.out.println(index);
 
@@ -242,7 +243,12 @@ public class FeatureManager {
     }
 
     public void printFeatureIndeces() {
-        Iterator<String> it = features.keySet().iterator();
+        Set<String> fIndeces = features.keySet();
+        ArrayList<String> featureIndeces = new ArrayList<String>(fIndeces);
+
+        Collections.sort(featureIndeces);
+        
+        Iterator<String> it = featureIndeces.iterator();
         while (it.hasNext()) {
             System.out.print(it.next() + "\t");
         }

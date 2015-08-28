@@ -152,7 +152,10 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface{
                 //Increase sentence counter:
                 sentenceCounter++;
             }
-
+            
+            System.out.println("Features will be saved in the following order:");
+            getFeatureManager().printFeatureIndeces();
+            
             //Save output:
             outWriter.close();
             sourceBR.close();
