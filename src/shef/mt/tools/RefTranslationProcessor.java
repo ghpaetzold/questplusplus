@@ -11,6 +11,10 @@ import java.util.logging.Logger;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
+/**
+ * Adds pseudo-reference information to the sentences processed.
+ * @author GustavoH
+ */
 public class RefTranslationProcessor extends ResourceProcessor {
    
     private BufferedReader reader;

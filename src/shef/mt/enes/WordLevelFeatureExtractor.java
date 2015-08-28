@@ -51,6 +51,10 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
     private StanfordCoreNLP sourcePipe;
     private StanfordCoreNLP targetPipe;
 
+    /**
+     * Main class for word-level feature extraction.
+     * @param args 
+     */
     public WordLevelFeatureExtractor(String[] args) {
         //Parse command line arguments:
         System.out.println("\n********** Parsing arguments **********");
@@ -154,6 +158,9 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
         }
     }
 
+    /**
+     * Constructs the folders required by word-level quest.
+     */
     public void constructFolders() {
         //Create input folders:
         File f = new File(input);
@@ -189,6 +196,9 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
         System.out.println("Output folder created " + f.getPath());
     }
 
+    /**
+     * Preprocesses the input files.
+     */
     private void preProcess() {
         //Create input and output paths:
         String sourceInputFolder = input + File.separator + getSourceLang();
@@ -246,6 +256,10 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
         }
     }
 
+    /**
+     * Parses the arguments provided in the command line.
+     * @param args 
+     */
     public void parseArguments(String[] args) {
 
         Option help = OptionBuilder.withArgName("help").hasArg()
@@ -339,6 +353,12 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
         }
     }
 
+    /**
+     * Copies a file from a source to a target destination.
+     * @param sourceFile Source file to copy.
+     * @param destFile Destination in which to copy the source file.
+     * @throws IOException 
+     */
     private void copyFile(File sourceFile, File destFile) throws IOException {
         if (sourceFile.equals(destFile)) {
             return;

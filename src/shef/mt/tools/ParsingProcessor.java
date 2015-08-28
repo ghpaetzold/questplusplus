@@ -27,6 +27,10 @@ import java.util.Properties;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
+/**
+ * Adds Stanford POS tags and dependency parses to the processed sentences.
+ * @author GustavoH
+ */
 public class ParsingProcessor extends ResourceProcessor {
 
     private StanfordCoreNLP pipeline;

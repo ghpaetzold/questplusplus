@@ -10,6 +10,10 @@ import java.util.logging.Logger;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
+/**
+ * Adds translation probability information to the sentences processed.
+ * @author GustavoH
+ */
 public class TranslationProbabilityProcessor extends ResourceProcessor {
 
     public final Float[] PROBS_VALUES = new Float[]{0.05f, 0.10f, 0.20f, 0.50f};

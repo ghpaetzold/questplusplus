@@ -16,6 +16,10 @@ import shef.mt.enes.FeatureExtractorInterface;
 import shef.mt.enes.WordLevelFeatureExtractor;
 import shef.mt.util.NGramSorter;
 
+/**
+ * Generates resources that are missing from the config file.
+ * @author GustavoH
+ */
 public class MissingResourceGenerator {
 
     private FeatureExtractorInterface fe;    

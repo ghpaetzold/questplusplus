@@ -12,7 +12,7 @@ import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 /**
- *
+ * Adds tag-related counts to the sentences processed.
  * @author carol
  */
 public class POSTaggerProcessor extends ResourceProcessor {

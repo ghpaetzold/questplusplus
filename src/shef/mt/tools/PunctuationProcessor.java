@@ -5,6 +5,10 @@ import java.util.HashMap;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
+/**
+ * Adds punctuation information to the sentences processed.
+ * @author GustavoH
+ */
 public class PunctuationProcessor extends ResourceProcessor {
 
     private HashMap<String, Integer> punctuationMap;

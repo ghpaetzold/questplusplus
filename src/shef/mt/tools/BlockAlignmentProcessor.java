@@ -13,6 +13,10 @@ import shef.mt.features.util.AlignmentData;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
+/**
+ * Adds block alignment values to be used by BinQE features.
+ * @author GustavoH
+ */
 public class BlockAlignmentProcessor extends ResourceProcessor {
    
     private BufferedReader reader;

@@ -6,6 +6,10 @@ import shef.mt.enes.FeatureExtractorInterface;
 import shef.mt.tools.jrouge.ROUGEProcessor;
 import shef.mt.tools.tercom.TERProcessor;
 
+/**
+ * Creates processors for word-level feature extraction.
+ * @author GustavoH
+ */
 public class WordLevelProcessorFactory {
 
     private ResourceProcessor[][] resourceProcessors;

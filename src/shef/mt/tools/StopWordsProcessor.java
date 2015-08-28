@@ -11,6 +11,10 @@ import java.util.logging.Logger;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
+/**
+ * Adds stop word information to the sentences processed.
+ * @author GustavoH
+ */
 public class StopWordsProcessor extends ResourceProcessor {
 
     private HashMap<String, Integer> stopWords;

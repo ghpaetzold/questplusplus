@@ -20,6 +20,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * Produces POS tag related information using the Stanford Tagger as opposed to Tree Tagger.
+ * @author GustavoH
+ */
 public class StanfordPOSProcessor {
 
     private StanfordCoreNLP pipeline;

@@ -4,6 +4,10 @@ import java.util.HashMap;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
+/**
+ * Adds word count information to the sentences processed.
+ * @author GustavoH
+ */
 public class WordCountProcessor extends ResourceProcessor {
 
     @Override

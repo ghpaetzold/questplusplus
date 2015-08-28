@@ -11,6 +11,10 @@ import org.lexvo.uwn.UWN;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
+/**
+ * Adds word sense information to the sentences processed.
+ * @author GustavoH
+ */
 public class SenseProcessor extends ResourceProcessor {
 
     private UWN uwn;

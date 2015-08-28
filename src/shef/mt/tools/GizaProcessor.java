@@ -8,7 +8,7 @@ import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
 /**
- *
+ * Creates a static Giza object to be used by several features.
  * @author carol
  */
 public class GizaProcessor extends ResourceProcessor{

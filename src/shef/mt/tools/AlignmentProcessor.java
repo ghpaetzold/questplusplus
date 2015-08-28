@@ -11,6 +11,10 @@ import java.util.logging.Logger;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
+/**
+ * Adds word alignment information to input sentence pairs.
+ * @author GustavoH
+ */
 public class AlignmentProcessor extends ResourceProcessor {
    
     private BufferedReader reader;

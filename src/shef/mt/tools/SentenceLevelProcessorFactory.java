@@ -8,6 +8,10 @@ import shef.mt.tools.jrouge.ROUGEProcessor;
 import shef.mt.tools.tercom.TERProcessor;
 import shef.mt.xmlwrap.MOSES_XMLWrapper;
 
+/**
+ * Creates processors for sentence-level feature extraction.
+ * @author GustavoH
+ */
 public class SentenceLevelProcessorFactory {
 
     private ResourceProcessor[][] resourceProcessors;

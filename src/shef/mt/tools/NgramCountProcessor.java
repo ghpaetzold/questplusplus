@@ -4,6 +4,10 @@ package shef.mt.tools;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 
+/**
+ * Provides a language model object to the sentences processed.
+ * @author GustavoH
+ */
 public class NgramCountProcessor extends ResourceProcessor {
 
     private LanguageModel lm;
