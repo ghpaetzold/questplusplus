@@ -42,11 +42,6 @@ public class Tokenizer extends Resource {
     public void run() {
         System.out.println("running tokenizer on " + input);
         File f = new File(output);
-        if (f.exists() && !forceRun && f.length() != 0) {
-            Logger.log("Output file " + output + " already exists. Tokenizer will not run");
-            System.out.println("Output file " + output + " already exists. Tokenizer will not run");
-            return;
-        }
 
 
         long start = System.currentTimeMillis();
