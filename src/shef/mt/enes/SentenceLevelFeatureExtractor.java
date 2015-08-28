@@ -1,6 +1,5 @@
 package shef.mt.enes;
 
-import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -25,8 +24,6 @@ import shef.mt.tools.MissingResourceGenerator;
 import shef.mt.tools.ResourceProcessor;
 import shef.mt.tools.Tokenizer;
 import shef.mt.tools.SentenceLevelProcessorFactory;
-import shef.mt.tools.WordLevelProcessorFactory;
-import shef.mt.tools.DocLevelProcessorFactory;
 import shef.mt.util.PropertiesManager;
 
 /**
