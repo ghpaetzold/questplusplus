@@ -223,7 +223,7 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface 
             return;
         }
         
-        if (this.casing!=null){
+        if (this.casing!=null  && !this.casing.equals("null")){
             String truecasePath = "";
             if (this.casing.equals("lower")){
                 truecasePath = resourceManager.getProperty("tools.lowercase.path") + " -q ";
