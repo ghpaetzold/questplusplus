@@ -18,12 +18,13 @@ import shef.mt.util.NGramSorter;
 
 /**
  * Generates resources that are missing from the config file.
+ *
  * @author GustavoH
  */
 public class MissingResourceGenerator {
 
-    private FeatureExtractorInterface fe;    
-    
+    private FeatureExtractorInterface fe;
+
     public MissingResourceGenerator(FeatureExtractorInterface fe) {
         this.fe = fe;
     }
@@ -63,7 +64,7 @@ public class MissingResourceGenerator {
             Process process = Runtime.getRuntime().exec(args);
 
             //
-           // process.waitFor(30, TimeUnit.SECONDS);
+            // process.waitFor(30, TimeUnit.SECONDS);
             process.waitFor();
             //Create BufferedReader of fast align's output:
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -88,7 +89,7 @@ public class MissingResourceGenerator {
 
     private void produceMissingAlignments(HashSet<String> required) {
         //Check if alignment file is missing:
-        if (required.contains("alignments")) {
+        if (required.contains("alignments.file")) {
             if (this.fe.getResourceManager().getProperty("alignments.file") == null) {
                 if (this.fe.getResourceManager().getProperty("tools.fast_align.path") != null) {
                     System.out.println("Producing resource: alignments.file");
@@ -135,7 +136,7 @@ public class MissingResourceGenerator {
 
     private void produceMissingLanguageModels(HashSet<String> required) {
         //Check if source LM is missing:
-        if (required.contains("logprob") || required.contains("ppl") || required.contains("ppl1")) {
+        if (required.contains("source.lm")) {
             if (this.fe.getResourceManager().getProperty("source.lm") == null) {
                 if (this.fe.getResourceManager().getProperty("tools.ngram.path") != null) {
                     if (this.fe.getResourceManager().getProperty("source.corpus") != null) {
@@ -173,7 +174,9 @@ public class MissingResourceGenerator {
                     System.out.println("Missing resource source.lm and SRILM is not available!");
                 }
             }
+        }
 
+        if (required.contains("target.lm")) {
             //Check if target LM is missing:
             if (this.fe.getResourceManager().getProperty("target.lm") == null) {
                 if (this.fe.getResourceManager().getProperty("tools.ngram.path") != null) {
@@ -217,7 +220,7 @@ public class MissingResourceGenerator {
 
     private void produceMissingNgramCounts(HashSet<String> required) {
         //Check if source NGRAM file is missing:
-        if (required.contains("ngramcount")) {
+        if (required.contains("source.ngram")) {
             if (this.fe.getResourceManager().getProperty("source.ngram") == null) {
                 if (this.fe.getResourceManager().getProperty("tools.ngram.path") != null) {
                     if (this.fe.getResourceManager().getProperty("source.corpus") != null) {
@@ -257,7 +260,9 @@ public class MissingResourceGenerator {
                     System.out.println("Missing resource source.ngram and SRILM is not available!");
                 }
             }
+        }
 
+        if (required.contains("target.ngram")) {
             //Check if target NGRAM file is missing:
             if (this.fe.getResourceManager().getProperty("target.ngram") == null) {
                 if (this.fe.getResourceManager().getProperty("tools.ngram.path") != null) {
@@ -303,7 +308,7 @@ public class MissingResourceGenerator {
 
     private void produceMissingPOSNgramCounts(HashSet<String> required) {
         //Check if source NGRAM file is missing:
-        if (required.contains("posngramcount")) {
+        if (required.contains("target.posngram")) {
             //Check if target NGRAM file is missing:
             if (this.fe.getResourceManager().getProperty("target.posngram") == null) {
                 if (this.fe.getResourceManager().getProperty("tools.ngram.path") != null) {
@@ -344,7 +349,9 @@ public class MissingResourceGenerator {
                     System.out.println("Missing resource target.posngram and SRILM is not available!");
                 }
             }
-            
+        }
+
+        if (required.contains("source.posngram")) {
             //Check if target NGRAM file is missing:
             if (this.fe.getResourceManager().getProperty("source.posngram") == null) {
                 if (this.fe.getResourceManager().getProperty("tools.ngram.path") != null) {
