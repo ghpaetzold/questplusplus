@@ -223,7 +223,7 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface 
             return;
         }
         
-        if (this.casing!=null  && !this.casing.equals("null")){
+        if (this.casing!=null){
             String truecasePath = "";
             if (this.casing.equals("lower")){
                 truecasePath = resourceManager.getProperty("tools.lowercase.path") + " -q ";
@@ -351,6 +351,9 @@ public class SentenceLevelFeatureExtractor implements FeatureExtractorInterface 
             
             if (line.hasOption("case")) {
                 this.casing = line.getOptionValue("case");
+                if (this.casing.equals("no")){
+                    this.casing=null;
+                }
             } else {
                 this.casing = null;
             }
