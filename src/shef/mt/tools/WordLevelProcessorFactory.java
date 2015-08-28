@@ -34,7 +34,7 @@ public class WordLevelProcessorFactory {
             //Get stopwords processors:
             StopWordsProcessor[] stopWordsProcessors = this.getStopWordsProcessors();
             StopWordsProcessor stopWordsProcSource = stopWordsProcessors[0];
-            StopWordsProcessor stopWordsProcTarget = stopWordsProcessors[0];
+            StopWordsProcessor stopWordsProcTarget = stopWordsProcessors[1];
 
             //Add them to processor vectors:
             sourceProcessors.add(stopWordsProcSource);
