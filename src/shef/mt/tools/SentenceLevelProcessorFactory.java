@@ -138,26 +138,36 @@ public class SentenceLevelProcessorFactory {
             targetProcessors.add(pplProcTarget);
         }
 
-        if (requirements.contains("source.topic.distribution") || requirements.contains("target.topic.distribution")) {
+        if (requirements.contains("source.topic.distribution")) {
             //Get TM processors:
-            TopicDistributionProcessor[] topicDistProcessors = this.getTopicDistributionProcessor();
-            TopicDistributionProcessor topicDistProcSource = topicDistProcessors[0];
-            TopicDistributionProcessor topicDistProcTarget = topicDistProcessors[1];
+            TopicDistributionProcessor topicDistProcessor = this.getSourceTopicDistributionProcessor();
 
             //Add them to processor vectors:
-            sourceProcessors.add(topicDistProcSource);
-            targetProcessors.add(topicDistProcTarget);
+            sourceProcessors.add(topicDistProcessor);
+        }
+        
+        if (requirements.contains("target.topic.distribution")) {
+            //Get TM processors:
+            TopicDistributionProcessor topicDistProcessor = this.getTargetTopicDistributionProcessor();
+
+            //Add them to processor vectors:
+            targetProcessors.add(topicDistProcessor);
         }
 
-        if (requirements.contains("source.bparser.grammar") || requirements.contains("target.bparser.grammar")) {
+        if (requirements.contains("source.bparser.grammar")) {
             //Get TM processors:
-            BParserProcessor[] bParserProcessors = this.getBParserProcessor();
-            BParserProcessor bParserProcSource = bParserProcessors[0];
-            BParserProcessor bParserProcTarget = bParserProcessors[1];
+            BParserProcessor bParserProcessor = this.getSourceBParserProcessor();
 
             //Add them to processor vectors:
-            sourceProcessors.add(bParserProcSource);
-            targetProcessors.add(bParserProcTarget);
+            sourceProcessors.add(bParserProcessor);
+        }
+        
+        if (requirements.contains("target.bparser.grammar")) {
+            //Get TM processors:
+            BParserProcessor bParserProcessor = this.getTargetBParserProcessor();
+
+            //Add them to processor vectors:
+            targetProcessors.add(bParserProcessor);
         }
 
         if (requirements.contains("target.refTranslations")) {
@@ -483,7 +493,7 @@ public class SentenceLevelProcessorFactory {
         ResourceManager.registerResource("target.poslm");
 
         //Generate output paths:
-        String targetOutput = this.fe.getTargetFile() + ".pos.XPOS.ppl";
+        String targetOutput = this.fe.getTargetFile() + ".XPOS.ppl";
 
         //Read language models:
         NGramExec nge = new NGramExec(this.fe.getResourceManager().getString("tools.ngram.path"), true);
@@ -678,31 +688,42 @@ public class SentenceLevelProcessorFactory {
         return gizaProc;
     }
 
-    private TopicDistributionProcessor[] getTopicDistributionProcessor() {
-        String sourceTopicDistributionFile = this.fe.getResourceManager().getString("source.topic.distribution");
-        String targetTopicDistributionFile = this.fe.getResourceManager().getString("target.topic.distribution");
+    private TopicDistributionProcessor getSourceTopicDistributionProcessor() {
+        String topicDistributionFile = this.fe.getResourceManager().getString("source.topic.distribution");
 
-        TopicDistributionProcessor topicDistProcSource = new TopicDistributionProcessor(sourceTopicDistributionFile, "source.topic.distribution");
-        TopicDistributionProcessor topicDistProcTarget = new TopicDistributionProcessor(targetTopicDistributionFile, "target.topic.distribution");
+        TopicDistributionProcessor topicDistProc = new TopicDistributionProcessor(topicDistributionFile, "source.topic.distribution");
 
         //Return processors:
-        return new TopicDistributionProcessor[]{topicDistProcSource, topicDistProcTarget};
+        return topicDistProc;
+    }
+    
+    private TopicDistributionProcessor getTargetTopicDistributionProcessor() {
+        String topicDistributionFile = this.fe.getResourceManager().getString("target.topic.distribution");
 
+        TopicDistributionProcessor topicDistProc = new TopicDistributionProcessor(topicDistributionFile, "target.topic.distribution");
+
+        //Return processors:
+        return topicDistProc;
     }
 
-    private BParserProcessor[] getBParserProcessor() {
-        BParserProcessor bParserProcSource = null;
-        BParserProcessor bParserProcTarget = null;
+    private BParserProcessor getSourceBParserProcessor() {
+        BParserProcessor bParserProc = null;
 
-        bParserProcSource = new BParserProcessor();
-        bParserProcTarget = new BParserProcessor();
-        // bParserProcSource.initialize(this.fe.getSourceFile(), this.fe.getResourceManager(), this.fe.getSourceLang());
-        // bParserProcTarget.initialize(this.fe.getTargetFile(), this.fe.getResourceManager(), this.fe.getTargetLang());
-        bParserProcSource.initialize(this.fe.getResourceManager().getString("source.bparser.grammar"), this.fe.getResourceManager(), "source");
-        bParserProcTarget.initialize(this.fe.getResourceManager().getString("target.bparser.grammar"), this.fe.getResourceManager(), "target");
+        bParserProc = new BParserProcessor();
+        bParserProc.initialize(this.fe.getResourceManager().getString("source.bparser.grammar"), this.fe.getResourceManager(), "source");
+        
         //Return processors:
-        return new BParserProcessor[]{bParserProcSource, bParserProcTarget};
+        return bParserProc;
+    }
+    
+    private BParserProcessor getTargetBParserProcessor() {
+        BParserProcessor bParserProc = null;
 
+        bParserProc = new BParserProcessor();
+        bParserProc.initialize(this.fe.getResourceManager().getString("target.bparser.grammar"), this.fe.getResourceManager(), "target");
+        
+        //Return processors:
+        return bParserProc;
     }
 
     private GlobalLexiconProcessor getGlobalLexiconProcessor() {
