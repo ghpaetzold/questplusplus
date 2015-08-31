@@ -45,7 +45,10 @@ public class POSTaggerProcessor extends ResourceProcessor {
             while (line != null && (count < tokCount)) {
                 if (!line.trim().isEmpty()) {
                     String[] split = line.split("\t");
-                    String tag = split[1];
+                    String tag = "";
+                    if (split.length > 1){
+                        tag = split[1];
+                    }
                     if (tag.contains("SENT")) {
                         tag = tag.split(" ")[0];
                     } else if (PosTagger.isNoun(tag)) {

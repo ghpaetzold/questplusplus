@@ -52,8 +52,9 @@ public class DiscourseRepetition extends ResourceProcessor {
         String lemma;
         String tag;
         String word;
-        for (String token:sentence_tags){
 
+        for (String token:sentence_tags){
+            
             if(token.split("_").length==3){
                 tag = token.split("_")[1].trim();
                 word = token.split("_")[0].trim();
