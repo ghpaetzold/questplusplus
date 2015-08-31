@@ -251,8 +251,8 @@ public class DocLevelProcessorFactory {
     private POSTaggerProcessor[] getPOSTaggerProcessors() {
         ResourceManager.registerResource("source.postagger");
         ResourceManager.registerResource("target.postagger");
-        String posNameSource = this.fe.getResourceManager().getString("tools.postagger.path");
-        String posNameTarget = this.fe.getResourceManager().getString("tools.postagger.path");
+        String posNameSource = "shef.mt.tools.PosTreeTagger";
+        String posNameTarget = "shef.mt.tools.PosTreeTagger";
         String outputPathSource = this.fe.getResourceManager().getProperty("input") + File.separator + this.fe.getSourceLang()+File.separator;
         String outputPathTarget = this.fe.getResourceManager().getProperty("input") + File.separator + this.fe.getTargetLang()+File.separator;
         File sourceFile = new File(this.fe.getSourceFile());

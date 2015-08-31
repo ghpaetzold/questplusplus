@@ -23,6 +23,8 @@ import shef.mt.features.util.Sentence;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Paragraph;
 import shef.mt.features.util.DocLevelFeatureManager;
+import shef.mt.features.util.FeatureManager;
+import shef.mt.tools.Caser;
 import shef.mt.tools.DocLevelMissingResourceGenerator;
 import shef.mt.tools.ResourceProcessor;
 import shef.mt.tools.DocLevelProcessorFactory;
@@ -48,6 +50,9 @@ public class DocLevelFeatureExtractor implements FeatureExtractorInterface {
     private String targetFile;
     private String sourceLang;
     private String targetLang;
+    
+    private boolean tok;
+    private String casing;
 
     private PropertiesManager resourceManager;
     private DocLevelFeatureManager featureManager;
@@ -263,72 +268,62 @@ public class DocLevelFeatureExtractor implements FeatureExtractorInterface {
             return;
         }
 
-        //run tokenizer for source
-        System.out.println("Running tokenizer for source file...");
-
-        //verify language support
-        String src_abbr = "";
-        if (getSourceLang().equalsIgnoreCase("english")) {
-            src_abbr = "en";
-        } else if (getSourceLang().equalsIgnoreCase("spanish")) {
-            src_abbr = "es";
-        } else if (getSourceLang().equalsIgnoreCase("french")) {
-            src_abbr = "fr";
-        } else if (getSourceLang().equalsIgnoreCase("german")) {
-            src_abbr = "de";
-        } else if (getSourceLang().equalsIgnoreCase("dutch")) {
-            src_abbr = "nl";
-        } else if (getSourceLang().equalsIgnoreCase("portuguese")) {
-            src_abbr = "pt";
-        } else {
-            System.out.println("Don't recognise the source language");
+        if (this.casing!=null){
+            origSourceFile = new File(getSourceFile());
+            inputSourceFile = new File(sourceInputFolder + File.separator + origSourceFile.getName());
+            origTargetFile = new File(getTargetFile());
+            inputTargetFile = new File(targetInputFolder + File.separator + origTargetFile.getName());
+            String truecasePath = "";
+            if (this.casing.equals("lower")){
+                truecasePath = resourceManager.getProperty("tools.lowercase.path") + " -q ";
+            }
+            else if (this.casing.equals("true")){
+                truecasePath = resourceManager.getString("tools.truecase.path") + " --model ";
+            }
+            Caser sourceCaser = new Caser(inputSourceFile.getPath(), inputSourceFile.getPath() + ".cased", truecasePath + resourceManager.getString("source.truecase.model"), forceRun);
+            Caser targetCaser = new Caser(inputTargetFile.getPath(), inputTargetFile.getPath() + ".cased", truecasePath + resourceManager.getString("target.truecase.model"), forceRun);
+            sourceCaser.run();
+            targetCaser.run();
+            this.sourceFile = sourceCaser.getCaser();
+            System.out.println("New source file: " + sourceFile);
+            this.targetFile = targetCaser.getCaser();
+            System.out.println("New target file: " + targetFile);
+        
         }
 
-        String truecasePath = "";
-        if (null != resourceManager.getProperty("source.lowercase")) {
-            truecasePath = resourceManager.getProperty("source.lowercase") + " -q ";
-        } else {
-            truecasePath = resourceManager.getString("source.truecase") + " --model " + resourceManager.getString("source.truecase.model");
+        if (tok) {
+            origSourceFile = new File(getSourceFile());
+            inputSourceFile = new File(sourceInputFolder + File.separator + origSourceFile.getName());
+            origTargetFile = new File(getTargetFile());
+            inputTargetFile = new File(targetInputFolder + File.separator + origTargetFile.getName());
+            
+            //run tokenizer for source
+            System.out.println("Running tokenizer for source file...");
+
+            //verify language support
+            String src_abbr = this.getResourceManager().getString("source.tokenizer.lang");
+
+            String truecasePath = "";
+            Tokenizer sourceTok = new Tokenizer(inputSourceFile.getPath(), inputSourceFile.getPath() + ".tok", resourceManager.getString("tools.tokenizer.path"), src_abbr, forceRun);
+
+            sourceTok.run();
+            //Update input paths:
+            this.sourceFile = sourceTok.getTok();
+            System.out.println("New source file: " + sourceFile);
+
+            //run tokenizer for target
+            System.out.println("Running tokenizer for source file...");
+
+            //verify language support
+            String tgt_abbr = this.getResourceManager().getString("target.tokenizer.lang");
+
+            Tokenizer targetTok = new Tokenizer(inputTargetFile.getPath(), inputTargetFile.getPath() + ".tok", resourceManager.getString("tools.tokenizer.path"), tgt_abbr, forceRun);
+
+            targetTok.run();
+            //Update input paths:
+            targetFile = targetTok.getTok();
+            System.out.println("New target file: " + targetFile);
         }
-        Tokenizer sourceTok = new Tokenizer(inputSourceFile.getPath(), inputSourceFile.getPath() + ".tok", resourceManager.getString("source.tokenizer"), src_abbr, forceRun);
-
-        sourceTok.run();
-        //Update input paths:
-        this.sourceFile = sourceTok.getTok();
-        System.out.println("New source file: " + sourceFile);
-
-        //run tokenizer for target
-        System.out.println("Running tokenizer for source file...");
-
-        //verify language support
-        String tgt_abbr = "";
-        if (getTargetLang().equalsIgnoreCase("english")) {
-            tgt_abbr = "en";
-        } else if (getTargetLang().equalsIgnoreCase("spanish")) {
-            tgt_abbr = "es";
-        } else if (getTargetLang().equalsIgnoreCase("french")) {
-            tgt_abbr = "fr";
-        } else if (getTargetLang().equalsIgnoreCase("german")) {
-            tgt_abbr = "de";
-        } else if (getTargetLang().equalsIgnoreCase("dutch")) {
-            tgt_abbr = "nl";
-        } else if (getTargetLang().equalsIgnoreCase("portuguese")) {
-            tgt_abbr = "pt";
-        } else {
-            System.out.println("Don't recognise the target language");
-        }
-
-        if (null != resourceManager.getProperty("target.lowercase")) {
-            truecasePath = resourceManager.getProperty("target.lowercase") + " -q ";
-        } else {
-            truecasePath = resourceManager.getString("target.truecase") + " --model " + resourceManager.getString("target.truecase.model");
-        }
-        Tokenizer targetTok = new Tokenizer(inputTargetFile.getPath(), inputTargetFile.getPath() + ".tok", resourceManager.getString("target.tokenizer"), tgt_abbr, forceRun);
-
-        targetTok.run();
-        //Update input paths:
-        targetFile = targetTok.getTok();
-        System.out.println("New target file: " + targetFile);
     }
 
     public void parseArguments(String[] args) {
@@ -340,6 +335,10 @@ public class DocLevelFeatureExtractor implements FeatureExtractorInterface {
         Option input = OptionBuilder.withArgName("input").hasArgs(3)
                 .isRequired(true).create("input");
 
+        Option alignments = OptionBuilder.withArgName("alignments").hasArgs(1)
+                .withDescription("alignments between source and target input files")
+                .isRequired(false).create("alignments");
+
         Option lang = OptionBuilder.withArgName("lang").hasArgs(2)
                 .isRequired(false).create("lang");
 
@@ -350,25 +349,34 @@ public class DocLevelFeatureExtractor implements FeatureExtractorInterface {
                 .withDescription("GlassBox input files").hasOptionalArgs(2)
                 .hasArgs(3).create("gb");
 
-        Option mode = OptionBuilder
-                .withArgName("mode")
-                .withDescription("blackbox features, glassbox features or both")
-                .hasArgs(1).isRequired(true).create("mode");
-
         Option config = OptionBuilder
                 .withArgName("config")
                 .withDescription("cofiguration file")
                 .hasArgs(1).isRequired(false).create("config");
+        
+        Option featureset = OptionBuilder
+                .withArgName("featureset")
+                .withDescription("feature set cofiguration file")
+                .hasArgs(1).isRequired(false).create("featureset");
+
+        Option tokenize = OptionBuilder.withArgName("tok").hasArgs(0)
+                .isRequired(false).create("tok");
+        
+        Option casing = OptionBuilder.withArgName("case").hasArgs(1)
+                .isRequired(false).create("case");
 
         CommandLineParser parser = new PosixParser();
         Options options = new Options();
         options.addOption(help);
         options.addOption(input);
-        options.addOption(mode);
+        options.addOption(alignments);
+        options.addOption(featureset);
         options.addOption(lang);
         options.addOption(feat);
         options.addOption(gb);
         options.addOption(config);
+        options.addOption(tokenize);
+        options.addOption(casing);
 
         try {
             CommandLine line = parser.parse(options, args);
@@ -384,6 +392,15 @@ public class DocLevelFeatureExtractor implements FeatureExtractorInterface {
                 sourceFile = files[0];
                 targetFile = files[1];
             }
+            
+            if (line.hasOption("case")) {
+                this.casing = line.getOptionValue("case");
+                if (this.casing.equals("no")){
+                    this.casing=null;
+                }
+            } else {
+                this.casing = null;
+            }
 
             if (line.hasOption("lang")) {
                 String[] langs = line.getOptionValues("lang");
@@ -394,10 +411,12 @@ public class DocLevelFeatureExtractor implements FeatureExtractorInterface {
                 targetLang = getResourceManager().getString("targetLang.default");
             }
 
-            if (line.hasOption("mode")) {
-                String[] modeOpt = line.getOptionValues("mode");
-                setMod(modeOpt[0].trim());
-                configPath = getResourceManager().getString("featureConfig." + getMod());
+            if (line.hasOption("featureset")) {
+                configPath = line.getOptionValue("featureset");;
+                featureManager = new DocLevelFeatureManager(configPath);
+            }
+            else{
+                configPath = getResourceManager().getString("featureConfig");
                 featureManager = new DocLevelFeatureManager(configPath);
             }
 
@@ -408,6 +427,14 @@ public class DocLevelFeatureExtractor implements FeatureExtractorInterface {
             } else {
                 getFeatureManager().setFeatureList("all");
             }
+
+            if (line.hasOption("alignments")) {
+                String path = line.getOptionValue("alignments");
+                this.resourceManager.put("alignments.file", path);
+            }
+
+            tok = line.hasOption("tok");
+            
 
         } catch (ParseException exp) {
             System.out.println("Unexpected exception:" + exp.getMessage());
