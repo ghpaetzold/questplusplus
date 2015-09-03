@@ -34,7 +34,7 @@ import shef.mt.tools.Tokenizer;
 /**
  * Main class for the doc-level feature extraction pipeline.
  *
- * @author GustavoH
+ * @author Carolina Scarton
  */
 public class DocLevelFeatureExtractor implements FeatureExtractorInterface {
 
@@ -303,7 +303,6 @@ public class DocLevelFeatureExtractor implements FeatureExtractorInterface {
             //verify language support
             String src_abbr = this.getResourceManager().getString("source.tokenizer.lang");
 
-            String truecasePath = "";
             Tokenizer sourceTok = new Tokenizer(inputSourceFile.getPath(), inputSourceFile.getPath() + ".tok", resourceManager.getString("tools.tokenizer.path"), src_abbr, forceRun);
 
             sourceTok.run();
