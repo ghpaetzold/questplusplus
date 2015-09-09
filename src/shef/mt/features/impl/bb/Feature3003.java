@@ -10,6 +10,7 @@ import shef.mt.features.util.Sentence;
 public class Feature3003 extends Feature {
     public Feature3003() {
         setIndex(3003);
+        this.addResource("target.mqm.abbreviation");
     }
 
     @Override

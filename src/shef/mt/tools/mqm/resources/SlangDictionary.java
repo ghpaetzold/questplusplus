@@ -1,10 +1,7 @@
 package shef.mt.tools.mqm.resources;
 
 import shef.mt.tools.Resource;
-import shef.mt.tools.ResourceManager;
-import shef.mt.tools.mqm.Configurable;
-import shef.mt.tools.mqm.Registrable;
-import shef.mt.util.PropertiesManager;
+
 
 import java.io.*;
 import java.util.HashSet;
@@ -18,29 +15,13 @@ import java.util.Set;
  * @author <a href="mailto:mail.jie.jiang@gmail.com">Jie Jiang</a>
  * @date 9/11/13
  */
-public class SlangDictionary extends Resource implements Configurable, Registrable {
+public class SlangDictionary extends Resource{
 
-    private String language;
-    private String configKey;
     private Set<String> slangDict = new HashSet<String>();
 
-    public SlangDictionary(String language) {
-        this.language = language;
-        this.configKey = "MQM.slang." + this.language;
-    }
+    public SlangDictionary() {
 
-    @Override
-    public boolean isConfigured(PropertiesManager propertiesManager) {
-        String config = propertiesManager.getProperty(this.configKey);
-        return !(config == null || config.length() == 0);
     }
-
-    public void load(PropertiesManager propertiesManager) {
-        String config = propertiesManager.getProperty(this.configKey);
-        assert (config != null && config.length() > 0);
-        this.load(config);
-    }
-
     //TODO, currently an web copied text format is used, one line with dict entry followed by slash, one line with explanation, needs better format
     public void load(String filepath) {
         //read file line by line and put into slang dict
@@ -50,8 +31,10 @@ public class SlangDictionary extends Resource implements Configurable, Registrab
             String strLine;
             while ((strLine = br.readLine()) != null) {
                 strLine = strLine.trim();
-                if (strLine.endsWith("-")) {
-                    String entry = strLine.substring(0, strLine.length()-1).trim();
+                if (strLine.split("-").length>1) {
+                    //String entry = strLine.substring(0, strLine.length()-1).trim();
+                    String entry = strLine.split("-")[0].trim();
+                    //System.out.println(entry);
                     slangDict.add(entry);
                 }
             }
@@ -68,13 +51,9 @@ public class SlangDictionary extends Resource implements Configurable, Registrab
         }
     }
 
-    @Override
-    public void register() {
-        ResourceManager.registerResource(this.configKey);
-    }
 
     public static void main(String args[]) {
-        SlangDictionary dict = new SlangDictionary("english");
+        SlangDictionary dict = new SlangDictionary();
         dict.load(args[0]);
     }
 

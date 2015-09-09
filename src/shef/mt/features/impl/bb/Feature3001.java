@@ -11,6 +11,7 @@ import shef.mt.features.util.Sentence;
 public class Feature3001 extends Feature {
     public Feature3001() {
         setIndex(3001);
+        this.addResource("target.mqm.slang");
     }
 
     @Override

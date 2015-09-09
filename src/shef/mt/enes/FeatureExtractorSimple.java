@@ -24,8 +24,8 @@ import shef.mt.tools.Tokenizer;
 import shef.mt.tools.TopicDistributionProcessor;
 import shef.mt.tools.Triggers;
 import shef.mt.tools.TriggersProcessor;
-import shef.mt.tools.mqm.Context;
-import shef.mt.tools.mqm.MQMManager;
+//import shef.mt.tools.mqm.Context;
+//import shef.mt.tools.mqm.MQMManager;
 import shef.mt.util.Logger;
 import shef.mt.util.NGramSorter;
 import shef.mt.util.PropertiesManager;
@@ -808,11 +808,11 @@ public class FeatureExtractorSimple {
         }
 
         //MQM kicks in
-        MQMManager.getInstance().initialize(resourceManager);
+        /*MQMManager.getInstance().initialize(resourceManager);
         Context context = new Context();
         context.setSourceFilePath(sourceFile);
         context.setTargetFilePath(targetFile);
-        MQMManager.getInstance().globalProcessing(context);
+        MQMManager.getInstance().globalProcessing(context);*/
 
         try {
             BufferedReader brSource = new BufferedReader(new FileReader(
@@ -989,7 +989,7 @@ public class FeatureExtractorSimple {
                 }
 
                 //MQM kicks in
-                MQMManager.getInstance().processNextParallelSentences(sourceSent, targetSent);
+                //MQMManager.getInstance().processNextParallelSentences(sourceSent, targetSent);
 
                 if (featureManager.hasFeature("1700")) {
                     sourceLuc.processNextSentence(sourceSent);

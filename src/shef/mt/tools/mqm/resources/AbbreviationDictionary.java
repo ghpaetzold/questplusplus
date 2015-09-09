@@ -1,10 +1,7 @@
 package shef.mt.tools.mqm.resources;
 
 import shef.mt.tools.Resource;
-import shef.mt.tools.ResourceManager;
-import shef.mt.tools.mqm.Configurable;
-import shef.mt.tools.mqm.Registrable;
-import shef.mt.util.PropertiesManager;
+
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -23,36 +20,16 @@ import java.util.regex.Pattern;
  * @author <a href="mailto:mail.jie.jiang@gmail.com">Jie Jiang</a>
  * @date 9/12/13
  */
-public class AbbreviationDictionary extends Resource implements Configurable, Registrable {
+public class AbbreviationDictionary extends Resource{
 
     private final static Logger LOGGER = Logger.getLogger(AbbreviationDictionary.class.getName());
 
-    private String language;
-    private String configKey;
     private HashMap<String, HashSet<String>> abbrev2meaningSets = new LinkedHashMap<String, HashSet<String>>();
 
-    public AbbreviationDictionary(String language) {
-        this.language = language;
-        this.configKey = "MQM.abbreviation." + this.language;
+    public AbbreviationDictionary() {
+  
     }
-
-    @Override
-    public boolean isConfigured(PropertiesManager propertiesManager) {
-        String config = propertiesManager.getProperty(this.configKey);
-        return !(config == null || config.length() == 0);
-    }
-
-    @Override
-    public void register() {
-        ResourceManager.registerResource(this.configKey);
-    }
-
-    public void load(PropertiesManager propertiesManager) {
-        String config = propertiesManager.getProperty(this.configKey);
-        assert (config != null && config.length() > 0);
-        this.load(config);
-    }
-
+    
     public void load(String filepath) {
         //read file line by line and put into slang dict
         BufferedReader br = null;
@@ -66,6 +43,7 @@ public class AbbreviationDictionary extends Resource implements Configurable, Re
                    if (parts.length == 2) {
                        String abbrev = parts[0].trim();
                        String meaning = parts[1].trim();
+                       //System.out.println(meaning);
                        LOGGER.finest("parsing abbreviation: [" + abbrev + "] = [" + meaning + "]");
                        List<String> meanings = meaningNormalize(meaning);
                        abbrev2meaningSets.put(abbrev, new HashSet<String>(meanings));
@@ -117,7 +95,7 @@ public class AbbreviationDictionary extends Resource implements Configurable, Re
     }
 
     public static void main(String args[]) {
-        AbbreviationDictionary dict = new AbbreviationDictionary("english");
+        AbbreviationDictionary dict = new AbbreviationDictionary();
         dict.load(args[0]);
     }
 

@@ -1,10 +1,21 @@
 package shef.mt.tools;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Set;
 import shef.mt.enes.FeatureExtractorInterface;
 import shef.mt.tools.jrouge.ROUGEProcessor;
+import shef.mt.tools.mqm.core.fluency.inconsistency.AbbreviationsProcessor;
+import shef.mt.tools.mqm.core.fluency.register.VariantsSlangProcessor;
+import shef.mt.tools.mqm.resources.AbbreviationDictionary;
+import shef.mt.tools.mqm.resources.SlangDictionary;
 import shef.mt.tools.tercom.TERProcessor;
 import shef.mt.xmlwrap.MOSES_XMLWrapper;
 
@@ -33,6 +44,16 @@ public class SentenceLevelProcessorFactory {
         ArrayList<ResourceProcessor> sourceProcessors = new ArrayList<ResourceProcessor>();
         ArrayList<ResourceProcessor> targetProcessors = new ArrayList<ResourceProcessor>();
 
+        if (requirements.contains("target.mqm.slang")){
+            VariantsSlangProcessor variantsSlangProcessor = this.getVariantsSlangProcessor();
+            targetProcessors.add(variantsSlangProcessor);
+        }
+        
+        if (requirements.contains("target.mqm.abbreviation")){
+            AbbreviationsProcessor abbreviationsProcessor = this.getAbbreviationsProcessor();
+            targetProcessors.add(abbreviationsProcessor);
+        }
+        
         if (requirements.contains("pair.inter.triggers.file") || requirements.contains("source.intra.triggers.file") || requirements.contains("target.intra.triggers.file")) {
             //Get trigger processors:
             TriggersProcessor[] triggerProcessors = this.getTriggersProcessor();
@@ -802,5 +823,53 @@ public class SentenceLevelProcessorFactory {
 
         //Return processors:
         return new TriggersProcessor[]{itl_source_p, itl_target_p, itl_source_target_p};
+    }
+
+    private VariantsSlangProcessor getVariantsSlangProcessor() {
+        ResourceManager.registerResource("target.mqm.slang");
+        SlangDictionary trgSlangDict = new SlangDictionary();
+        trgSlangDict.load(this.fe.getResourceManager().getString("target.mqm.slang"));
+        VariantsSlangProcessor variantsSlangProcessor = new VariantsSlangProcessor(trgSlangDict);
+        return variantsSlangProcessor;
+    }
+
+    private AbbreviationsProcessor getAbbreviationsProcessor() {
+        ResourceManager.registerResource("target.mqm.abbreviation");
+        AbbreviationDictionary abbrevDict = new AbbreviationDictionary();
+        abbrevDict.load(this.fe.getResourceManager().getString("target.mqm.abbreviation"));
+        Set<String> abbrevs = abbrevDict.getAbbrevSet();
+        BufferedReader br = null;
+        HashMap<String, String> position2abbrev = new LinkedHashMap<String, String>();
+        try {
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(this.fe.getTargetFile())));
+            String strLine;
+            int lineCount = 0;
+            while ((strLine = br.readLine()) != null) {
+                strLine = strLine.trim();
+                for (String abbrev : abbrevs) {
+                    int pos = 0;
+                    for (String word : strLine.split("\\s+")) {
+                        if (word.equals(abbrev)) {
+                            String position = lineCount + "-" + pos;
+                            position2abbrev.put(position, abbrev);
+                        }
+                        pos ++;
+                    }
+                }
+                lineCount ++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        AbbreviationsProcessor abbreviationProcessor = new AbbreviationsProcessor(abbrevDict,position2abbrev);
+        return abbreviationProcessor;
     }
 }
