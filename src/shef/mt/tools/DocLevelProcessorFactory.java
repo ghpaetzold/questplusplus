@@ -3,16 +3,16 @@ package shef.mt.tools;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
-import shef.mt.enes.DocLevelFeatureExtractor;
-import shef.mt.enes.FeatureExtractorInterface;
+import shef.mt.DocLevelFeatureExtractor;
+import shef.mt.FeatureExtractor;
 
 public class DocLevelProcessorFactory {
 
     private ResourceProcessor[][] resourceProcessors;
 
-    private FeatureExtractorInterface fe;
+    private FeatureExtractor fe;
 
-    public DocLevelProcessorFactory(FeatureExtractorInterface fe) {
+    public DocLevelProcessorFactory(FeatureExtractor fe) {
         //Setup initial instance of ResourceProcessor matrix:
         this.resourceProcessors = null;
 

@@ -4,15 +4,12 @@
  */
 package shef.mt.features.impl.doclevel;
 
-import java.util.HashSet;
-import java.util.StringTokenizer;
 
 import shef.mt.features.impl.DocLevelFeature;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Sentence;
 import shef.mt.tools.FileModel;
 import shef.mt.tools.Giza;
-import shef.mt.tools.Giza2;
 
 /**
  * Average number of translations per source word in the document (threshold in

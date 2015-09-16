@@ -7,14 +7,10 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.StringTokenizer;
 
 import shef.mt.features.impl.Feature;
 import shef.mt.features.util.Sentence;
-import shef.mt.tools.Giza;
-import shef.mt.tools.Giza2;
-import shef.mt.features.wce.StopWord;
+import shef.mt.features.util.StopWord;
 
 
 

@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import shef.mt.enes.DocLevelFeatureExtractor;
+import shef.mt.DocLevelFeatureExtractor;
 import shef.mt.util.NGramSorter;
 
 public class DocLevelMissingResourceGenerator {

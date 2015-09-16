@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Set;
-import shef.mt.enes.FeatureExtractorInterface;
+import shef.mt.FeatureExtractor;
 import shef.mt.tools.jrouge.ROUGEProcessor;
 import shef.mt.tools.mqm.core.fluency.inconsistency.AbbreviationsProcessor;
 import shef.mt.tools.mqm.core.fluency.register.VariantsSlangProcessor;
@@ -28,9 +28,9 @@ public class SentenceLevelProcessorFactory {
 
     private ResourceProcessor[][] resourceProcessors;
 
-    private FeatureExtractorInterface fe;
+    private FeatureExtractor fe;
 
-    public SentenceLevelProcessorFactory(FeatureExtractorInterface fe) {
+    public SentenceLevelProcessorFactory(FeatureExtractor fe) {
         //Setup initial instance of ResourceProcessor matrix:
         this.resourceProcessors = null;
 

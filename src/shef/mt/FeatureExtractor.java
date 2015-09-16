@@ -1,9 +1,9 @@
-package shef.mt.enes;
+package shef.mt;
 
 import shef.mt.features.util.FeatureManager;
 import shef.mt.util.PropertiesManager;
 
-public interface FeatureExtractorInterface {
+public interface FeatureExtractor {
 
     public FeatureManager getFeatureManager();
 

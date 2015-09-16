@@ -6,10 +6,7 @@ import java.io.FileInputStream;
 import java.util.zip.GZIPInputStream;
 import java.util.Scanner;
 import java.util.HashMap;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 
 /**
  * @author cbuck@lantis.de

@@ -12,8 +12,8 @@ import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import shef.mt.enes.FeatureExtractorInterface;
-import shef.mt.enes.WordLevelFeatureExtractor;
+import shef.mt.FeatureExtractor;
+import shef.mt.WordLevelFeatureExtractor;
 import shef.mt.util.NGramSorter;
 
 /**
@@ -23,9 +23,9 @@ import shef.mt.util.NGramSorter;
  */
 public class MissingResourceGenerator {
 
-    private FeatureExtractorInterface fe;
+    private FeatureExtractor fe;
 
-    public MissingResourceGenerator(FeatureExtractorInterface fe) {
+    public MissingResourceGenerator(FeatureExtractor fe) {
         this.fe = fe;
     }
 

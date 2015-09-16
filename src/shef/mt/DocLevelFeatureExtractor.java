@@ -1,6 +1,5 @@
-package shef.mt.enes;
+package shef.mt;
 
-import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.cli.CommandLine;
@@ -20,51 +20,56 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 import shef.mt.features.util.Sentence;
-import shef.mt.features.util.WordLevelFeatureManager;
-import shef.mt.tools.MissingResourceGenerator;
+import shef.mt.features.util.Doc;
+import shef.mt.features.util.Paragraph;
+import shef.mt.features.util.DocLevelFeatureManager;
+import shef.mt.features.util.FeatureManager;
+import shef.mt.tools.Caser;
+import shef.mt.tools.DocLevelMissingResourceGenerator;
 import shef.mt.tools.ResourceProcessor;
-import shef.mt.tools.SentenceLevelProcessorFactory;
+import shef.mt.tools.DocLevelProcessorFactory;
 import shef.mt.util.PropertiesManager;
+import shef.mt.tools.Tokenizer;
 
 /**
- * Main class for the word-level feature extraction pipeline.
+ * Main class for the doc-level feature extraction pipeline.
  *
- * @author GustavoH
+ * @author Carolina Scarton
  */
-public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
+public class DocLevelFeatureExtractor implements FeatureExtractor {
 
     private String workDir;
     private String input;
     private String output;
     private String features;
 
+    private ArrayList<String> listSourceFiles = new ArrayList<>();
+    private ArrayList<String> listTargetFiles = new ArrayList<>();
+
     private String sourceFile;
     private String targetFile;
     private String sourceLang;
     private String targetLang;
+    
+    private boolean tok;
+    private String casing;
 
     private PropertiesManager resourceManager;
-    private WordLevelFeatureManager featureManager;
+    private DocLevelFeatureManager featureManager;
     private String configPath;
     private String mod;
 
-    private StanfordCoreNLP sourcePipe;
-    private StanfordCoreNLP targetPipe;
+    private static boolean forceRun = false;
 
-    /**
-     * Main class for word-level feature extraction.
-     * @param args 
-     */
-    public WordLevelFeatureExtractor(String[] args) {
+    public DocLevelFeatureExtractor(String[] args) {
         //Parse command line arguments:
-        System.out.println("\n********** Parsing arguments **********");
         this.parseArguments(args);
 
         //Setup main folders:
-        System.out.println("\n********** Setting up folders **********");
         workDir = System.getProperty("user.dir");
         input = workDir + File.separator + resourceManager.getString("input");
         output = workDir + File.separator + resourceManager.getString("output");
+
         System.out.println("Work dir: " + workDir);
         System.out.println("Input folder: " + input);
         System.out.println("Output folder: " + output);
@@ -74,13 +79,27 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
         //Measure initial time:
         long start = System.currentTimeMillis();
 
-        //Run word-level feature extractor:
-        WordLevelFeatureExtractor wfe = new WordLevelFeatureExtractor(args);
-        wfe.run();
+        //Run doc-level feature extractor:
+        DocLevelFeatureExtractor dfe = new DocLevelFeatureExtractor(args);
+        dfe.run();
 
         //Measure ending time:
         long end = System.currentTimeMillis();
         System.out.println("Processing completed in " + (end - start) / 1000 + " seconds.");
+    }
+
+    public void processListFiles() {
+        try {
+            BufferedReader sourceBR = new BufferedReader(new FileReader(this.getSourceFile()));
+            BufferedReader targetBR = new BufferedReader(new FileReader(this.getTargetFile()));
+            while (sourceBR.ready() && targetBR.ready()) {
+                listSourceFiles.add(sourceBR.readLine().trim());
+                listTargetFiles.add(targetBR.readLine().trim());
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void run() {
@@ -90,77 +109,108 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
         try {
             outWriter = new BufferedWriter(new FileWriter(outputPath));
         } catch (IOException ex) {
-            Logger.getLogger(WordLevelFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DocLevelFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         //Build input and output folders:
         System.out.println("\n********** Creating necessary folders **********");
         this.constructFolders();
 
-        //Lowercase input files:
-        //this.preProcess();
-
         //Produce missing resources:
         System.out.println("\n********** Producing missing resources **********");
-        MissingResourceGenerator missingGenerator = new MissingResourceGenerator(this);
+        DocLevelMissingResourceGenerator missingGenerator = new DocLevelMissingResourceGenerator(this);
         missingGenerator.produceMissingResources();
 
-        //Create processor factory:
-        System.out.println("\n********** Creating processors **********");
-        SentenceLevelProcessorFactory processorFactory = new SentenceLevelProcessorFactory(this);
-        
-        //Get required resource processors:
-        ResourceProcessor[][] resourceProcessors = processorFactory.getResourceProcessors();
-        ResourceProcessor[] resourceProcessorsSource = resourceProcessors[0];
-        ResourceProcessor[] resourceProcessorsTarget = resourceProcessors[1];
-
-        //Process sentences and calculate features:
-        System.out.println("\n********** Producing output **********");
+        this.processListFiles();
         try {
-            //Get readers of source and target files input:
-            BufferedReader sourceBR = new BufferedReader(new FileReader(this.getSourceFile()));
-            BufferedReader targetBR = new BufferedReader(new FileReader(this.getTargetFile()));
 
-            //Process each sentence pair:
-            int sentenceCounter = 0;
-            while (sourceBR.ready() && targetBR.ready()) {
-                //Create source and target sentence objects:
-                Sentence sourceSentence = new Sentence(sourceBR.readLine().trim(), sentenceCounter);
-                Sentence targetSentence = new Sentence(targetBR.readLine().trim(), sentenceCounter);
+            //Get next doc from sgm file (Doc class)
+            //Process sentences and calculate features:
+            System.out.println("\n********** Producing output **********");
+            int documentCounter = 0;
 
-                //Run processors over source sentence:
+            while (this.getNextSourceDoc(documentCounter) != null && this.getNextTargetDoc(documentCounter) != null) {
+                sourceFile = this.getNextSourceDoc(documentCounter);
+                targetFile = this.getNextTargetDoc(documentCounter);
+
+                //Pre-processing (tokenizer + truecase):
+                System.out.println("\n********** Pre-processing **********");
+                this.preProcess();
+
+                //Create processor factory:
+                System.out.println("\n********** Creating processors **********");
+                DocLevelProcessorFactory processorFactory = new DocLevelProcessorFactory(this);
+
+                //Get required resource processors:
+                ResourceProcessor[][] resourceProcessors = processorFactory.getResourceProcessors();
+                ResourceProcessor[] resourceProcessorsSource = resourceProcessors[0];
+                ResourceProcessor[] resourceProcessorsTarget = resourceProcessors[1];
+
+                //Get readers of source and target files input:
+                BufferedReader sourceBR = new BufferedReader(new FileReader(this.getSourceFile()));
+                BufferedReader targetBR = new BufferedReader(new FileReader(this.getTargetFile()));
+
+                ArrayList<Sentence> targetSentences = new ArrayList<>();
+                ArrayList<Sentence> sourceSentences = new ArrayList<>();
+                int sentenceCounter = 0;
+                while (sourceBR.ready() && targetBR.ready()) {
+                    //Create source and target sentence objects: 
+                    Sentence sourceSentence = new Sentence(sourceBR.readLine().trim(), sentenceCounter);
+                    Sentence targetSentence = new Sentence(targetBR.readLine().trim(), sentenceCounter);
+                    sourceSentences.add(sourceSentence);
+                    targetSentences.add(targetSentence);
+                    sentenceCounter++;
+
+                }
+
+                //Create source and target document objects:
+                Doc targetDocument = new Doc(targetSentences, documentCounter);
+                Doc sourceDocument = new Doc(sourceSentences, documentCounter);
+
+                //Run processors over source document:
                 for (ResourceProcessor processor : resourceProcessorsSource) {
-                    processor.processNextSentence(sourceSentence);
+                    processor.processNextDocument(sourceDocument);
                 }
 
-                //Run processors over target sentence:
+                //Run processors over target document:
                 for (ResourceProcessor processor : resourceProcessorsTarget) {
-                    processor.processNextSentence(targetSentence);
+                    processor.processNextDocument(targetDocument);
                 }
 
-                //Run features for sentence pair:
-                String featureValues = getFeatureManager().runFeatures(sourceSentence, targetSentence).trim();
+                documentCounter++;
+
+                //Run features for document pair:
+                String featureValues = getFeatureManager().runFeatures(sourceDocument, targetDocument).trim();
                 outWriter.write(featureValues);
                 outWriter.newLine();
 
-                //Increase sentence counter:
-                sentenceCounter++;
             }
 
-            //Save output:
+            //save output file:
             outWriter.close();
-            sourceBR.close();
-            targetBR.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(WordLevelFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(WordLevelFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
-    /**
-     * Constructs the folders required by word-level quest.
-     */
+    public String getNextSourceDoc(int documentCounter) {
+        if (documentCounter < listSourceFiles.size()) {
+            return listSourceFiles.get(documentCounter);
+        }
+        return null;
+
+    }
+
+    public String getNextTargetDoc(int documentCounter) {
+        if (documentCounter < listSourceFiles.size()) {
+            return listTargetFiles.get(documentCounter);
+        }
+        return null;
+
+    }
+
     public void constructFolders() {
         //Create input folders:
         File f = new File(input);
@@ -168,19 +218,19 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
             f.mkdirs();
         }
         System.out.println("Input folder created " + f.getPath());
-        
+
         f = new File(input + File.separator + getSourceLang());
         if (!f.exists()) {
             f.mkdirs();
         }
         System.out.println("Input folder created " + f.getPath());
-        
+
         f = new File(input + File.separator + getTargetLang());
         if (!f.exists()) {
             f.mkdirs();
         }
         System.out.println("Input folder created " + f.getPath());
-        
+
         f = new File(input + File.separator + getTargetLang() + File.separator + "temp");
         if (!f.exists()) {
             f.mkdirs();
@@ -196,15 +246,13 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
         System.out.println("Output folder created " + f.getPath());
     }
 
-    /**
-     * Preprocesses the input files.
-     */
     private void preProcess() {
         //Create input and output paths:
         String sourceInputFolder = input + File.separator + getSourceLang();
         String targetInputFolder = input + File.separator + getTargetLang();
-
+        System.out.println(sourceInputFolder);
         File origSourceFile = new File(getSourceFile());
+        //System.out.println(getSourceFile());
         File inputSourceFile = new File(sourceInputFolder + File.separator + origSourceFile.getName());
         File origTargetFile = new File(getTargetFile());
         File inputTargetFile = new File(targetInputFolder + File.separator + origTargetFile.getName());
@@ -212,54 +260,71 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
         //Create copy of original input files to input folder:
         try {
             System.out.println("Copying source input to: " + inputSourceFile.getPath());
-            System.out.println("copying target input to: " + inputTargetFile.getPath());
+            System.out.println("Copying target input to: " + inputTargetFile.getPath());
             this.copyFile(origSourceFile, inputSourceFile);
             this.copyFile(origTargetFile, inputTargetFile);
         } catch (IOException e) {
+            System.out.println(e);
             return;
         }
 
-        //Lowercase copied input files:
-        String sourceOutput = inputSourceFile + ".lower";
-        String targetOutput = inputTargetFile + ".lower";
-
-        try {
-            BufferedReader sourceBR = new BufferedReader(new FileReader(inputSourceFile));
-            BufferedReader targetBR = new BufferedReader(new FileReader(inputTargetFile));
-
-            BufferedWriter sourceBW = new BufferedWriter(new FileWriter(sourceOutput));
-            BufferedWriter targetBW = new BufferedWriter(new FileWriter(targetOutput));
-
-            while (sourceBR.ready()) {
-                String sourceSentence = sourceBR.readLine().trim();
-                String targetSentence = targetBR.readLine().trim();
-
-                sourceBW.write(sourceSentence.toLowerCase());
-                targetBW.write(targetSentence.toLowerCase());
-
-                sourceBW.newLine();
-                targetBW.newLine();
+        if (this.casing!=null){
+            origSourceFile = new File(getSourceFile());
+            inputSourceFile = new File(sourceInputFolder + File.separator + origSourceFile.getName());
+            origTargetFile = new File(getTargetFile());
+            inputTargetFile = new File(targetInputFolder + File.separator + origTargetFile.getName());
+            String truecasePath = "";
+            if (this.casing.equals("lower")){
+                truecasePath = resourceManager.getProperty("tools.lowercase.path") + " -q ";
             }
+            else if (this.casing.equals("true")){
+                truecasePath = resourceManager.getString("tools.truecase.path") + " --model ";
+            }
+            Caser sourceCaser = new Caser(inputSourceFile.getPath(), inputSourceFile.getPath() + ".cased", truecasePath + resourceManager.getString("source.truecase.model"), forceRun);
+            Caser targetCaser = new Caser(inputTargetFile.getPath(), inputTargetFile.getPath() + ".cased", truecasePath + resourceManager.getString("target.truecase.model"), forceRun);
+            sourceCaser.run();
+            targetCaser.run();
+            this.sourceFile = sourceCaser.getCaser();
+            System.out.println("New source file: " + sourceFile);
+            this.targetFile = targetCaser.getCaser();
+            System.out.println("New target file: " + targetFile);
+        
+        }
 
-            sourceBR.close();
-            targetBR.close();
-            sourceBW.close();
-            targetBW.close();
+        if (tok) {
+            origSourceFile = new File(getSourceFile());
+            inputSourceFile = new File(sourceInputFolder + File.separator + origSourceFile.getName());
+            origTargetFile = new File(getTargetFile());
+            inputTargetFile = new File(targetInputFolder + File.separator + origTargetFile.getName());
+            
+            //run tokenizer for source
+            System.out.println("Running tokenizer for source file...");
 
+            //verify language support
+            String src_abbr = this.getResourceManager().getString("source.tokenizer.lang");
+
+            Tokenizer sourceTok = new Tokenizer(inputSourceFile.getPath(), inputSourceFile.getPath() + ".tok", resourceManager.getString("tools.tokenizer.path"), src_abbr, forceRun);
+
+            sourceTok.run();
             //Update input paths:
-            this.sourceFile = sourceOutput;
-            this.targetFile = targetOutput;
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(WordLevelFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(WordLevelFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
+            this.sourceFile = sourceTok.getTok();
+            System.out.println("New source file: " + sourceFile);
+
+            //run tokenizer for target
+            System.out.println("Running tokenizer for source file...");
+
+            //verify language support
+            String tgt_abbr = this.getResourceManager().getString("target.tokenizer.lang");
+
+            Tokenizer targetTok = new Tokenizer(inputTargetFile.getPath(), inputTargetFile.getPath() + ".tok", resourceManager.getString("tools.tokenizer.path"), tgt_abbr, forceRun);
+
+            targetTok.run();
+            //Update input paths:
+            targetFile = targetTok.getTok();
+            System.out.println("New target file: " + targetFile);
         }
     }
 
-    /**
-     * Parses the arguments provided in the command line.
-     * @param args 
-     */
     public void parseArguments(String[] args) {
 
         Option help = OptionBuilder.withArgName("help").hasArg()
@@ -268,7 +333,7 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
 
         Option input = OptionBuilder.withArgName("input").hasArgs(3)
                 .isRequired(true).create("input");
-        
+
         Option alignments = OptionBuilder.withArgName("alignments").hasArgs(1)
                 .withDescription("alignments between source and target input files")
                 .isRequired(false).create("alignments");
@@ -283,26 +348,34 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
                 .withDescription("GlassBox input files").hasOptionalArgs(2)
                 .hasArgs(3).create("gb");
 
-        Option mode = OptionBuilder
-                .withArgName("mode")
-                .withDescription("blackbox features, glassbox features or both")
-                .hasArgs(1).isRequired(true).create("mode");
-
         Option config = OptionBuilder
                 .withArgName("config")
                 .withDescription("cofiguration file")
                 .hasArgs(1).isRequired(false).create("config");
+        
+        Option featureset = OptionBuilder
+                .withArgName("featureset")
+                .withDescription("feature set cofiguration file")
+                .hasArgs(1).isRequired(false).create("featureset");
+
+        Option tokenize = OptionBuilder.withArgName("tok").hasArgs(0)
+                .isRequired(false).create("tok");
+        
+        Option casing = OptionBuilder.withArgName("case").hasArgs(1)
+                .isRequired(false).create("case");
 
         CommandLineParser parser = new PosixParser();
         Options options = new Options();
         options.addOption(help);
         options.addOption(input);
         options.addOption(alignments);
-        options.addOption(mode);
+        options.addOption(featureset);
         options.addOption(lang);
         options.addOption(feat);
         options.addOption(gb);
         options.addOption(config);
+        options.addOption(tokenize);
+        options.addOption(casing);
 
         try {
             CommandLine line = parser.parse(options, args);
@@ -318,6 +391,15 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
                 sourceFile = files[0];
                 targetFile = files[1];
             }
+            
+            if (line.hasOption("case")) {
+                this.casing = line.getOptionValue("case");
+                if (this.casing.equals("no")){
+                    this.casing=null;
+                }
+            } else {
+                this.casing = null;
+            }
 
             if (line.hasOption("lang")) {
                 String[] langs = line.getOptionValues("lang");
@@ -328,11 +410,13 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
                 targetLang = getResourceManager().getString("targetLang.default");
             }
 
-            if (line.hasOption("mode")) {
-                String[] modeOpt = line.getOptionValues("mode");
-                setMod(modeOpt[0].trim());
-                configPath = getResourceManager().getString("featureConfig." + getMod());
-                featureManager = new WordLevelFeatureManager(configPath);
+            if (line.hasOption("featureset")) {
+                configPath = line.getOptionValue("featureset");;
+                featureManager = new DocLevelFeatureManager(configPath);
+            }
+            else{
+                configPath = getResourceManager().getString("featureConfig");
+                featureManager = new DocLevelFeatureManager(configPath);
             }
 
             if (line.hasOption("feat")) {
@@ -342,23 +426,20 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
             } else {
                 getFeatureManager().setFeatureList("all");
             }
-            
+
             if (line.hasOption("alignments")) {
                 String path = line.getOptionValue("alignments");
                 this.resourceManager.put("alignments.file", path);
             }
+
+            tok = line.hasOption("tok");
+            
 
         } catch (ParseException exp) {
             System.out.println("Unexpected exception:" + exp.getMessage());
         }
     }
 
-    /**
-     * Copies a file from a source to a target destination.
-     * @param sourceFile Source file to copy.
-     * @param destFile Destination in which to copy the source file.
-     * @throws IOException 
-     */
     private void copyFile(File sourceFile, File destFile) throws IOException {
         if (sourceFile.equals(destFile)) {
             return;
@@ -422,7 +503,7 @@ public class WordLevelFeatureExtractor implements FeatureExtractorInterface{
     /**
      * @return the featureManager
      */
-    public WordLevelFeatureManager getFeatureManager() {
+    public DocLevelFeatureManager getFeatureManager() {
         return featureManager;
     }
 
