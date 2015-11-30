@@ -108,7 +108,37 @@ public class DocLevelProcessorFactory {
             sourceProcessors.add(parsingSource);
             targetProcessors.add(parsingTarget);
         }
+        if (requirements.contains("source.topic.distribution")) {
+            //Get TM processors:
+            TopicDistributionProcessor topicDistProcessor = this.getSourceTopicDistributionProcessor();
 
+            //Add them to processor vectors:
+            sourceProcessors.add(topicDistProcessor);
+        }
+        
+        if (requirements.contains("target.topic.distribution")) {
+            //Get TM processors:
+            TopicDistributionProcessor topicDistProcessor = this.getTargetTopicDistributionProcessor();
+
+            //Add them to processor vectors:
+            targetProcessors.add(topicDistProcessor);
+        }
+
+        if (requirements.contains("source.bparser.grammar")) {
+            //Get TM processors:
+            BParserProcessor bParserProcessor = this.getSourceBParserProcessor();
+
+            //Add them to processor vectors:
+            sourceProcessors.add(bParserProcessor);
+        }
+        
+        if (requirements.contains("target.bparser.grammar")) {
+            //Get TM processors:
+            BParserProcessor bParserProcessor = this.getTargetBParserProcessor();
+
+            //Add them to processor vectors:
+            targetProcessors.add(bParserProcessor);
+        }
 
         //Transform array lists in vectors:
         ResourceProcessor[] sourceProcessorVector = new ResourceProcessor[sourceProcessors.size()];
@@ -340,6 +370,44 @@ public class DocLevelProcessorFactory {
 
         //Return processors:
         return pplProcTarget;
+    }
+    
+    private TopicDistributionProcessor getSourceTopicDistributionProcessor() {
+        String topicDistributionFile = this.fe.getResourceManager().getString("source.topic.distribution");
+
+        TopicDistributionProcessor topicDistProc = new TopicDistributionProcessor(topicDistributionFile, "source.topic.distribution");
+
+        //Return processors:
+        return topicDistProc;
+    }
+    
+    private TopicDistributionProcessor getTargetTopicDistributionProcessor() {
+        String topicDistributionFile = this.fe.getResourceManager().getString("target.topic.distribution");
+
+        TopicDistributionProcessor topicDistProc = new TopicDistributionProcessor(topicDistributionFile, "target.topic.distribution");
+
+        //Return processors:
+        return topicDistProc;
+    }
+
+    private BParserProcessor getSourceBParserProcessor() {
+        BParserProcessor bParserProc = null;
+
+        bParserProc = new BParserProcessor();
+        bParserProc.initialize(this.fe.getResourceManager().getString("source.bparser.grammar"), this.fe.getResourceManager(), "source");
+        
+        //Return processors:
+        return bParserProc;
+    }
+    
+    private BParserProcessor getTargetBParserProcessor() {
+        BParserProcessor bParserProc = null;
+
+        bParserProc = new BParserProcessor();
+        bParserProc.initialize(this.fe.getResourceManager().getString("target.bparser.grammar"), this.fe.getResourceManager(), "target");
+        
+        //Return processors:
+        return bParserProc;
     }
     
      /**

@@ -82,7 +82,16 @@ public class TopicDistributionProcessor extends ResourceProcessor {
     }
 
     @Override
-    public void processNextDocument(Doc source) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void processNextDocument(Doc doc) {
+        try {
+            String line = bufferedReader.readLine();
+	    Float[] topicVector = parseLine( line );
+	    doc.setValue( "topicDistribution", topicVector );
+	} catch ( NullPointerException e ) {
+	    System.err.println( "NullPointerException: The topic distribution file does not contain so many lines!\nIt is probably shorter than the source and/or the target text files.\nI am trying to process the file " + this.topicDistributionFile + ", line number " + ( doc.getIndex() + 1 ) );
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
