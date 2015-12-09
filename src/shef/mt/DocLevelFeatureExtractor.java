@@ -127,6 +127,11 @@ public class DocLevelFeatureExtractor implements FeatureExtractor {
             //Process sentences and calculate features:
             System.out.println("\n********** Producing output **********");
             int documentCounter = 0;
+            
+            //Create processor factory:
+            System.out.println("\n********** Creating processors **********");
+            DocLevelProcessorFactory processorFactory = new DocLevelProcessorFactory(this);
+
 
             while (this.getNextSourceDoc(documentCounter) != null && this.getNextTargetDoc(documentCounter) != null) {
                 sourceFile = this.getNextSourceDoc(documentCounter);
@@ -135,11 +140,10 @@ public class DocLevelFeatureExtractor implements FeatureExtractor {
                 //Pre-processing (tokenizer + truecase):
                 System.out.println("\n********** Pre-processing **********");
                 this.preProcess();
-
-                //Create processor factory:
-                System.out.println("\n********** Creating processors **********");
-                DocLevelProcessorFactory processorFactory = new DocLevelProcessorFactory(this);
-
+                
+                //run processors per document
+                processorFactory.execProcessors();
+                
                 //Get required resource processors:
                 ResourceProcessor[][] resourceProcessors = processorFactory.getResourceProcessors();
                 ResourceProcessor[] resourceProcessorsSource = resourceProcessors[0];
@@ -168,6 +172,7 @@ public class DocLevelFeatureExtractor implements FeatureExtractor {
 
                 //Run processors over source document:
                 for (ResourceProcessor processor : resourceProcessorsSource) {
+                    System.out.println(processor);
                     processor.processNextDocument(sourceDocument);
                 }
 

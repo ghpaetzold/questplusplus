@@ -11,6 +11,12 @@ public class DocLevelProcessorFactory {
     private ResourceProcessor[][] resourceProcessors;
 
     private FeatureExtractor fe;
+    
+    private HashSet<String> requirements;
+    
+    private ArrayList<ResourceProcessor> sourceProcessors;
+    
+    private ArrayList<ResourceProcessor> targetProcessors;
 
     public DocLevelProcessorFactory(FeatureExtractor fe) {
         //Setup initial instance of ResourceProcessor matrix:
@@ -20,11 +26,11 @@ public class DocLevelProcessorFactory {
         this.fe = fe;
 
         //Get required resources:
-        HashSet<String> requirements = fe.getFeatureManager().getRequiredResources();
+        requirements = fe.getFeatureManager().getRequiredResources();
 
         //Allocate source and target processor vectors:
-        ArrayList<ResourceProcessor> sourceProcessors = new ArrayList<>();
-        ArrayList<ResourceProcessor> targetProcessors = new ArrayList<>();
+        sourceProcessors = new ArrayList<>();
+        targetProcessors = new ArrayList<>();
 
         if (requirements.contains("giza.path")) {
             //Get alignment processors:
@@ -36,27 +42,9 @@ public class DocLevelProcessorFactory {
             
         }
         
-        if (requirements.contains("source.postagger") || requirements.contains("target.postagger")) {
-            //Get POSTagger processors:
-            POSTaggerProcessor[] posTaggerProcessors = this.getPOSTaggerProcessors();
-            POSTaggerProcessor posTaggerProcSource = posTaggerProcessors[0];
-            POSTaggerProcessor posTaggerProcTarget = posTaggerProcessors[1];
-
-            //Add them to processor vectors:
-            sourceProcessors.add(posTaggerProcSource);
-            targetProcessors.add(posTaggerProcTarget);
-        }
+       
         
-        if (requirements.contains("discrep")) {
-            //Get stopwords processors:
-            DiscourseRepetition[] discRepProcessors = this.getDiscourseRepetitionProcessors();
-            DiscourseRepetition discRepProcSource = discRepProcessors[0];
-            DiscourseRepetition discRepProcTarget = discRepProcessors[1];
-
-            //Add them to processor vectors:
-            sourceProcessors.add(discRepProcSource);
-            targetProcessors.add(discRepProcTarget);
-        }
+        
         
         
         if (requirements.contains("source.ngram") || requirements.contains("target.ngram")) {
@@ -78,25 +66,7 @@ public class DocLevelProcessorFactory {
             targetProcessors.add(ngramProcessorTarget);
         }
 
-        if (requirements.contains("source.lm") || requirements.contains("target.lm")) {
-            //Run SRILM on language models:
-            PPLProcessor[] pplProcessors = this.getLMProcessors();
-            PPLProcessor pplProcSource = pplProcessors[0];
-            PPLProcessor pplProcTarget = pplProcessors[1];
-
-            //Add them to processor vectors:
-            sourceProcessors.add(pplProcSource);
-            targetProcessors.add(pplProcTarget);
-        }
-        
-        if (requirements.contains("target.poslm")) {
-            //Run SRILM on language models:
-            //Run SRILM on language models:
-            PPLProcessor pplProcTarget = this.getPOSLMProcessor();
-
-            //Add them to processor vectors:
-            targetProcessors.add(pplProcTarget);
-        }
+       
 
         if (requirements.contains("postags") || requirements.contains("depcounts")) {
             //Get parsing processors:
@@ -140,14 +110,7 @@ public class DocLevelProcessorFactory {
             targetProcessors.add(bParserProcessor);
         }
 
-        //Transform array lists in vectors:
-        ResourceProcessor[] sourceProcessorVector = new ResourceProcessor[sourceProcessors.size()];
-        ResourceProcessor[] targetProcessorVector = new ResourceProcessor[targetProcessors.size()];
-        sourceProcessorVector = (ResourceProcessor[]) sourceProcessors.toArray(sourceProcessorVector);
-        targetProcessorVector = (ResourceProcessor[]) targetProcessors.toArray(targetProcessorVector);
-
-        //Return vectors:
-        this.resourceProcessors = new ResourceProcessor[][]{sourceProcessorVector, targetProcessorVector};
+        
     }
 
     private ParsingProcessor[] getParsingProcessors(HashSet<String> requirements) {
@@ -410,7 +373,61 @@ public class DocLevelProcessorFactory {
         return bParserProc;
     }
     
-     /**
+    
+    public void execProcessors(){
+        if (requirements.contains("source.postagger") || requirements.contains("target.postagger")) {
+            //Get POSTagger processors:
+            POSTaggerProcessor[] posTaggerProcessors = this.getPOSTaggerProcessors();
+            POSTaggerProcessor posTaggerProcSource = posTaggerProcessors[0];
+            POSTaggerProcessor posTaggerProcTarget = posTaggerProcessors[1];
+
+            //Add them to processor vectors:
+            sourceProcessors.add(posTaggerProcSource);
+            targetProcessors.add(posTaggerProcTarget);
+        }
+        
+        if (requirements.contains("source.lm") || requirements.contains("target.lm")) {
+            //Run SRILM on language models:
+            PPLProcessor[] pplProcessors = this.getLMProcessors();
+            PPLProcessor pplProcSource = pplProcessors[0];
+            PPLProcessor pplProcTarget = pplProcessors[1];
+
+            //Add them to processor vectors:
+            sourceProcessors.add(pplProcSource);
+            targetProcessors.add(pplProcTarget);
+        }
+        
+        if (requirements.contains("target.poslm")) {
+            //Run SRILM on language models:
+            //Run SRILM on language models:
+            PPLProcessor pplProcTarget = this.getPOSLMProcessor();
+
+            //Add them to processor vectors:
+            targetProcessors.add(pplProcTarget);
+        }
+        
+        if (requirements.contains("discrep")) {
+            //Get stopwords processors:
+            DiscourseRepetition[] discRepProcessors = this.getDiscourseRepetitionProcessors();
+            DiscourseRepetition discRepProcSource = discRepProcessors[0];
+            DiscourseRepetition discRepProcTarget = discRepProcessors[1];
+
+            //Add them to processor vectors:
+            sourceProcessors.add(discRepProcSource);
+            targetProcessors.add(discRepProcTarget);
+        }
+        
+        //Transform array lists in vectors:
+        ResourceProcessor[] sourceProcessorVector = new ResourceProcessor[sourceProcessors.size()];
+        ResourceProcessor[] targetProcessorVector = new ResourceProcessor[targetProcessors.size()];
+        sourceProcessorVector = (ResourceProcessor[]) sourceProcessors.toArray(sourceProcessorVector);
+        targetProcessorVector = (ResourceProcessor[]) targetProcessors.toArray(targetProcessorVector);
+
+        //Return vectors:
+        this.resourceProcessors = new ResourceProcessor[][]{sourceProcessorVector, targetProcessorVector};
+    }
+    
+         /**
      * @return the resourceProcessors
      */
     public ResourceProcessor[][] getResourceProcessors() {
