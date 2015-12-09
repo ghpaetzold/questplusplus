@@ -9,6 +9,8 @@ import shef.mt.FeatureExtractor;
 public class DocLevelProcessorFactory {
 
     private ResourceProcessor[][] resourceProcessors;
+    
+    private ResourceProcessor[][] docResourceProcessors;
 
     private FeatureExtractor fe;
     
@@ -17,6 +19,10 @@ public class DocLevelProcessorFactory {
     private ArrayList<ResourceProcessor> sourceProcessors;
     
     private ArrayList<ResourceProcessor> targetProcessors;
+    
+    private ArrayList<ResourceProcessor> docSourceProcessors;
+    
+    private ArrayList<ResourceProcessor> docTargetProcessors;
 
     public DocLevelProcessorFactory(FeatureExtractor fe) {
         //Setup initial instance of ResourceProcessor matrix:
@@ -110,7 +116,14 @@ public class DocLevelProcessorFactory {
             targetProcessors.add(bParserProcessor);
         }
 
-        
+        //Transform array lists in vectors:
+        ResourceProcessor[] sourceProcessorVector = new ResourceProcessor[sourceProcessors.size()];
+        ResourceProcessor[] targetProcessorVector = new ResourceProcessor[targetProcessors.size()];
+        sourceProcessorVector = (ResourceProcessor[]) sourceProcessors.toArray(sourceProcessorVector);
+        targetProcessorVector = (ResourceProcessor[]) targetProcessors.toArray(targetProcessorVector);
+
+        //Return vectors:
+        this.resourceProcessors = new ResourceProcessor[][]{sourceProcessorVector, targetProcessorVector};
     }
 
     private ParsingProcessor[] getParsingProcessors(HashSet<String> requirements) {
@@ -375,15 +388,20 @@ public class DocLevelProcessorFactory {
     
     
     public void execProcessors(){
+        //Allocate source and target processor vectors:
+        docSourceProcessors = new ArrayList<>();
+        docTargetProcessors = new ArrayList<>();
+
+        
         if (requirements.contains("source.postagger") || requirements.contains("target.postagger")) {
             //Get POSTagger processors:
             POSTaggerProcessor[] posTaggerProcessors = this.getPOSTaggerProcessors();
             POSTaggerProcessor posTaggerProcSource = posTaggerProcessors[0];
             POSTaggerProcessor posTaggerProcTarget = posTaggerProcessors[1];
 
-            //Add them to processor vectors:
-            sourceProcessors.add(posTaggerProcSource);
-            targetProcessors.add(posTaggerProcTarget);
+            //Add them to processor vectors
+            docSourceProcessors.add(posTaggerProcSource);
+            docTargetProcessors.add(posTaggerProcTarget);
         }
         
         if (requirements.contains("source.lm") || requirements.contains("target.lm")) {
@@ -393,8 +411,8 @@ public class DocLevelProcessorFactory {
             PPLProcessor pplProcTarget = pplProcessors[1];
 
             //Add them to processor vectors:
-            sourceProcessors.add(pplProcSource);
-            targetProcessors.add(pplProcTarget);
+            docSourceProcessors.add(pplProcSource);
+            docTargetProcessors.add(pplProcTarget);
         }
         
         if (requirements.contains("target.poslm")) {
@@ -403,7 +421,7 @@ public class DocLevelProcessorFactory {
             PPLProcessor pplProcTarget = this.getPOSLMProcessor();
 
             //Add them to processor vectors:
-            targetProcessors.add(pplProcTarget);
+            docTargetProcessors.add(pplProcTarget);
         }
         
         if (requirements.contains("discrep")) {
@@ -413,18 +431,18 @@ public class DocLevelProcessorFactory {
             DiscourseRepetition discRepProcTarget = discRepProcessors[1];
 
             //Add them to processor vectors:
-            sourceProcessors.add(discRepProcSource);
-            targetProcessors.add(discRepProcTarget);
+            docSourceProcessors.add(discRepProcSource);
+            docTargetProcessors.add(discRepProcTarget);
         }
         
         //Transform array lists in vectors:
-        ResourceProcessor[] sourceProcessorVector = new ResourceProcessor[sourceProcessors.size()];
-        ResourceProcessor[] targetProcessorVector = new ResourceProcessor[targetProcessors.size()];
-        sourceProcessorVector = (ResourceProcessor[]) sourceProcessors.toArray(sourceProcessorVector);
-        targetProcessorVector = (ResourceProcessor[]) targetProcessors.toArray(targetProcessorVector);
+        ResourceProcessor[] sourceProcessorVector = new ResourceProcessor[docSourceProcessors.size()];
+        ResourceProcessor[] targetProcessorVector = new ResourceProcessor[docTargetProcessors.size()];
+        sourceProcessorVector = (ResourceProcessor[]) docSourceProcessors.toArray(sourceProcessorVector);
+        targetProcessorVector = (ResourceProcessor[]) docTargetProcessors.toArray(targetProcessorVector);
 
         //Return vectors:
-        this.resourceProcessors = new ResourceProcessor[][]{sourceProcessorVector, targetProcessorVector};
+        this.docResourceProcessors = new ResourceProcessor[][]{sourceProcessorVector, targetProcessorVector};
     }
     
          /**
@@ -432,5 +450,9 @@ public class DocLevelProcessorFactory {
      */
     public ResourceProcessor[][] getResourceProcessors() {
         return resourceProcessors;
+    }
+    
+    public ResourceProcessor[][] getDocResourceProcessors() {
+        return docResourceProcessors;
     }
 }
