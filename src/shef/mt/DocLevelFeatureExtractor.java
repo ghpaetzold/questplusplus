@@ -131,6 +131,13 @@ public class DocLevelFeatureExtractor implements FeatureExtractor {
             //Create processor factory:
             System.out.println("\n********** Creating processors **********");
             DocLevelProcessorFactory processorFactory = new DocLevelProcessorFactory(this);
+            
+            //Get required resource processors:
+            ResourceProcessor[][] resourceProcessors = processorFactory.getResourceProcessors();
+            ResourceProcessor[] resourceProcessorsSource = resourceProcessors[0];
+            ResourceProcessor[] resourceProcessorsTarget = resourceProcessors[1];
+
+            
 
 
             while (this.getNextSourceDoc(documentCounter) != null && this.getNextTargetDoc(documentCounter) != null) {
@@ -145,10 +152,11 @@ public class DocLevelFeatureExtractor implements FeatureExtractor {
                 processorFactory.execProcessors();
                 
                 //Get required resource processors:
-                ResourceProcessor[][] resourceProcessors = processorFactory.getResourceProcessors();
-                ResourceProcessor[] resourceProcessorsSource = resourceProcessors[0];
-                ResourceProcessor[] resourceProcessorsTarget = resourceProcessors[1];
+                ResourceProcessor[][] docResourceProcessors = processorFactory.getDocResourceProcessors();
+                ResourceProcessor[] docResourceProcessorsSource = docResourceProcessors[0];
+                ResourceProcessor[] docResourceProcessorsTarget = docResourceProcessors[1];
 
+                
                 //Get readers of source and target files input:
                 BufferedReader sourceBR = new BufferedReader(new FileReader(this.getSourceFile()));
                 BufferedReader targetBR = new BufferedReader(new FileReader(this.getTargetFile()));
@@ -172,12 +180,21 @@ public class DocLevelFeatureExtractor implements FeatureExtractor {
 
                 //Run processors over source document:
                 for (ResourceProcessor processor : resourceProcessorsSource) {
-                    System.out.println(processor);
                     processor.processNextDocument(sourceDocument);
                 }
 
                 //Run processors over target document:
                 for (ResourceProcessor processor : resourceProcessorsTarget) {
+                    processor.processNextDocument(targetDocument);
+                }
+                
+                //Run processors over source document:
+                for (ResourceProcessor processor : docResourceProcessorsSource) {
+                    processor.processNextDocument(sourceDocument);
+                }
+
+                //Run processors over target document:
+                for (ResourceProcessor processor : docResourceProcessorsTarget) {
                     processor.processNextDocument(targetDocument);
                 }
 

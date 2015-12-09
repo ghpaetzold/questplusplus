@@ -20,6 +20,7 @@ public class BParserProcessor extends ResourceProcessor {
 	
 	BParser parser;
 	boolean tokenizer;
+        
 	
 	/***
 	 * This function initializes a parser object with the desired grammar
@@ -70,8 +71,14 @@ public class BParserProcessor extends ResourceProcessor {
 	}
 
     @Override
-    public void processNextDocument(Doc source) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void processNextDocument(Doc doc) {
+        //ask the parser to perform a parse of the document
+        
+         
+        for (int i=0;i<doc.getSentences().size();i++){
+            this.processNextSentence(doc.getSentence(i));
+        }
+
     }
 	
 	

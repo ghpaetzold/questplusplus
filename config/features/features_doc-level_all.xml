@@ -58,9 +58,16 @@
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1092" description="" index="1092"/>    
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1093" description="" index="1093"/>    
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1094" description="" index="1094"/>    
-    <disablefeature class="shef.mt.features.impl.doclevel.DocLevelFeature1101" description="" index="1101"/>    
-    <disablefeature class="shef.mt.features.impl.doclevel.DocLevelFeature1102" description="" index="1102"/>    
-    <disablefeature class="shef.mt.features.impl.doclevel.DocLevelFeature1115" description="" index="1115"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1300" description="" index="1300"/> 
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1301" description="" index="1301"/> 
+    <disablefeature class="shef.mt.features.impl.doclevel.DocLevelFeature9300" description="" index="9300"/> 
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9301" description="" index="9301"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9302" description="" index="9302"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9303" description="" index="9303"/>
+    <disablefeature class="shef.mt.features.impl.doclevel.DocLevelFeature9304" description="" index="9304"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9305" description="" index="9305"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9306" description="" index="9306"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9307" description="" index="9307"/>         
     <disablefeature class="shef.mt.features.impl.doclevel.DocLevelFeature9800" description="" index="9800"/>
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9801" description="" index="9801"/>
     <feature class="shef.mt.features.impl.doclevel.DocLevelFeature9989" description="lemma repetition target" index="9989"/>
