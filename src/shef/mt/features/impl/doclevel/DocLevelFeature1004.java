@@ -28,9 +28,8 @@ public class DocLevelFeature1004 extends DocLevelFeature {
         int sourceTok = 0;
         int targetTok = 0;
         for(int i=0;i<source.getSentences().size();i++){
-            Feature1001 sentFeatureSource = new Feature1001();
             sourceTok+=source.getSentence(i).getNoTokens();
-            targetTok+=source.getSentence(i).getNoTokens();
+            targetTok+=target.getSentence(i).getNoTokens();
         }
         if (sourceTok == 0) {
             setValue(0);

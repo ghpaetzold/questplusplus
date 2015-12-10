@@ -30,7 +30,7 @@ public class DocLevelFeature1003 extends DocLevelFeature {
         int targetTok = 0;
         for(int i=0;i<source.getSentences().size();i++){
             sourceTok+=source.getSentence(i).getNoTokens();
-            targetTok+=source.getSentence(i).getNoTokens();
+            targetTok+=target.getSentence(i).getNoTokens();
         }
         if (targetTok == 0) {
             setValue(0);
