@@ -11,6 +11,7 @@ public class Doc {
         private ArrayList<Sentence> sentences = new ArrayList<>();
 	private int index;
         private HashMap<String, Object> values;
+        private String document;
 
 	public Doc(Paragraph[] p, int index) {
 		this.paragraphs=p;
@@ -55,5 +56,14 @@ public class Doc {
              return Float.NaN;
            }
            return values.get(key);
+        }
+        
+        public String getText() {
+            document="";
+            for (int i=0; i<sentences.size();i++){
+                document=document+sentences.get(i).getText()+"\n";
+            }
+            System.out.println(document);
+            return document;
         }
 }
