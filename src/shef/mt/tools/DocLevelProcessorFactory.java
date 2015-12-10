@@ -37,21 +37,6 @@ public class DocLevelProcessorFactory {
         //Allocate source and target processor vectors:
         sourceProcessors = new ArrayList<>();
         targetProcessors = new ArrayList<>();
-
-        if (requirements.contains("giza.path")) {
-            //Get alignment processors:
-            GizaProcessor gizaProcessor = this.getGizaProcessor();
-
-            //Add them to processor vectors:
-            targetProcessors.add(gizaProcessor);
-            sourceProcessors.add(gizaProcessor);
-            
-        }
-        
-       
-        
-        
-        
         
         if (requirements.contains("source.ngram") || requirements.contains("target.ngram")) {
             //Run SRILM on ngram count files:
@@ -392,6 +377,15 @@ public class DocLevelProcessorFactory {
         docSourceProcessors = new ArrayList<>();
         docTargetProcessors = new ArrayList<>();
 
+        if (requirements.contains("giza.path")) {
+            //Get alignment processors:
+            GizaProcessor gizaProcessor = this.getGizaProcessor();
+
+            //Add them to processor vectors:
+            docTargetProcessors.add(gizaProcessor);
+            docSourceProcessors.add(gizaProcessor);
+            
+        }
         
         if (requirements.contains("source.postagger") || requirements.contains("target.postagger")) {
             //Get POSTagger processors:
