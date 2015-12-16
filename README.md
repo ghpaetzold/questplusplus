@@ -1,2 +1,2 @@
-# questplusplus
+# QuEst++
 Pipelined quality estimation.
