@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1001" description="number of tokens in the source document" index="1001"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1002" description="number of tokens in the target document" index="1002"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1006" description="LM probability of source document" index="1006"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1009" description="LM probability of target document" index="1009"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1012" description="average source token length" index="1012"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1015" description="number of occurrences of the target word within the target hypothesis (averaged for all words in the hypothesis - type/token ratio)" index="1015"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1022" description="average number of translations per source word in the sentence (as given by IBM 1 table thresholded so that prob(t|s) > 0.2)" index="1022"/>    
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1036" description="average number of translations per source word in the sentence (as given by IBM 1 table thresholded so that prob(t|s) > 0.01) weighted by the inverse frequency of each word in the source corpus" index="1036"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1046" description="percentage of unigrams in quartile 1 of frequency (lower frequency words) in a corpus of the source language (SMT training corpus)" index="1046"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1049" description="percentage of unigrams in quartile 4 of frequency (higher frequency words) in a corpus of the source document" index="1049"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1050" description="percentage of bigrams in quartile 1 of frequency of source words in a corpus of the source language" index="1050"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1053" description="percentage of bigrams in quartile 4 of frequency of source words in a corpus of the source language" index="1053"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1054" description="percentage of trigrams in quartile 1 of frequency of source words in a corpus of the source language" index="1054"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1057" description="percentage of trigrams in quartile 4 of frequency of source words in a corpus of the source language" index="1057"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1058" description="percentage of unigrams in the source document seen in a corpus (SMT training corpus)" index="1058"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1074" description="number of punctuation marks in the source document" index="1074"/>
+    <feature class="shef.mt.features.impl.doclevel.DocLevelFeature1075" description="number of punctuation marks in the target document" index="1075"/>
+    
+</features>
