@@ -4,7 +4,7 @@ Pipelined quality estimation.
 ## Build
 Requires `jdk 1.8`:
   
-  `ant "-Dplatforms.JDK_1.8.home=/usr/lib/jvm/java-8-<<version>>" compile`
+  `ant "-Dplatforms.JDK_1.8.home=/usr/lib/jvm/java-8-<<version>>"`
   
 This will create all classes needed to use QuEst++.
 You can also use NetBeans to build the project.
