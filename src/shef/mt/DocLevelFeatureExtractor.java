@@ -206,6 +206,8 @@ public class DocLevelFeatureExtractor implements FeatureExtractor {
                 outWriter.newLine();
 
             }
+            System.out.println("Features will be saved in the following order:");
+            getFeatureManager().printFeatureIndeces();
 
             //save output file:
             outWriter.close();
