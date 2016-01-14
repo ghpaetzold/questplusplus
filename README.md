@@ -87,15 +87,15 @@ The option `-case` can be `no` (no casing), `true` (truecase) or `lower` (lowerc
  
 ## Configuration File
 
-**QuEst++** configuration file is a structure file that contains information about the language pairs, featureset and paths to resources and tools. Information about language pairs and features are showed below:
+**QuEst++** configuration file is a structured file (extension .properties) that contains information about the language pairs, featureset and paths to resources and tools. Information about language pairs and features are showed below:
 
 ```
-sourceLang.default ||   |   |   |   |   = spanish
-targetLang.default ||   |   |   |   |   = english
-output| |   |   |   |   |   |   |   = output/test
-input | |   |   |   |   |   |   |   = input/test
-resourcesPath | |   |   |   |   |   |   = ./lang_resources
-featureConfig | |   |   |   |   |   = config/features/features_blackbox_17.xml
+sourceLang.default	= spanish
+targetLang.default	= english
+output| |   |   |   |   = output/test
+input | |   |   |   |   = input/test
+resourcesPath | |   |   = ./lang_resources
+featureConfig | |   |   = config/features/features_blackbox_17.xml
 ```
 
 'sourceLang.default' - default source language
@@ -108,13 +108,13 @@ featureConfig | |   |   |   |   |   = config/features/features_blackbox_17.xml
 An example of parameters related to baseline features (for sentence and document level) are presented below:
 
 ```
-source.corpus                                                  = ./lang_resources/english/sample_corpus.en
-source.lm|  |   |   |   |   |   |   = ./lang_resources/english/english_lm.lm
-source.truecase.model                                  |= ./lang_resources/english/truecase-model.en
-source.ngram                                                   = ./lang_resources/english/english_ngram.ngram.clean
-source.tokenizer.lang                                   = en
-giza.path                   |   |   = ./lang_resources/giza/lex.e2s
-tools.ngram.path |  |   |   |   |   |   = /export/tools/srilm/bin/i686-m64/
+source.corpus               = ./lang_resources/english/sample_corpus.en
+source.lm|  |   |   |   |   = ./lang_resources/english/english_lm.lm
+source.truecase.model       = ./lang_resources/english/truecase-model.en
+source.ngram                = ./lang_resources/english/english_ngram.ngram.clean
+source.tokenizer.lang       = en
+giza.path                   = ./lang_resources/giza/lex.e2s
+tools.ngram.path |  |   |   = /export/tools/srilm/bin/i686-m64/
 ```
 'source.corpus' - path to a corpus of the source language
 'source.lm' - path to a language model file of the source language
@@ -125,6 +125,21 @@ tools.ngram.path |  |   |   |   |   |   = /export/tools/srilm/bin/i686-m64/
 'tools.ngram.path' - path to SRILM
 
 Similarly the config file contains parameters for the target language and for other resources and tools.
+
+## Feature Configuration File
+
+This is an XML file containing the features that should be extracted. This file is an input in the configuration file in the 'featureConfig' parameter. An example of this file is showed below:
+
+```
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<features>
+  <feature class="shef.mt.features.impl.bb.Feature1001" description="number of tokens in the source sentence" index="1001"/>
+  <feature class="shef.mt.features.impl.bb.Feature1002" description="number of tokens in the target sentence" index="1002"/>
+  <feature class="shef.mt.features.impl.bb.Feature1006" description="average source token length" index="1006"/>
+</features>
+```
+
+If this file is used, three features will be extracted by the Feature Extractor module. 
 
 -----------------------------------------------------------------------
 
