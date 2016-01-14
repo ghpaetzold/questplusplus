@@ -238,9 +238,6 @@ crfsuite: <<path-to-crfsuite>>
 Configuration files for some of the implemented algorithms are available in the `config`
 directory.
 
-
-
-
 ## Available algorithms
 
 Currently these are the algorithms available in the script:
@@ -314,8 +311,8 @@ http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LassoLarsC
 * CRF: Conditional Random Fields algorithm
 The parameters exposed in the "Parameters" section of the configuration file are:
   - variance
-
-
+  
+Documentation about these parameters is available at http://www.chokkan.org/software/crfsuite/  
 
 ## Parameter optimization
 
@@ -356,8 +353,7 @@ For more information about the GridSearchCV class please refer to
 http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV
 
 
-Feature selection
-=================
+## Feature selection
 
 Another possible option is to perform feature selection prior to the learning
 process. To set up a feature selection algorithm it is necessary to add the
@@ -413,45 +409,6 @@ The exposed parameters are:
 Documentation about the parameters and the method can be found at:
 http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html#sklearn.ensemble.ExtraTreesClassifie
 
+# License
 
-Learning with Gaussian Process
-==============================
-
-The function of this package of Python scripts is to build models for
-machine translation (MT) quality estimation (QE) using Gaussian Process. The input files are
-a set of instances with features that describe sentence pairs (source
-and target sentences). 
-
-Installation
-============
-
-The program itself does not require any installation step, it is just a matter
-of running it provided that all the dependencies are installed.
-
-
-Dependencies
-============
-
-All the machine learning algorithms are implemented by the GPy library.
-This program provides a command-line interface for some of the implementations
-contained in this toolkit. In order to be able to run, the program requires
-that the following packages are installed in your Python distribution:
-
-- GPy ( https://pypi.python.org/pypi/GPy )
-- sciPy ( http://scipy.org/Download )
-
-Running
-=======
-
-Note: Following commands are based on the assumption that all files are under 'learning' directory. 
-The program takes only one input parameter, the configuration file. For
-example:
-
-python src/GP_wmt_regression.py
-
-Please set the path in above script to the input files.
-e.g
-X = np.genfromtxt('train-79-features.qe.tsv')
-test_X = np.genfromtxt('test-79-features.qe.tsv')
-Y = np.genfromtxt('qe_reference_en-es.train.effort').reshape(-1, 1)
-test_Y = np.genfromtxt('qe_reference_en-es.test.effort').reshape(-1, 1)
+The license for the Java code and any python and shell scripts developed here is the very permissive BSD License (http://en.wikipedia.org/wiki/BSD_licenses). For pre-existing code and resources, e.g., scikit-learn, SRILM and Berkeley parser, please check their websites. 
