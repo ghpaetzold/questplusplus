@@ -1,8 +1,25 @@
 # QuEst++
-Pipelined quality estimation.
+An open source tool for pipelined Translation Quality Estimation. 
+
+QuEst++ has two independent modules: *Feature Extractor Module* (developed in Java) and *Machine Learning Module* (developed in Python). The *Feature Extractor Module* extracts features for word- sentence- and document-level QE. With the *Machine Learning Module* QE models for predicting the quality of words, sentences or documents can be trained using different machine learning algorithms. 
+
+**Cite QuEst++**
+  Lucia Specia, Gustavo Henrique Paetzold and Carolina Scarton (2015): Multi-level Translation Quality Prediction with QuEst++. In *Proceedings of ACL-IJCNLP 2015 System Demonstrations*, Denver, CO, pp. 118-125.
+  `@InProceedings{specia-paetzold-scarton:2015:ACL-IJCNLP-2015-System-Demonstrations,
+  author    = {Specia, Lucia  and  Paetzold, Gustavo  and  Scarton, Carolina},
+  title     = {Multi-level Translation Quality Prediction with QuEst++},
+  booktitle = {Proceedings of ACL-IJCNLP 2015 System Demonstrations},
+  month     = {July},
+  year      = {2015},
+  address   = {Beijing, China},
+  publisher = {Association for Computational Linguistics and The Asian Federation of Natural Language Processing},
+  pages     = {115--120},
+  url       = {http://www.aclweb.org/anthology/P15-4020}
+  }`
+
 
 ## System requirements
-QuEst++ has two independent modules: *Feature Extractor Module* (developed in Java) and *Machine Learning Module* (developed in Python). The Java and python required are:
+ The Java and python required are:
 
 1. [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)(JDK-1.8)
 2. [Python 2.7.6](https://www.python.org/downloads/) (or above - only 2.7 stable distributions)
@@ -16,7 +33,7 @@ For baseline feature extraction for sentence and document-level the following to
 
 **Please note:** 
 
-1. For Linux, **QuEst++** *Feature Extractor Module* works with both Oracle and OpenJDK distributions.
+1. For Linux, the *Feature Extractor Module* works with both Oracle and OpenJDK distributions.
 
 ## Build
 You can build using [NetBeans](https://netbeans.org/downloads/) (version 8.1) - recommended.
@@ -25,7 +42,7 @@ Alternatively, you can use [Apache Ant](http://ant.apache.org/bindownload.cgi) (
 
   `ant "-Dplatforms.JDK_1.8.home=/usr/lib/jvm/java-8-<<version>>"`
   
-The ant command will create all classes needed to use QuEst++ and a QuEst++.jar file.
+The ant command will create all classes needed to use **QuEst++** and a `QuEst++.jar` file.
 
 
 ## Basic Usage
