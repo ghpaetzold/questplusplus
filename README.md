@@ -2,7 +2,9 @@ QuEst++
 ================
 An open source tool for pipelined Translation Quality Estimation. 
 
-QuEst++ has two independent modules: *Feature Extractor Module* (developed in Java) and *Machine Learning Module* (developed in Python). This particular release was made possible through the [EXPERT](http://expert-itn.eu/) project. 
+This open source software is aimed at quality estimation (QE) for machine translation. It was developed by Professor Lucia Specia's team at the University of Sheffield and includes contributions from a number of researchers. This particular release was made possible through the [EXPERT](http://expert-itn.eu/) project.
+
+**QuEst++** is a new release of [**QuEst**](https://github.com/lspecia/quest) and it has two independent modules: *Feature Extractor Module* (developed in Java) and *Machine Learning Module* (developed in Python).  
 
 -----------------------------------------------------------------------
 
@@ -59,13 +61,22 @@ The ant command will create all classes needed to use **QuEst++** and a `QuEst++
 
 ## Basic Usage
 1. Word-Level:
-  `java -cp QuEst++.jar:lib/* shef.mt.WordLevelFeatureExtractor -lang english spanish -input input/source.word-level.en input/target.word-level.es -alignments lang_resources/alignments/alignments.word-level.out -config config/config.word-level.properties`
+
+```
+java -cp QuEst++.jar:lib/* shef.mt.WordLevelFeatureExtractor -lang english spanish -input input/source.word-level.en input/target.word-level.es -alignments lang_resources/alignments/alignments.word-level.out -config config/config.word-level.properties
+```
 
 2. Sentence-level:
-  `java -cp QuEst++.jar shef.mt.SentenceFeatureExtractor -tok -case true -lang english spanish -input input/source.sent-level.en input/target.sent-level.es -config config/config.sentence-level.properties`
+
+```
+java -cp QuEst++.jar shef.mt.SentenceLevelFeatureExtractor -tok -case true -lang english spanish -input input/source.sent-level.en input/target.sent-level.es -config config/config.sentence-level.properties
+```
 
 1. Document-level:
-  `java -cp QuEst++.jar shef.mt.DocLevelFeatureExtractor -tok -case true -lang english spanish -input input/source.doc-level.en input/target.doc-level.es -config config/config.doc-level.properties`
+
+```
+java -cp QuEst++.jar shef.mt.DocLevelFeatureExtractor -tok -case true -lang english spanish -input input/source.doc-level.en input/target.doc-level.es -config config/config.doc-level.properties
+```
 
 Omit the option `-tok` if the input files are already tokenised.
 The option `-case` can be `no` (no casing), `true` (truecase) or `lower` (lowercase)
@@ -76,7 +87,44 @@ The option `-case` can be `no` (no casing), `true` (truecase) or `lower` (lowerc
  
 ## Configuration File
 
+**QuEst++** configuration file is a structure file that contains information about the language pairs, featureset and paths to resources and tools. Information about language pairs and features are showed below:
 
+```
+sourceLang.default ||   |   |   |   |   = spanish
+targetLang.default ||   |   |   |   |   = english
+output| |   |   |   |   |   |   |   = output/test
+input | |   |   |   |   |   |   |   = input/test
+resourcesPath | |   |   |   |   |   |   = ./lang_resources
+featureConfig | |   |   |   |   |   = config/features/features_blackbox_17.xml
+```
+
+'sourceLang.default' - default source language
+'targetLang.default' - default target language
+'output' - output folder
+'input' - input folder (where temporary files will be written)
+'resourcesPath' - language resources path
+'featureConfig' - features configuration file
+
+An example of parameters related to baseline features (for sentence and document level) are presented below:
+
+```
+source.corpus                                                  = ./lang_resources/english/sample_corpus.en
+source.lm|  |   |   |   |   |   |   = ./lang_resources/english/english_lm.lm
+source.truecase.model                                  |= ./lang_resources/english/truecase-model.en
+source.ngram                                                   = ./lang_resources/english/english_ngram.ngram.clean
+source.tokenizer.lang                                   = en
+giza.path                   |   |   = ./lang_resources/giza/lex.e2s
+tools.ngram.path |  |   |   |   |   |   = /export/tools/srilm/bin/i686-m64/
+```
+'source.corpus' - path to a corpus of the source language
+'source.lm' - path to a language model file of the source language
+'source.truecase.model' - path to a truecase model of the source language
+'source.ngram' - path to a ngram count file of the source language
+'source.tokenizer.lang ' - language for the tokenizer
+'giza.path' - path to the Giza++ lex file
+'tools.ngram.path' - path to SRILM
+
+Similarly the config file contains parameters for the target language and for other resources and tools.
 
 -----------------------------------------------------------------------
 
