@@ -151,6 +151,8 @@ public class WordLevelFeatureExtractor implements FeatureExtractor{
             outWriter.close();
             sourceBR.close();
             targetBR.close();
+            System.out.println("Features will be saved in the following order:");
+            getFeatureManager().printFeatureIndeces();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(WordLevelFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -249,6 +251,8 @@ public class WordLevelFeatureExtractor implements FeatureExtractor{
             //Update input paths:
             this.sourceFile = sourceOutput;
             this.targetFile = targetOutput;
+
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(WordLevelFeatureExtractor.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -283,22 +287,22 @@ public class WordLevelFeatureExtractor implements FeatureExtractor{
                 .withDescription("GlassBox input files").hasOptionalArgs(2)
                 .hasArgs(3).create("gb");
 
-        Option mode = OptionBuilder
-                .withArgName("mode")
-                .withDescription("blackbox features, glassbox features or both")
-                .hasArgs(1).isRequired(true).create("mode");
-
         Option config = OptionBuilder
                 .withArgName("config")
                 .withDescription("cofiguration file")
                 .hasArgs(1).isRequired(false).create("config");
+
+        Option featureset = OptionBuilder
+                .withArgName("featureset")
+                .withDescription("feature set cofiguration file")
+                .hasArgs(1).isRequired(false).create("featureset");
 
         CommandLineParser parser = new PosixParser();
         Options options = new Options();
         options.addOption(help);
         options.addOption(input);
         options.addOption(alignments);
-        options.addOption(mode);
+        options.addOption(featureset);
         options.addOption(lang);
         options.addOption(feat);
         options.addOption(gb);
@@ -328,12 +332,15 @@ public class WordLevelFeatureExtractor implements FeatureExtractor{
                 targetLang = getResourceManager().getString("targetLang.default");
             }
 
-            if (line.hasOption("mode")) {
-                String[] modeOpt = line.getOptionValues("mode");
-                setMod(modeOpt[0].trim());
-                configPath = getResourceManager().getString("featureConfig." + getMod());
+            if (line.hasOption("featureset")) {
+                configPath = line.getOptionValue("featureset");
                 featureManager = new WordLevelFeatureManager(configPath);
             }
+            else{
+                configPath = getResourceManager().getString("featureConfig");
+                featureManager = new WordLevelFeatureManager(configPath);
+            }
+
 
             if (line.hasOption("feat")) {
                 // print the value of block-size
