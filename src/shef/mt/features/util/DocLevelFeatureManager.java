@@ -35,7 +35,7 @@ public class DocLevelFeatureManager extends FeatureManager{
         while (it.hasNext()) {
             String index = it.next();
             f = features.get(index);
-//			System.out.println(index);
+            //System.out.println(index);
 
             // Modified by José de Souza
             // every new sentence pair has new features
@@ -64,9 +64,13 @@ public class DocLevelFeatureManager extends FeatureManager{
     }
 
     public void printFeatureIndeces() {
-        Iterator<String> it = features.keySet().iterator();
+        Set<String> fIndeces = features.keySet();
+        ArrayList<String> featureIndeces = new ArrayList<String>(fIndeces);
+        Collections.sort(featureIndeces);
+        Iterator<String> it = featureIndeces.iterator();
         while (it.hasNext()) {
-            System.out.print(it.next() + "\t");
+            String index = it.next();
+            System.out.print(index + "\t");
         }
         System.out.println();
     }
