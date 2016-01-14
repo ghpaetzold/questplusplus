@@ -3,9 +3,9 @@ An open source tool for pipelined Translation Quality Estimation.
 
 QuEst++ has two independent modules: *Feature Extractor Module* (developed in Java) and *Machine Learning Module* (developed in Python). The *Feature Extractor Module* extracts features for word- sentence- and document-level QE. With the *Machine Learning Module* QE models for predicting the quality of words, sentences or documents can be trained using different machine learning algorithms. 
 
-**Cite QuEst++**
+**Citing QuEst++**
   
-  Lucia Specia, Gustavo Henrique Paetzold and Carolina Scarton (2015): Multi-level Translation Quality Prediction with QuEst++. In *Proceedings of ACL-IJCNLP 2015 System Demonstrations*, Denver, CO, pp. 118-125.
+  Lucia Specia, Gustavo Henrique Paetzold and Carolina Scarton (2015): Multi-level Translation Quality Prediction with QuEst++. In *Proceedings of ACL-IJCNLP 2015 System Demonstrations*, Denver, CO, pp. 118-125. [PDF](http://aclweb.org/anthology/N/N15/N15-2016.pdf) [BIBTEX](http://staffwww.dcs.shef.ac.uk/people/C.Scarton/publications/specia2015.bib)
   
 ## System requirements
  The Java and python required are:
