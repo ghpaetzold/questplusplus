@@ -40,6 +40,7 @@ Apart from these libraries files, **QuEst++** requires other external tools / sc
 
 - [Perl  5](https://www.perl.org/get.html) (or above)
 - [SRILM](http://www.speech.sri.com/projects/srilm/manpages/) (for Language Model features only)
+- [Universal Wordnet plugin](http://resources.mpi-inf.mpg.de/yago-naga/uwn/uwn.zip) (unzip it in a folder of your choice)
 - Tokenizer (available at `lang_resources` folder - from [Moses toolkit](http://www.statmt.org/moses/))
 - Truecaser (available at `lang_resources` folder - from [Moses toolkit](http://www.statmt.org/moses/))
 
