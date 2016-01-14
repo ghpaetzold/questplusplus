@@ -100,10 +100,15 @@ featureConfig | |   |   = config/features/features_blackbox_17.xml
 ```
 
 'sourceLang.default' - default source language
+
 'targetLang.default' - default target language
+
 'output' - output folder
+
 'input' - input folder (where temporary files will be written)
+
 'resourcesPath' - language resources path
+
 'featureConfig' - features configuration file
 
 An example of parameters related to baseline features (for sentence and document level) are presented below:
@@ -118,11 +123,17 @@ giza.path                   = ./lang_resources/giza/lex.e2s
 tools.ngram.path |  |   |   = /export/tools/srilm/bin/i686-m64/
 ```
 'source.corpus' - path to a corpus of the source language
+
 'source.lm' - path to a language model file of the source language
+
 'source.truecase.model' - path to a truecase model of the source language
+
 'source.ngram' - path to a ngram count file of the source language
+
 'source.tokenizer.lang ' - language for the tokenizer
+
 'giza.path' - path to the Giza++ lex file
+
 'tools.ngram.path' - path to SRILM
 
 Similarly the config file contains parameters for the target language and for other resources and tools.
