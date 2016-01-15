@@ -93,10 +93,10 @@ The option `-case` can be `no` (no casing), `true` (truecase) or `lower` (lowerc
 ```
 sourceLang.default	= spanish
 targetLang.default	= english
-output| |   |   |   |   = output/test
-input | |   |   |   |   = input/test
-resourcesPath | |   |   = ./lang_resources
-featureConfig | |   |   = config/features/features_blackbox_17.xml
+output			= output/test
+input 			= input/test
+resourcesPath 		= ./lang_resources
+featureConfig 		= config/features/features_blackbox_17.xml
 ```
 
 - `sourceLang.default` - default source language
@@ -110,12 +110,12 @@ An example of parameters related to baseline features (for sentence and document
 
 ```
 source.corpus               = ./lang_resources/english/sample_corpus.en
-source.lm|  |   |   |   |   = ./lang_resources/english/english_lm.lm
+source.l		    = ./lang_resources/english/english_lm.lm
 source.truecase.model       = ./lang_resources/english/truecase-model.en
 source.ngram                = ./lang_resources/english/english_ngram.ngram.clean
 source.tokenizer.lang       = en
 giza.path                   = ./lang_resources/giza/lex.e2s
-tools.ngram.path |  |   |   = /export/tools/srilm/bin/i686-m64/
+tools.ngram.path	    = /export/tools/srilm/bin/i686-m64/
 ```
 - `source.corpus` - path to a corpus of the source language
 - `source.lm` - path to a language model file of the source language
