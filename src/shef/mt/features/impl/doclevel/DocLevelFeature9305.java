@@ -34,8 +34,6 @@ public class DocLevelFeature9305 extends DocLevelFeature {
         double avgConfidence = 0;
         for (int i=0;i<target.getSentences().size();i++){
             avgConfidence +=(double) target.getSentence(i).getValue("bparser.avgConfidence");
-            System.out.println(target.getSentence(i).getValue("bparser.avgConfidence"));
-            System.out.println(source.getSentence(i).getValue("bparser.avgConfidence"));
         }
         
         setValue(new Float((Double) avgConfidence/target.getSentences().size()));
