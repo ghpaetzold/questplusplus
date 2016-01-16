@@ -2,7 +2,7 @@ QuEst++
 ================
 An open source tool for pipelined Translation Quality Estimation. 
 
-This open source software is aimed at quality estimation (QE) for machine translation. It was developed by Professor Lucia Specia's team at the University of Sheffield and includes contributions from a number of researchers. This particular release was made possible through the [EXPERT](http://expert-itn.eu/) project.
+This open source software is aimed at quality estimation (QE) for machine translation. It was developed by Professor Lucia Specia's team at the University of Sheffield and includes contributions from a number of researchers. This particular release was made possible through the [EXPERT](http://expert-itn.eu/) project and funding from [EAMT](http://www.eamt.org).
 
 **QuEst++** is a new release of [**QuEst**](https://github.com/lspecia/quest), including support for word- and document-level QE. **QuEst++** has two independent modules: *Feature Extractor Module* (developed in Java) and *Machine Learning Module* (developed in Python).  
 
