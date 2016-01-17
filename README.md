@@ -110,7 +110,7 @@ An example of parameters related to baseline features (for sentence and document
 
 ```
 source.corpus               = ./lang_resources/english/sample_corpus.en
-source.l		    = ./lang_resources/english/english_lm.lm
+source.lm		    = ./lang_resources/english/english_lm.lm
 source.truecase.model       = ./lang_resources/english/truecase-model.en
 source.ngram                = ./lang_resources/english/english_ngram.ngram.clean
 source.tokenizer.lang       = en
