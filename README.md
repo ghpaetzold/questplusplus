@@ -36,7 +36,7 @@ Some of the libraries required to compile and run the code are included in the `
 - [Stanford Core NLP 3.5.1 models](http://nlp.stanford.edu/software/stanford-corenlp-full-2015-01-29.zip) (place the file `stanford-corenlp-3.5.1-models.jar` in the `lib`)
 - [Stanford Core NLP Spanish models](http://nlp.stanford.edu/software/stanford-spanish-corenlp-2015-01-08-models.jar)
 
-Apart from these libraries files, **QuEst++** requires other external tools / scripts to extract sentence- and document-level baseline features. The paths for these external tools are set in a *configuration file* under `config` folder:
+Apart from these libraries files, **QuEst++** requires other external tools / scripts to extract the baseline features. The paths for these external tools are set in a *configuration file* under `config` folder:
 
 - [Perl  5](https://www.perl.org/get.html) (or above)
 - [SRILM](http://www.speech.sri.com/projects/srilm/manpages/) (for Language Model features only)
