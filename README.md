@@ -17,15 +17,30 @@ This open source software is aimed at quality estimation (QE) for machine transl
 # System requirements
  The Java and python required are:
 
-1. [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)(JDK-1.8)
+1. [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)(JDK-1.8) 
+  1. [NetBeans 8.1](https://netbeans.org/downloads/) (recommended) OR
+  2. [Apache Ant](http://ant.apache.org/bindownload.cgi) (>= 1.9.3) 	
 2. [Python 2.7.6](https://www.python.org/downloads/) (or above - only 2.7 stable distributions)
-  1. [SciPy and NumPy](http://www.scipy.org/install.html) (SciPy >=0.9 and NumPy >=1.6.1)
+  1. [NumPy and SciPy](http://www.scipy.org/install.html) (NumPy >=1.6.1 and SciPy >=0.9)
   2. [scikit-learn](https://pypi.python.org/pypi/scikit-learn/0.15.2) (version 0.15.2)
   3. [PyYAML](http://pyyaml.org/)
   4. [CRFsuite](http://www.chokkan.org/software/crfsuite/)
   
-**Please note:** For Linux, the *Feature Extractor Module* works with both Oracle and OpenJDK distributions.
+**Please note:** For Linux, the *Feature Extractor Module* should work with both OpenJDK and Oracle versions ([java-8-oracle](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) recommended)
 
+On Ubuntu, it's easier to install Oracle distribution:
+ 
+```
+sudo apt-get install oracle-java8-installer
+```
+
+(Check http://ubuntuhandbook.org/index.php/2014/02/install-oracle-java-6-7-or-8-ubuntu-14-04/ if you don't find that version)
+
+NetBeans has issues to build on Linux. Get Ant instead to build through command line:
+
+```
+sudo apt-get install ant
+```
 # Feature extractor
 This module implements a number of feature extractors, for word, sentence and document levels.
 
