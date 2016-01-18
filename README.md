@@ -20,7 +20,7 @@ This open source software is aimed at quality estimation (QE) for machine transl
 1. [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)(JDK-1.8)
 2. [Python 2.7.6](https://www.python.org/downloads/) (or above - only 2.7 stable distributions)
   1. [SciPy and NumPy](http://www.scipy.org/install.html) (SciPy >=0.9 and NumPy >=1.6.1)
-  2. [scikit-learn](http://scikit-learn.org/stable/install.html)
+  2. [scikit-learn](https://pypi.python.org/pypi/scikit-learn/0.15.2) (version 0.15.2)
   3. [PyYAML](http://pyyaml.org/)
   4. [CRFsuite](http://www.chokkan.org/software/crfsuite/)
   
