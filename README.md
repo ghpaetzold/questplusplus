@@ -29,7 +29,7 @@ This open source software is aimed at quality estimation (QE) for machine transl
 # Feature extractor
 This module implements a number of feature extractors, for word, sentence and document levels.
 
-## Dependencies
+## Dependencies - tools
 
 Some of the libraries required to compile and run the code are included in the `lib` directory in the root directory of the distribution. The Java libraries should be included there when possible. However, there are two libraries that were not included into the `lib` directory due their size (used for word-level features only):
 
@@ -40,7 +40,6 @@ Apart from these libraries files, **QuEst++** requires other external tools / sc
 
 - [Perl  5](https://www.perl.org/get.html) (or above)
 - [SRILM](http://www.speech.sri.com/projects/srilm/manpages/) (for Language Model features only)
-- [Universal Wordnet plugin](http://resources.mpi-inf.mpg.de/yago-naga/uwn/uwn.zip) (unzip it in a folder of your choice)
 - Tokenizer (available at `lang_resources` folder - from [Moses toolkit](http://www.statmt.org/moses/))
 - Truecaser (available at `lang_resources` folder - from [Moses toolkit](http://www.statmt.org/moses/))
 
@@ -50,6 +49,35 @@ For advanced features at sentence and document levels, the following tools can b
 - [Berkeley Parser](https://github.com/slavpetrov/berkeleyparser) (the file `BerkeleyParser-1.7.jar` is already inclued in the `lib` directory)
 
 Please note that above list is not exhaustive. Advance set of features require external tools, see details in the features documentation.
+
+## Dependencies - resources
+
+The resources required for word, sentence and document-level baseline features are:
+- corpus for source language 
+- corpus for target language
+- LM for source language 
+- LM for target language
+- ngram counts file for source language
+- ngram counts file for target language
+
+For sentence and document-level features only:
+- Truecase model for source language
+- Truecase model for target language
+- Giza lex file
+
+For word-level only:
+- POS ngram counts file for source language
+- POS ngram counts file for target language
+- corpus com POS information for source language
+- corpus com POS information for target language
+- reference translations in the target language
+- stop words list of the source language
+- translation probabilities of the source language
+- [Universal WordNet plugin](http://resources.mpi-inf.mpg.de/yago-naga/uwn/uwn.zip) (unzip this file inside the `lang_resources` folder)
+
+Examples of these resources are provided in the `lang_resources` folder. 
+Resources for several languages can be downloaded from [WMT15](http://www.statmt.org/wmt15/quality-estimation-task.html).
+Advanced features may require specific data (please read the documentation of the specific features). 
 
 ## Input files
 For word and sentence levels, the input files contain one sentence per line. 
