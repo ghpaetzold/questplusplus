@@ -219,10 +219,13 @@ example:
   `python src/learn_model.py config/svr.cfg`
 
 Please note that the file `svr.cfg` can be replaced by any other configuration file for different algorithms. 
+Predictions are saved in a file called `predicted.csv` in the `learning` folder.
 
 For building CRF (Conditional Random Fiels) models for word-level QE, use:
 
   `python src/learn_model_CRF.py config/crf.cfg`
+
+Predictions are saved in a file called `output_file.txt` in the `learning` folder.
 
 ## Configuration file
 
