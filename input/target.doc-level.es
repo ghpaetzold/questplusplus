@@ -1,2 +1,10 @@
-input/doc1.es.txt
-input/doc2.es.txt
+input/docs/doc1.es.txt
+input/docs/doc2.es.txt
+input/docs/doc3.es.txt
+input/docs/doc4.es.txt
+input/docs/doc5.es.txt
+input/docs/doc6.es.txt
+input/docs/doc7.es.txt
+input/docs/doc8.es.txt
+input/docs/doc9.es.txt
+input/docs/doc10.es.txt

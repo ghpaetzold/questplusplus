@@ -1,0 +1,75 @@
+In these days of storms and accidents, it is not only garages that are making a profit.
+Every day, thousands of cars that have been in accidents are towed to a garage, where a technician must evaluate the damage and what the repair will cost.
+No claim is the same, and calculating the cost of parts and labor can be a long and complicated task.
+Manually calculating the cost of a repair between 20,000 and 30,000 euros, including parts and labor, may take two or three hours.
+However, with the help of the most recent computer tools, it would take a matter of minutes.
+This is why almost 100% of technicians are using this kind of system.
+Providers of services, claims solutions, and maintenance are working to compile data supplied by manufacturers, and then process it and offer it to customers as a useful tool.
+In Spain, Audatex, of the North American Groupo Solera, is the industry leader;80% of assessments are done using their products.
+The other firms in the sector, competing in the field of data assessment and processing, are GtMotive and Eurotax.
+Working with data supplied by manufacturers is far from simple.
+According to Eduardo Velazquez, the Audatex business manager, 63 manufacturers and importers are working in Spain, and each of them submits data in a different format.
+Furthermore, the amount of data to process is increasing to the point where they have released more versions, variants and engines in the last five years than in the previous 15.
+When a new car hits the market, these companies get to work.
+It's very arduous work because you have to catalog each of the thousands of vehicle parts andenter in your price.
+In addition, a "smart" graphic is made for each model, where you can "click" on different parts of the car.
+If it is a mass-market model, the work can be ready in a week, provided the process goes quickly.
+If it's an uncommon car, it can take up to three or four months.Currently, Audatex provides comprehensive data for 99.2% of the cars sold in Spain.
+Among the most exclusive models, information is available for a Porsche, but not a Ferrari or Lamborghini for example.
+As for the number of cars in circulation, it is over 99%.
+In order to document and develop the databases, Audatex has eight centers scattered around the world   (  Spain, France, Germany, USA, Brazil, Mexico, China and Japan  )  , and each of these specializes in a specific brand.
+Its national headquarters is in Alcobendas   (  Madrid  )  .
+There, over a hundred technicians   (  usually expert mechanics  )   work with three computer screens at the same time.
+Audatex invests 90 million euros a year in developing these databases.
+Every month, 2.5 million pieces of information are added, and clients receive updates every two days.
+Developing that huge flow of information lets them give these companies different applications and varied products.
+The most common use focuses on maintenance and repair, but depending on the country, there are also tools to manage scrap pieces and to calculate the market and residual value of a car.
+The only company with a used car guide available in Spain is Eurotax.
+Audatex doesn't offer one in our country, but it does in the United States.
+In view of the products that Audatex offers, it is easy to get an idea of the kind of support available to professionals in this sector.
+This company offers 10 different tools; AudaPlus, being the flagship product, is the standard solution, designed to allow technicians to assess claims.
+It includes cars, motorcycles, and light and heavy industrial vehicles.
+Besides the cost of parts, it includes manufacturer estimates of repair times and paint charts.
+This tool charges according to the use, for each appraisal.
+The highest cost is 5.75 euros for customers who rarely use it, 10 times a month at most.
+Then, every insurance company that makes thousands of assessments negotiates their price with Audatex.
+Other products, like AudaVIN, facilitate the complete identification of a vehicle and the equipment that it left the assembly line with, just from its vehicle identification number.
+AudaGlass focuses on the glass parts of a car, and AudaSubastas is an on-line service open to the professional sector which facilitates the bidding on vehicles calssed as write-offs.
+Their statistics service is very useful for identifying trends, geo-demographic analysis and knowing standard deviations of makes and models.
+You can study, for example, how many models of a particular make have gone to a shop because of malfunctions or how many have been in serious accidents in a certain period.
+Gt Motive is the only Spanish company working to develop these kinds of tools.
+It sells, among others, the GT Estimate, which is again designed for technicians and also provides digital images, access to parts and the manufacturer's official prices and times.
+GT Motive is a Grupo EINSA company, which was founded in 1971 as a provider of automotive services and solutions for assessing damage, malfunctions and maintenance.
+The GT Appraisal Guide is its historical reference product on the market.
+They work with 24,000 users in garages, 3,100 technicians and 53 insurance companies.
+Its turnover has grown by 20% per year over the past three years, and it brought in 10.8 million euros in 2008.
+Early last year, the globalization process started with the installation of an office in Paris.
+Meanwhile, Audatex was founded in Germany in 1966 and set up shop in Spain in 1979.
+According to company sources, 62% of its business is generated in Europe and the rest of the world, and the remaining 37% in North and South America.They work with more than 900 insurance companies and 33,000 shops, 3,000 of which are in Spain.
+Grupo Solera's   (  Audatex, Sidexa, Informex ABZ, Hollander and IMS  )   worldwide turnover will total 557 million dollars, 3.3% more than 2008.
+In our country, the company brought in 19.1 million euros, 7.2% more than last year.
+In 2005, Grupo Solera was valued at 1 billion dollars on the stock exchange, and its shares are now listed for a total of 2.4 billion dollars.
+It is been listed on the NYSE since 2007 and is included in Standard &amp; Poor's reference index.
+Damaged car on-line auctions.
+Last October, Grupo Solera bought Autoonline, an internet platform for selling cars, motorcycles, and especially damaged vehicles.
+The endeavor entailed an outlay of 59.5 million euros for 85% of the company's capital, which would increase in the upcoming year by the remaining 15%.
+The aim of the acquisition was to offer more value-added services to its customers, with the possibility of reaching an immense international market.
+This appraisal and buying and selling service is directed exclusively at professionals in the sector, such as insurance companies, technicians, renting agencies, shops, scrap yards, and professional sellers who must register before using it.
+This platform was created in Germany in 1996, and it manages more than 650,000 transactions throughout Europe, 500,000 of them in Germany.
+Its major markets include Spain, Greece, Poland and Turkey.
+The site currently has more than 1,500 registered sellers and 4,000 technicians.
+It oversees 3,000 listings a day, and around 100 new listings are added every day on the Spanish market.
+Under Spanish law, a car whose vehicle identification number has been unregistered cannot be put back into circulation but can be used for undamaged spare parts.
+Cars with historical value can be registered, even though they have been unregistered, after a lengthy registration process.
+A shop's estimate in four steps.
+With the AudaTaller tool, Audatex guarantees that the user gets an estimate in only 4 steps: identify the vehicle, look for the spare part, create an estimate and generate an estimate.
+User friendliness is an essential condition for these systems, especially to convincing older technicians, who, to varying degrees, are usually more reluctant to use new management techniques.
+The database includes 1,034 vehicles, 666 of which are cars, 109 sport-utility vehicles, 137 motorcycles, 78 vans and 44 trucks.
+Naturally, a computer with an internet connection is needed to use it.
+After identifying the model to be repaired by its vehicle identification number, an effective graphic image of the model appears, and then the necessary part is selected.
+The user can include variables such as the price of labor, surcharges and discounts, and can then print the estimate for the client.
+AudaTaller is not an appraisal tool like AudaPlus, but rather a reference catalog.
+The main difference is that the system aimed at garages does not include labor time estimates.
+The cost of using this tool in a shop is 350 euros a year, which the customer can finance.
+Presently, Audatex is working to make these images three-dimensional.
+This is an innovation mechanics are approving of because it will enable you, for example, to select a door and turn it around to see the inside.

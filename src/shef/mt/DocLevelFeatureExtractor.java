@@ -23,7 +23,6 @@ import shef.mt.features.util.Sentence;
 import shef.mt.features.util.Doc;
 import shef.mt.features.util.Paragraph;
 import shef.mt.features.util.DocLevelFeatureManager;
-import shef.mt.features.util.FeatureManager;
 import shef.mt.tools.Caser;
 import shef.mt.tools.DocLevelMissingResourceGenerator;
 import shef.mt.tools.ResourceProcessor;
@@ -206,6 +205,8 @@ public class DocLevelFeatureExtractor implements FeatureExtractor {
                 outWriter.newLine();
 
             }
+            System.out.println("Features will be saved in the following order:");
+            getFeatureManager().printFeatureIndeces();
 
             //save output file:
             outWriter.close();
@@ -433,7 +434,7 @@ public class DocLevelFeatureExtractor implements FeatureExtractor {
             }
 
             if (line.hasOption("featureset")) {
-                configPath = line.getOptionValue("featureset");;
+                configPath = line.getOptionValue("featureset");
                 featureManager = new DocLevelFeatureManager(configPath);
             }
             else{

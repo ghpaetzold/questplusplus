@@ -31,12 +31,12 @@ public class DocLevelFeature9301 extends DocLevelFeature {
 
     @Override
     public void run(Doc source, Doc target) {
-        double likelihood = 0;
+        double avgConfidence = 0;
         for (int i=0;i<source.getSentences().size();i++){
-            likelihood +=(double) source.getSentence(i).getValue("bparser.avgConfidence");
+            avgConfidence +=(double) source.getSentence(i).getValue("bparser.avgConfidence");
         }
         
-        setValue(new Float((Double) likelihood/source.getSentences().size()));
+        setValue(new Float((Double) avgConfidence/source.getSentences().size()));
     }
 
 }
