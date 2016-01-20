@@ -10,7 +10,7 @@ This open source software is aimed at quality estimation (QE) for machine transl
 
 **Citing QuEst++**
   
-  Lucia Specia, Gustavo Henrique Paetzold and Carolina Scarton (2015): Multi-level Translation Quality Prediction with QuEst++. In *Proceedings of ACL-IJCNLP 2015 System Demonstrations*, Denver, CO, pp. 118-125. [[PDF](http://aclweb.org/anthology/N/N15/N15-2016.pdf)] [[BIBTEX](http://staffwww.dcs.shef.ac.uk/people/C.Scarton/publications/specia2015.bib)]
+  Lucia Specia, Gustavo Henrique Paetzold and Carolina Scarton (2015): Multi-level Translation Quality Prediction with QuEst++. In *Proceedings of ACL-IJCNLP 2015 System Demonstrations*, Beijing, China, pp. 115-120. [[PDF](https://aclweb.org/anthology/P/P15/P15-4020.pdf)] [[BIBTEX](http://staffwww.dcs.shef.ac.uk/people/C.Scarton/publications/specia2015.bib)]
   
 -----------------------------------------------------------------------
 
