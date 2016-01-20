@@ -34,7 +34,7 @@ public class MissingResourceGenerator {
         HashSet<String> required = this.fe.getFeatureManager().getRequiredResources();
 
         //Produce missing alignment file, if necessary:
-        this.produceMissingAlignments(required);
+        //this.produceMissingAlignments(required);
 
         //Produce missing language models, if necessary:
         this.produceMissingLanguageModels(required);

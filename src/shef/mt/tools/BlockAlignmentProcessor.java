@@ -24,8 +24,9 @@ public class BlockAlignmentProcessor extends ResourceProcessor {
     public BlockAlignmentProcessor(String path) {
         try {
             reader = new BufferedReader(new FileReader(path));
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             reader = null;
+            System.out.println("ERROR: File for the -alignments parameter is missing.");
             Logger.getLogger(BlockAlignmentProcessor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
