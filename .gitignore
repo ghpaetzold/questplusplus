@@ -2,6 +2,7 @@
 /dist/
 /output/
 /input/test
+/lang_resources/uwn
 *.ngram
 *models.jar
 /nbproject/
