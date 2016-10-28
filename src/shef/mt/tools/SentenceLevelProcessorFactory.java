@@ -463,16 +463,16 @@ public class SentenceLevelProcessorFactory {
         String sourceOutput = this.fe.getSourceFile() + ".ppl";
 
         //Read language models:
-        NGramExec nge = new NGramExec(this.fe.getResourceManager().getString("tools.ngram.path"), true);
+        NGramExecIRSTLM nge = new NGramExecIRSTLM(this.fe.getResourceManager().getString("tools.irstlm.path"), true);
 
         //Get paths of LMs:
         String sourceLM = this.fe.getResourceManager().getString("source.lm");
 
         //Run LM reader:
-        System.out.println("Running SRILM...");
+        System.out.println("Running IRSTLM...");
         System.out.println(this.fe.getSourceFile());
         nge.runNGramPerplex(this.fe.getSourceFile(), sourceOutput, sourceLM);
-        System.out.println("SRILM finished!");
+        System.out.println("IRSTLM finished!");
 
         //Generate PPL processors:
         PPLProcessor pplProcSource = new PPLProcessor(sourceOutput,
@@ -490,16 +490,16 @@ public class SentenceLevelProcessorFactory {
         String targetOutput = this.fe.getTargetFile() + ".ppl";
 
         //Read language models:
-        NGramExec nge = new NGramExec(this.fe.getResourceManager().getString("tools.ngram.path"), true);
+        NGramExecIRSTLM nge = new NGramExecIRSTLM(this.fe.getResourceManager().getString("tools.irstlm.path"), true);
 
         //Get paths of LMs:
         String targetLM = this.fe.getResourceManager().getString("target.lm");
 
         //Run LM reader:
-        System.out.println("Running SRILM...");
+        System.out.println("Running IRSTLM...");
         System.out.println(this.fe.getTargetFile());
         nge.runNGramPerplex(this.fe.getTargetFile(), targetOutput, targetLM);
-        System.out.println("SRILM finished!");
+        System.out.println("IRSTLM finished!");
 
         //Generate PPL processors:
         PPLProcessor pplProcTarget = new PPLProcessor(targetOutput,
@@ -517,16 +517,16 @@ public class SentenceLevelProcessorFactory {
         String targetOutput = this.fe.getTargetFile() + ".XPOS.ppl";
 
         //Read language models:
-        NGramExec nge = new NGramExec(this.fe.getResourceManager().getString("tools.ngram.path"), true);
+        NGramExecIRSTLM nge = new NGramExecIRSTLM(this.fe.getResourceManager().getString("tools.irstlm.path"), true);
 
         //Get paths of LMs:
         String targetLM = this.fe.getResourceManager().getString("target.poslm");
 
         //Run LM reader:
-        System.out.println("Running SRILM...");
+        System.out.println("Running IRSTLM...");
         System.out.println(targetOutput);
         nge.runNGramPerplex(this.fe.getTargetFile() + ".pos.XPOS", targetOutput, targetLM);
-        System.out.println("SRILM finished!");
+        System.out.println("IRSTLM finished!");
 
         //Generate PPL processors:
         PPLProcessor pplProcTarget = new PPLProcessor(targetOutput,
