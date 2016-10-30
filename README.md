@@ -1,5 +1,5 @@
-QuEst++
-================
+QuEst++ (IRSTLM version)
+========================
 An open source tool for pipelined Translation Quality Estimation. 
 
 This open source software is aimed at quality estimation (QE) for machine translation. It was developed by Professor Lucia Specia's team at the University of Sheffield and includes contributions from a number of researchers. This particular release was made possible through the [EXPERT](http://expert-itn.eu/) project and funding from [EAMT](http://www.eamt.org).
@@ -19,22 +19,26 @@ This open source software is aimed at quality estimation (QE) for machine transl
 
 1. [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)(JDK-1.8) 
   1. [NetBeans 8.1](https://netbeans.org/downloads/) (recommended) OR
-  2. [Apache Ant](http://ant.apache.org/bindownload.cgi) (>= 1.9.3) 	
+  2. [Apache Ant](http://ant.apache.org/bindownload.cgi) (>= 1.9.3) (works nicely) 	
 2. [Python 2.7.6](https://www.python.org/downloads/) (or above - only 2.7 stable distributions)
   1. [NumPy and SciPy](http://www.scipy.org/install.html) (NumPy >=1.6.1 and SciPy >=0.9)
   2. [scikit-learn](https://pypi.python.org/pypi/scikit-learn/0.15.2) (version 0.15.2)
   3. [PyYAML](http://pyyaml.org/)
   4. [CRFsuite](http://www.chokkan.org/software/crfsuite/)
   
-**Please note:** For Linux, the *Feature Extractor Module* should work with both OpenJDK and Oracle versions ([java-8-oracle](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) recommended)
+**Please note:** For Linux, the *Feature Extractor Module* should work with both OpenJDK and Oracle versions ([java-8-oracle](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html))
 
-On Ubuntu, it's easier to install Oracle distribution:
+On Ubuntu, you can either install the Oracle distribution:
  
 ```
 sudo apt-get install oracle-java8-installer
 ```
+(check http://ubuntuhandbook.org/index.php/2014/02/install-oracle-java-6-7-or-8-ubuntu-14-04/ if you don't find that version), or, even better, install OpenJDK, which is free/open-source:
 
-(Check http://ubuntuhandbook.org/index.php/2014/02/install-oracle-java-6-7-or-8-ubuntu-14-04/ if you don't find that version)
+```
+sudo apt-get install openjdk-8-jre
+```
+
 
 NetBeans has issues to build on Linux. Get Ant instead to build through command line:
 
@@ -54,13 +58,13 @@ Some of the libraries required to compile and run the code are included in the `
 Apart from these libraries files, **QuEst++** requires other external tools / scripts to extract the baseline features. The paths for these external tools are set in a *configuration file* under `config` folder:
 
 - [Perl  5](https://www.perl.org/get.html) (or above)
-- [SRILM](http://www.speech.sri.com/projects/srilm/manpages/) (for Language Model features only)
+- [IRSTLM] (https://hlt-mt.fbk.eu/technologies/irstlm) (for Language Model features only)
 - Tokenizer (available at `lang_resources` folder - from [Moses toolkit](http://www.statmt.org/moses/))
 - Truecaser (available at `lang_resources` folder - from [Moses toolkit](http://www.statmt.org/moses/))
 
 For advanced features at sentence and document levels, the following tools can be necessary:
 
-- [TreeTagger](http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/)
+- [TreeTagger](http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/) (this is not free/open-source software)
 - [Berkeley Parser](https://github.com/slavpetrov/berkeleyparser) (the file `BerkeleyParser-1.7.jar` is already inclued in the `lib` directory)
 
 Please note that above list is not exhaustive. Advance set of features require external tools, see details in the features documentation.
@@ -141,7 +145,7 @@ The option `-case` can be `no` (no casing), `true` (truecase) or `lower` (lowerc
 
 **Please note:** 
 1. We provide examples of input and language resources for the basic usage commands.
-2. One need to adapt the configuration file by providing the paths to the scripts where they are installed on your own system (such as SRILM and TreeTagger paths).
+2. One needs to adapt the configuration file by providing the paths to the scripts where they are installed on your own system (such as IRSTLM and TreeTagger paths).
  
 ## Configuration File
 
@@ -172,7 +176,7 @@ source.truecase.model       = ./lang_resources/english/truecase-model.en
 source.ngram                = ./lang_resources/english/english_ngram.ngram.clean
 source.tokenizer.lang       = en
 giza.path                   = ./lang_resources/giza/lex.e2s
-tools.ngram.path	    = /export/tools/srilm/bin/i686-m64/
+tools.irslm.path	    = /usr/local/bin/
 ```
 - `source.corpus` - path to a corpus of the source language
 - `source.lm` - path to a language model file of the source language
@@ -180,7 +184,7 @@ tools.ngram.path	    = /export/tools/srilm/bin/i686-m64/
 - `source.ngram` - path to a ngram count file of the source language
 - `source.tokenizer.lang` - language for the tokenizer
 - `giza.path` - path to the Giza++ lex file
-- `tools.ngram.path` - path to SRILM
+- `tools.irstlm.path` - path to IRSTLM
 
 Similarly the config file contains parameters for the target language and for other resources and tools.
 
@@ -472,4 +476,4 @@ http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClas
 
 # License
 
-The license for the Java code and any python and shell scripts developed here is the very permissive BSD License (http://en.wikipedia.org/wiki/BSD_licenses). For pre-existing code and resources, e.g., scikit-learn, SRILM and Berkeley parser, please check their websites. 
+The license for the Java code and any python and shell scripts developed here is the very permissive BSD License (http://en.wikipedia.org/wiki/BSD_licenses). For pre-existing code and resources, e.g., scikit-learn, IRSLTM, the Moses scripts and Berkeley parser, please check their websites. 
